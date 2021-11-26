@@ -1,5 +1,6 @@
-package com.przychodniamk3;
+package com.przychodniamk2;
 
+import com.przychodniamk2.database.UserRepository;
 import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

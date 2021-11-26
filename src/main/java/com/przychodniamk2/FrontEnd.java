@@ -1,4 +1,4 @@
-package com.przychodniamk3;
+package com.przychodniamk2;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,7 +17,7 @@ public class FrontEnd extends Application {
 
     @Override
     public void init() {
-        applicationContext = new SpringApplicationBuilder(PrzychodniaMk2Application.class).run();
+        applicationContext = new SpringApplicationBuilder(PrzychodniaMk3Application.class).run();
     }
 
     @Override

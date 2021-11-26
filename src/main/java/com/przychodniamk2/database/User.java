@@ -1,4 +1,4 @@
-package com.przychodniamk3;
+package com.przychodniamk2.database;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

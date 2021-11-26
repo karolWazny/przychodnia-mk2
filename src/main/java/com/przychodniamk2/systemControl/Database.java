@@ -1,8 +1,8 @@
-package com.przychodniamk3.systemControl;
+package com.przychodniamk2.systemControl;
 
-import com.przychodniamk3.business.Date;
-import com.przychodniamk3.business.Person;
-import com.przychodniamk3.business.Visit;
+import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Person;
+import com.przychodniamk2.business.Visit;
 
 import java.util.List;
 

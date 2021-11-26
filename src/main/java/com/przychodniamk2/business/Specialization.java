@@ -1,4 +1,4 @@
-package com.przychodniamk3.business;
+package com.przychodniamk2.business;
 
 public class Specialization {
     public final String name;

@@ -1,5 +1,6 @@
-package com.przychodniamk3;
+package com.przychodniamk2;
 
+import com.przychodniamk2.database.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

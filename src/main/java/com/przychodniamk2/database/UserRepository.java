@@ -1,4 +1,4 @@
-package com.przychodniamk3;
+package com.przychodniamk2.database;
 
 import org.springframework.data.repository.CrudRepository;
 
