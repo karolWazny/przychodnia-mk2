@@ -25,7 +25,7 @@ public class mainController {
         System.out.println("Wciśnięto przycisk");
 
         StringBuilder text = new StringBuilder();
-        Iterable<User> users = FrontEnd.context().getBean("userRepository", UserRepository.class).findAll();
+        Iterable<User> users = App.context().getBean("userRepository", UserRepository.class).findAll();
         for(User user : users){
             text.append(user.toString());
             text.append('\n');
