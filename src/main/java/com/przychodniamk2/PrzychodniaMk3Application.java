@@ -10,16 +10,6 @@ public class PrzychodniaMk3Application{
     @Autowired
     private UserRepository userRepository;
 
-    private static PrzychodniaMk3Application instance;
-
-    public static UserRepository getRepository(){
-        return instance.userRepository;
-    }
-
-    public PrzychodniaMk3Application(){
-        instance = this;
-    }
-
     public UserRepository getRepo(){
         return userRepository;
     }

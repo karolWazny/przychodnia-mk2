@@ -1,5 +1,9 @@
 package com.przychodniamk2;
 
+import com.przychodniamk2.config.DatabaseConfig;
+import com.przychodniamk2.database.User;
+import com.przychodniamk2.database.UserRepository;
+import com.przychodniamk2.systemControl.Database;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -7,17 +11,28 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
 
 public class FrontEnd extends Application {
-    ConfigurableApplicationContext applicationContext;
+    private static ConfigurableApplicationContext applicationContext;
+
+    public static ApplicationContext context(){
+        return applicationContext;
+    }
 
     @Override
     public void init() {
-        applicationContext = new SpringApplicationBuilder(PrzychodniaMk3Application.class).run();
+        applicationContext = new SpringApplicationBuilder(PrzychodniaMk3Application.class).child(DatabaseConfig.class).run();
+        Database o = applicationContext.getBean("database", Database.class);
+        o.setContext(applicationContext);
+
+        Database dbase = applicationContext.getBean("database", Database.class);
+        Iterable<User> users = dbase.allUsers();
+        System.out.println(users);
     }
 
     @Override
@@ -39,7 +54,7 @@ public class FrontEnd extends Application {
         applicationContext.publishEvent(new StageReadyEvent(primaryStage));
     }
 
-    public class StageReadyEvent extends ApplicationEvent {
+    public static class StageReadyEvent extends ApplicationEvent {
         public StageReadyEvent(Stage stage) {
             super(stage);
         }
