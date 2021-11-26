@@ -1,6 +1,6 @@
-package com.przychodniamk3.systemControl;
+package com.przychodniamk2.systemControl;
 
-import com.przychodniamk3.business.Address;
+import com.przychodniamk2.business.Address;
 
 public class PatientData {
 	public String firstName;

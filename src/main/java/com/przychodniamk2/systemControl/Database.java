@@ -1,12 +1,18 @@
-package com.przychodniamk3.systemControl;
+package com.przychodniamk2.systemControl;
 
-import com.przychodniamk3.business.Date;
-import com.przychodniamk3.business.Person;
-import com.przychodniamk3.business.Visit;
+import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Person;
+import com.przychodniamk2.business.Visit;
+import com.przychodniamk2.database.User;
+import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 
 public interface Database {
+
+	public Iterable<User> allUsers();
+
+	public void setContext(ApplicationContext context);
 
 	public Visit readNextVisit(Object aDoctor);
 

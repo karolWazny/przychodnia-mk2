@@ -1,23 +1,43 @@
-package com.przychodniamk3;
+package com.przychodniamk2;
 
+import com.przychodniamk2.config.DatabaseConfig;
+import com.przychodniamk2.database.User;
+import com.przychodniamk2.systemControl.Database;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
 
-public class FrontEnd extends Application {
-    ConfigurableApplicationContext applicationContext;
+@SpringBootApplication
+public class App extends Application {
+    private static ConfigurableApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        Application.launch(App.class, args);
+    }
+
+    public static ApplicationContext context(){
+        return applicationContext;
+    }
 
     @Override
     public void init() {
-        applicationContext = new SpringApplicationBuilder(PrzychodniaMk2Application.class).run();
+        applicationContext = new SpringApplicationBuilder(App.class).child(DatabaseConfig.class).run();
+        Database o = applicationContext.getBean("database", Database.class);
+        o.setContext(applicationContext);
+
+        Database dbase = applicationContext.getBean("database", Database.class);
+        Iterable<User> users = dbase.allUsers();
+        System.out.println(users);
     }
 
     @Override
@@ -39,7 +59,7 @@ public class FrontEnd extends Application {
         applicationContext.publishEvent(new StageReadyEvent(primaryStage));
     }
 
-    public class StageReadyEvent extends ApplicationEvent {
+    public static class StageReadyEvent extends ApplicationEvent {
         public StageReadyEvent(Stage stage) {
             super(stage);
         }

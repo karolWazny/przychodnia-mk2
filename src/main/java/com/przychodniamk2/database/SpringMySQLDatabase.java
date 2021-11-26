@@ -1,13 +1,27 @@
-package com.przychodniamk3.database;
+package com.przychodniamk2.database;
 
-import com.przychodniamk3.business.Date;
-import com.przychodniamk3.business.Person;
-import com.przychodniamk3.business.Visit;
-import com.przychodniamk3.systemControl.Database;
+import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Person;
+import com.przychodniamk2.business.Visit;
+import com.przychodniamk2.systemControl.Database;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SpringMySQLDatabase implements Database {
+	private UserRepository userRepository;
+
+	@Override
+	public Iterable<User> allUsers() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public void setContext(ApplicationContext context) {
+		userRepository = context.getBean("userRepository", UserRepository.class);
+	}
 
 	@Override
 	public Visit readNextVisit(Object aDoctor) {
