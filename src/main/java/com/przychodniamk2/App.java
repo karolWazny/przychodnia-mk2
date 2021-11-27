@@ -49,7 +49,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new URL("file:///D:/projects/przychodnia-mk3/src/main/resources/main.fxml"));
+        loader.setLocation(new URL("file:///D:/projects/przychodnia-mk4/src/main/resources/main.fxml"));
         GridPane gridPane = loader.load();
 
         Scene scene = new Scene(gridPane);
