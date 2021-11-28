@@ -1,11 +1,29 @@
 package com.przychodniamk2.database.orm.tables;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Entity
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Table("Patients")
 public class Patients {
+    @Column("ID")
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id
     private Long id;
+
+    @Column("PersonalsID")
+    private Integer persolnalsID;
+
+    public Integer getPersolnalsID() {
+        return persolnalsID;
+    }
+
+    public void setPersolnalsID(Integer persolnalsID) {
+        this.persolnalsID = persolnalsID;
+    }
 
     public void setId(Long id) {
         this.id = id;
