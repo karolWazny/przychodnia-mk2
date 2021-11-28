@@ -2,7 +2,9 @@ package com.przychodniamk2;
 
 import com.przychodniamk2.config.DatabaseConfig;
 import com.przychodniamk2.database.User;
+import com.przychodniamk2.database.orm.tables.Addresses;
 import com.przychodniamk2.database.orm.tables.Personals;
+import com.przychodniamk2.database.repositories.AddressRepository;
 import com.przychodniamk2.systemControl.Database;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,6 +19,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
+import java.sql.Date;
 
 @SpringBootApplication
 public class App extends Application {
@@ -36,13 +39,22 @@ public class App extends Application {
         Database o = applicationContext.getBean("database", Database.class);
         o.setContext(applicationContext);
 
+        /*Addresses address = new Addresses();
+        address.setApartmentNumber((short) 3);
+        address.setHouseNumber("221B");
+        address.setStreet("Baker Street");
+        address.setZipCode("40-543");
+        address.setTown("London");
+        address = applicationContext.getBean("addressRepository", AddressRepository.class).save(address);
+
         Personals person = new Personals();
         person.setFirstName("Frodo");
-        o.createPatient(person);
-
-        Database dbase = applicationContext.getBean("database", Database.class);
-        Iterable<User> users = dbase.allUsers();
-        System.out.println(users);
+        person.setGender("2");
+        person.setBirthDate(new Date(0));
+        person.setPesel("00000000001");
+        person.setAddressID(address.getId());
+        person.setLastName("Baggins");
+        o.createPatient(person);*/
     }
 
     @Override
