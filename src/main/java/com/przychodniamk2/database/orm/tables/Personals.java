@@ -31,9 +31,9 @@ public class Personals {
     private Date birthDate;
 
     @Column("Gender")
-    private Character gender;
+    private String gender;
 
-    @Column("AddressID")
+    @Column("AddressesID")
     private Integer addressID;
 
     public String getLastName() {
@@ -68,11 +68,11 @@ public class Personals {
         this.birthDate = birthDate;
     }
 
-    public Character getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Character gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
