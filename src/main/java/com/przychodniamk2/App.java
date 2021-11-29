@@ -39,7 +39,7 @@ public class App extends Application {
         Database o = applicationContext.getBean("database", Database.class);
         o.setContext(applicationContext);
 
-        /*Addresses address = new Addresses();
+        Addresses address = new Addresses();
         address.setApartmentNumber((short) 3);
         address.setHouseNumber("221B");
         address.setStreet("Baker Street");
@@ -51,10 +51,10 @@ public class App extends Application {
         person.setFirstName("Frodo");
         person.setGender("2");
         person.setBirthDate(new Date(0));
-        person.setPesel("00000000001");
+        person.setPesel("00000000003");
         person.setAddressID(address.getId());
         person.setLastName("Baggins");
-        o.createPatient(person);*/
+        o.createPatient(person);
     }
 
     @Override
