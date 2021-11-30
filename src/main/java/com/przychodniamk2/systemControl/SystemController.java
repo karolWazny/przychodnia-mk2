@@ -4,8 +4,13 @@ import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.business.ScheduledVisit;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SystemController implements UserInteractionController {
+    @Autowired
+    private DoctorChooser doctorChooser;
     @Override
     public Person choosePatient() {
         return null;
@@ -18,7 +23,7 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public Doctor chooseDoctor() {
-        return null;
+        return doctorChooser.chooseDoctor();
     }
 
     @Override

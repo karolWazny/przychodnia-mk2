@@ -1,6 +1,7 @@
 package com.przychodniamk2.systemControl;
 
 import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.business.Visit;
 import com.przychodniamk2.database.User;
@@ -27,4 +28,6 @@ public interface Database {
 	List<Person> readPatients(Object aPatientData);
 
 	void createPatient(Object aPatientData);
+
+	List<Doctor> readDoctors(Object doctorData);
 }

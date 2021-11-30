@@ -1,13 +1,19 @@
 package com.przychodniamk2;
 
-import com.przychodniamk2.database.User;
-import com.przychodniamk2.database.repositories.UserRepository;
+import com.przychodniamk2.business.Person;
+import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class mainController {
+    @Autowired
+    private UserInteractionController userInteractionController;
+
     @FXML
     Button saveButton;
 
@@ -24,13 +30,9 @@ public class mainController {
     private void handleShowButtonAction(ActionEvent event) {
         System.out.println("Wciśnięto przycisk");
 
-        StringBuilder text = new StringBuilder();
-        Iterable<User> users = App.context().getBean("userRepository", UserRepository.class).findAll();
-        for(User user : users){
-            text.append(user.toString());
-            text.append('\n');
-        }
-        stuffOutput.setText(text.toString());
+        Person patient = userInteractionController.chooseDoctor();
+
+        System.out.println(patient);
     }
 
     @FXML
@@ -40,5 +42,9 @@ public class mainController {
 
     @FXML
     private void initialize(){
+    }
+
+    public void setUserInteractionController(UserInteractionController userInteractionController) {
+        this.userInteractionController = userInteractionController;
     }
 }
