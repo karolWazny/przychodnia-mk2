@@ -1,6 +1,7 @@
 package com.przychodniamk2;
 
 import com.przychodniamk2.config.DatabaseConfig;
+import com.przychodniamk2.gui.ChooseDoctorController;
 import com.przychodniamk2.systemControl.Database;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -8,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -35,23 +37,6 @@ public class App extends Application {
         applicationContext = new SpringApplicationBuilder(App.class).child(DatabaseConfig.class).run();
         Database o = applicationContext.getBean("database", Database.class);
         o.setContext(applicationContext);
-
-        /*Addresses address = new Addresses();
-        address.setApartmentNumber((short) 3);
-        address.setHouseNumber("221B");
-        address.setStreet("Baker Street");
-        address.setZipCode("40-543");
-        address.setTown("London");
-        address = applicationContext.getBean("addressRepository", AddressRepository.class).save(address);
-
-        Personals person = new Personals();
-        person.setFirstName("Frodo");
-        person.setGender("2");
-        person.setBirthDate(new Date(0));
-        person.setPesel("00000000003");
-        person.setAddressID(address.getId());
-        person.setLastName("Baggins");
-        o.createPatient(person);*/
     }
 
     @Override
@@ -65,7 +50,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader();
         String currentPath = System.getProperty("user.dir");
         loader.setLocation(new URL("file:///" + currentPath + "/src/main/resources/fxml/chooseDoctor.fxml"));
-        AnchorPane gridPane = loader.load();
+        Pane gridPane = loader.load();
 
         Scene scene = new Scene(gridPane);
         primaryStage.setScene(scene);
