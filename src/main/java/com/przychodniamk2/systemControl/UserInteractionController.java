@@ -7,7 +7,7 @@ import com.przychodniamk2.business.ScheduledVisit;
 
 public interface UserInteractionController {
     Person choosePatient();
-    Date chooseDate();
+    Date chooseDate(Doctor doctor);
     Doctor chooseDoctor();
     void addDoctor(Doctor doctor);
     void addVisit();

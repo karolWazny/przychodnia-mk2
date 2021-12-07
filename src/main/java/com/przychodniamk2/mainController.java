@@ -48,7 +48,7 @@ public class mainController {
 
     @FXML
     private void chooseDate(ActionEvent event){
-        System.out.println("Chosen date: " + userInteractionController.chooseDate());
+        System.out.println("Chosen date: " + userInteractionController.chooseDate(null));
     }
 
     @FXML
@@ -67,7 +67,6 @@ public class mainController {
     @FXML
     private void addVisit(ActionEvent event){
         userInteractionController.addVisit();
-        System.out.println("Added visit.");
     }
 
     @FXML

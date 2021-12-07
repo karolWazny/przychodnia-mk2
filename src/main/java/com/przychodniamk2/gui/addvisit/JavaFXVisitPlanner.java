@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXVisitPlanner implements VisitPlanner {
-    @Autowired
     private UserInteractionController userInteractionController;
 
     @Autowired
@@ -18,7 +17,9 @@ public class JavaFXVisitPlanner implements VisitPlanner {
 
     @Override
     public void addVisit() {
-        ModalWindowController<ChooseDoctorController, String> windowController = new ModalWindowController<>(ChooseDoctorController::new, context);
+        userInteractionController = context.getBean("userInteractionController", UserInteractionController.class);
+
+        ModalWindowController<AddVisitController, String> windowController = new ModalWindowController<>(AddVisitController::new, context);
         windowController.showStage();
         System.out.println(windowController.getData());
     }
