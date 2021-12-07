@@ -1,6 +1,7 @@
 package com.przychodniamk2.systemControl;
 
 import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.business.Visit;
 import com.przychodniamk2.database.User;
@@ -10,21 +11,23 @@ import java.util.List;
 
 public interface Database {
 
-	public Iterable<User> allUsers();
+	Iterable<User> allUsers();
 
-	public void setContext(ApplicationContext context);
+	void setContext(ApplicationContext context);
 
-	public Visit readNextVisit(Object aDoctor);
+	Visit readNextVisit(Object aDoctor);
 
-	public List<Visit> readPastVisits(Object aPerson);
+	List<Visit> readPastVisits(Object aPerson);
 
-	public void createDoneVisit(Object aVisit);
+	void createDoneVisit(Object aVisit);
 
-	public void createPlannedVisit(Object aVisit);
+	void createPlannedVisit(Object aVisit);
 
-	public List<Date> readFreeDates(Object aDoctor);
+	List<Date> readFreeDates(Object aDoctor);
 
-	public List<Person> readPatients(Object aPatientData);
+	List<Person> readPatients(Object aPatientData);
 
-	public void createPatient(Object aPatientData);
+	void createPatient(Object aPatientData);
+
+	List<Doctor> readDoctors(Object doctorData);
 }
