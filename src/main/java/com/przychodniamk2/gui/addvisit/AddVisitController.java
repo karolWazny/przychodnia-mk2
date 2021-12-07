@@ -3,6 +3,7 @@ package com.przychodniamk2.gui.addvisit;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
+import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
@@ -16,7 +17,7 @@ import org.springframework.context.ApplicationContext;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AddVisitController extends FXMLController<String> {
+public class AddVisitController extends FXMLController<ScheduledVisit> {
     private String fxml = "/src/main/resources/fxml/addVisit.fxml";
 
     private Person patient;
@@ -95,5 +96,13 @@ public class AddVisitController extends FXMLController<String> {
     private void chooseDateClick(ActionEvent event){
         date = userInteractionController.chooseDate(doctor);
         System.out.println(date);
+    }
+
+    @FXML
+    private void confirmClick(ActionEvent event){
+        super.data = new ScheduledVisit();
+        if(parent != null){
+            parent.close();
+        }
     }
 }

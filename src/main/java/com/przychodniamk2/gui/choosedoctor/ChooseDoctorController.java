@@ -60,7 +60,7 @@ public class ChooseDoctorController extends FXMLController<String> {
 
     @FXML
     private void handleChooseButtonAction(ActionEvent event){
-        super.string = nameTextField.getText();
+        super.data = nameTextField.getText();
         if(parent != null){
             parent.close();
         }

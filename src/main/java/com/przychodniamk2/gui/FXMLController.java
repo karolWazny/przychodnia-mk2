@@ -9,7 +9,7 @@ public abstract class FXMLController<R> {
 
     public abstract URL fxmlLocation();
 
-    public String string;
+    public R data;
 
     public abstract Stage getParent();
     public abstract void setParent(Stage parent);

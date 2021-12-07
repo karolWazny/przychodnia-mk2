@@ -32,7 +32,7 @@ public class MockDatabase implements Database {
 
     @Override
     public void createDoneVisit(Object aVisit) {
-
+        System.out.println(aVisit);
     }
 
     @Override
