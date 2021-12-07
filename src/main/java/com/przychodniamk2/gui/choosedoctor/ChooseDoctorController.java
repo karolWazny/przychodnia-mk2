@@ -1,9 +1,9 @@
-package com.przychodniamk2.gui;
+package com.przychodniamk2.gui.choosedoctor;
 
 import com.przychodniamk2.business.Doctor;
+import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

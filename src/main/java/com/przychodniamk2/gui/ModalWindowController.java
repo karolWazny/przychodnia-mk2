@@ -21,7 +21,7 @@ public class ModalWindowController<C extends FXMLController<R>, R> {
         this.context = context;
     }
 
-    void showStage() {
+    public void showStage() {
         try{
             FXMLController<R> controller = supplier.get();
             Stage stage = new Stage();
@@ -50,7 +50,7 @@ public class ModalWindowController<C extends FXMLController<R>, R> {
 
     }
 
-    R getData() {
+    public R getData() {
         return data;
     }
 

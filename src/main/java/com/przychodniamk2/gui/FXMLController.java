@@ -1,6 +1,5 @@
 package com.przychodniamk2.gui;
 
-import com.przychodniamk2.systemControl.Database;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 

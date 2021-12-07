@@ -2,15 +2,12 @@ package com.przychodniamk2;
 
 import com.przychodniamk2.config.DatabaseConfig;
 import com.przychodniamk2.config.UIConfig;
-import com.przychodniamk2.gui.ChooseDoctorController;
 import com.przychodniamk2.systemControl.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +16,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.File;
 import java.net.URL;
 
 @SpringBootApplication

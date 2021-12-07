@@ -1,7 +1,9 @@
-package com.przychodniamk2.gui;
+package com.przychodniamk2.gui.addvisit;
 
+import com.przychodniamk2.gui.ModalWindowController;
+import com.przychodniamk2.gui.choosedoctor.ChooseDoctorController;
 import com.przychodniamk2.systemControl.UserInteractionController;
-import com.przychodniamk2.systemControl.VisitPlanner;
+import com.przychodniamk2.systemControl.usecase.VisitPlanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
