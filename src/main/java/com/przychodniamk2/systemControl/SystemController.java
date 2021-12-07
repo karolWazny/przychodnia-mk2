@@ -29,7 +29,7 @@ public class SystemController implements UserInteractionController {
     }
 
     @Override
-    public void addVisit(ScheduledVisit visit) {
+    public void addVisit() {
 
     }
 

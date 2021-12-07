@@ -66,9 +66,8 @@ public class mainController {
 
     @FXML
     private void addVisit(ActionEvent event){
-        ScheduledVisit visit = new ScheduledVisit();
-        userInteractionController.addVisit(visit);
-        System.out.println("Added visit: " + visit);
+        userInteractionController.addVisit();
+        System.out.println("Added visit.");
     }
 
     @FXML

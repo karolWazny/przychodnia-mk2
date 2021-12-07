@@ -10,7 +10,7 @@ public interface UserInteractionController {
     Date chooseDate();
     Doctor chooseDoctor();
     void addDoctor(Doctor doctor);
-    void addVisit(ScheduledVisit visit);
+    void addVisit();
     ScheduledVisit chooseVisit();
     void performVisit(ScheduledVisit visit);
     void addPatient(Person patient);
