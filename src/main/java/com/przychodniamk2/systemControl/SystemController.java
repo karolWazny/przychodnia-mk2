@@ -1,9 +1,6 @@
 package com.przychodniamk2.systemControl;
 
-import com.przychodniamk2.business.Date;
-import com.przychodniamk2.business.Doctor;
-import com.przychodniamk2.business.Person;
-import com.przychodniamk2.business.ScheduledVisit;
+import com.przychodniamk2.business.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +10,12 @@ public class SystemController implements UserInteractionController {
     private DoctorChooser doctorChooser;
     @Override
     public Person choosePatient() {
-        return null;
+        return new Person(new Address(), "Jan", "Kowalski");
     }
 
     @Override
     public Date chooseDate() {
-        return null;
+        return new Date();
     }
 
     @Override
@@ -38,7 +35,7 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public ScheduledVisit chooseVisit() {
-        return null;
+        return new ScheduledVisit();
     }
 
     @Override
