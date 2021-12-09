@@ -2,7 +2,7 @@ package com.przychodniamk2.gui.addvisit;
 
 import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.systemControl.Database;
+import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.usecase.VisitPlanner;
 import org.springframework.beans.factory.annotation.Autowired;

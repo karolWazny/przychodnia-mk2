@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Table("ScheduledVisits")
 public class ScheduledVisits {

@@ -2,8 +2,9 @@ package com.przychodniamk2.gui.choosedoctor;
 
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.gui.FXMLController;
-import com.przychodniamk2.systemControl.Database;
+import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,8 +22,7 @@ import java.net.URL;
 import java.util.List;
 
 @Service
-public class ChooseDoctorController extends FXMLController<String> {
-    @Autowired
+public class ChooseDoctorController extends FXMLController<Doctor> {
     private UserInteractionController userInteractionController;
 
     private Database database;
@@ -32,18 +32,6 @@ public class ChooseDoctorController extends FXMLController<String> {
     private Stage parent;
 
     private final static String fxml = "/src/main/resources/fxml/chooseDoctor.fxml";
-
-    @FXML
-    Button searchButton;
-
-    @FXML
-    TextField nameTextField;
-
-    @FXML
-    TextField surnameTextField;
-
-    @FXML
-    TextField specializationTextField;
 
     @FXML
     ListView<Doctor> listView;
@@ -60,7 +48,6 @@ public class ChooseDoctorController extends FXMLController<String> {
 
     @FXML
     private void handleChooseButtonAction(ActionEvent event){
-        super.data = nameTextField.getText();
         if(parent != null){
             parent.close();
         }
@@ -93,9 +80,15 @@ public class ChooseDoctorController extends FXMLController<String> {
         this.context = context;
         this.database = context.getBean("database", Database.class);
 
-        List<Doctor> doctors = database.readDoctors(null);
+        List<Doctor> doctors = database.readDoctors();
         ObservableList<Doctor> observableList = FXCollections.observableArrayList();
         observableList.addAll(doctors);
         listView.setItems(observableList);
+
+        ReadOnlyObjectProperty<Doctor> ind = listView.getSelectionModel().selectedItemProperty();
+
+        ind.addListener((observable, oldValue, newValue) -> {
+            super.data = newValue;
+        });
     }
 }

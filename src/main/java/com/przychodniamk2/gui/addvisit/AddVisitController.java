@@ -5,7 +5,7 @@ import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
-import com.przychodniamk2.systemControl.Database;
+import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
