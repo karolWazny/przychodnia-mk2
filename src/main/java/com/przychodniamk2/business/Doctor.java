@@ -20,8 +20,8 @@ public class Doctor extends Person {
 		return "" + this.specialization + " " + super.getFirstName() + " " + super.getLastName();
 	}
 
-	public Specialization getSpecialization() {
-		return specialization;
+	public String getSpecialization() {
+		return "" + specialization;
 	}
 
 	public void setSpecialization(Specialization specialization) {

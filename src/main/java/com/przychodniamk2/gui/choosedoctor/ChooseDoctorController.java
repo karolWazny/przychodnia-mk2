@@ -9,11 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -29,46 +26,27 @@ public class ChooseDoctorController extends FXMLController<Doctor> {
 
     private ApplicationContext context;
 
-    private Stage parent;
-
     private final static String fxml = "/src/main/resources/fxml/chooseDoctor.fxml";
 
     @FXML
     ListView<Doctor> listView;
 
-    @FXML
-    private void initialize(){
-
+    public ChooseDoctorController() {
+        super(fxml);
     }
 
     @FXML
-    private void handleSearchButtonAction(ActionEvent event) {
-        System.out.println("DEBUG: Wciśnięto przycisk");
+    private void initialize(){
+        ReadOnlyObjectProperty<Doctor> ind = listView.getSelectionModel().selectedItemProperty();
+
+        ind.addListener((observable, oldValue, newValue) -> {
+            super.data = newValue;
+        });
     }
 
     @FXML
     private void handleChooseButtonAction(ActionEvent event){
-        if(parent != null){
-            parent.close();
-        }
-    }
-
-    public URL fxmlLocation() {
-        URL output = null;
-        try {
-            output = new URL("file:///" + System.getProperty("user.dir") + fxml);
-        } catch (MalformedURLException ignored) {
-
-        }
-        return output;
-    }
-
-    public Stage getParent() {
-        return parent;
-    }
-
-    public void setParent(Stage parent) {
-        this.parent = parent;
+        close();
     }
 
     public ApplicationContext getContext() {
@@ -84,11 +62,5 @@ public class ChooseDoctorController extends FXMLController<Doctor> {
         ObservableList<Doctor> observableList = FXCollections.observableArrayList();
         observableList.addAll(doctors);
         listView.setItems(observableList);
-
-        ReadOnlyObjectProperty<Doctor> ind = listView.getSelectionModel().selectedItemProperty();
-
-        ind.addListener((observable, oldValue, newValue) -> {
-            super.data = newValue;
-        });
     }
 }

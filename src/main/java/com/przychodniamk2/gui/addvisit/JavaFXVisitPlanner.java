@@ -11,15 +11,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXVisitPlanner implements VisitPlanner {
-    private UserInteractionController userInteractionController;
-
     @Autowired
     ApplicationContext context;
 
     @Override
     public void addVisit() {
-        userInteractionController = context.getBean("userInteractionController", UserInteractionController.class);
-
         ModalWindowController<AddVisitController, ScheduledVisit> windowController = new ModalWindowController<>(AddVisitController::new, context);
         windowController.showStage();
         Database database = context.getBean("database", Database.class);

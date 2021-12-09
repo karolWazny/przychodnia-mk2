@@ -5,76 +5,51 @@ import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
-import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class AddVisitController extends FXMLController<ScheduledVisit> {
-    private String fxml = "/src/main/resources/fxml/addVisit.fxml";
+    private final static String fxml = "/src/main/resources/fxml/addVisit.fxml";
 
     private Person patient;
-    private Doctor doctor;
+    private ObjectProperty<Doctor> doctor;
     private Date date;
 
     @FXML
-    Button patientDetailsButton;
+    private TextField doctorFirstName;
 
     @FXML
-    Button choosePatientButton;
+    private TextField doctorLastName;
 
     @FXML
-    Button chooseDoctorButton;
+    private TextField doctorSpecialization;
+
+    public AddVisitController() {
+        super(fxml);
+    }
 
     @FXML
-    Button chooseDateButton;
-
-    @FXML
-    Button cancelButton;
-
-    @FXML
-    Button confirmButton;
+    private void initialize(){
+        doctor = new SimpleObjectProperty<Doctor>();
+        doctor.addListener((observable, oldValue, newValue) -> {
+            doctorFirstName.setText(newValue.getFirstName());
+            doctorLastName.setText(newValue.getLastName());
+            doctorSpecialization.setText(newValue.getSpecialization());
+        });
+    }
 
     @Autowired
     private UserInteractionController userInteractionController;
 
-    private Database database;
-
-    private ApplicationContext context;
-
-    private Stage parent;
-
-    @Override
-    public URL fxmlLocation() {
-        URL output = null;
-        try {
-            output = new URL("file:///" + System.getProperty("user.dir") + fxml);
-        } catch (MalformedURLException ignored) {
-
-        }
-        return output;
-    }
-
-    @Override
-    public Stage getParent() {
-        return parent;
-    }
-
-    @Override
-    public void setParent(Stage parent) {
-        this.parent = parent;
-    }
-
     @Override
     public void setContext(ApplicationContext context) {
-        this.context = context;
         this.userInteractionController = context.getBean("userInteractionController", UserInteractionController.class);
     }
 
@@ -87,22 +62,20 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void chooseDoctorClick(ActionEvent event){
-        doctor = userInteractionController.chooseDoctor();
+        doctor.setValue(userInteractionController.chooseDoctor());
+
         date = null;
-        System.out.println(doctor);
     }
 
     @FXML
     private void chooseDateClick(ActionEvent event){
-        date = userInteractionController.chooseDate(doctor);
+        date = userInteractionController.chooseDate(doctor.getValue());
         System.out.println(date);
     }
 
     @FXML
     private void confirmClick(ActionEvent event){
         super.data = new ScheduledVisit();
-        if(parent != null){
-            parent.close();
-        }
+        close();
     }
 }
