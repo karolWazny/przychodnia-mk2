@@ -1,10 +1,10 @@
 package com.przychodniamk2.business;
 
 public class ScheduledVisit implements Visit {
-	public Date date;
-	public Time time;
-	public Person patient;
-	public Doctor doctor;
+	private final Date date;
+	private final Time time;
+	private final Person patient;
+	private final Doctor doctor;
 
 	public ScheduledVisit(Doctor doctor, Person patient, Date date, Time time){
 		this.date = date;
@@ -13,6 +13,21 @@ public class ScheduledVisit implements Visit {
 		this.doctor = doctor;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public Person getPatient() {
+		return patient;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
 
 	public static class Builder {
 		private Doctor doctor;
