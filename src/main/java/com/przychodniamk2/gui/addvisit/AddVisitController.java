@@ -5,6 +5,7 @@ import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,6 @@ import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class AddVisitController extends FXMLController<ScheduledVisit> {
@@ -28,6 +28,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     private ObjectProperty<Doctor> doctor;
     private ObjectProperty<Date> date;
     private Database database;
+    private Time time;
 
     @FXML
     private TextField doctorFirstName;
@@ -70,6 +71,11 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
                     setText(item.toString());
                 }
             }
+        });
+
+        ReadOnlyProperty<Time> chosenTime = hourPicker.getSelectionModel().selectedItemProperty();
+        chosenTime.addListener((observable, oldValue, newValue)->{
+            time = newValue;
         });
 
         date = new SimpleObjectProperty<>();
@@ -131,7 +137,12 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void confirmClick(ActionEvent event){
-        super.data = new ScheduledVisit();
+        ScheduledVisit.Builder builder = new ScheduledVisit.Builder()
+                .withDoctor(doctor.getValue())
+                .withPatient(patient.getValue())
+                .day(date.getValue())
+                .at(time);
+        super.data = builder.build();
         close();
     }
 }

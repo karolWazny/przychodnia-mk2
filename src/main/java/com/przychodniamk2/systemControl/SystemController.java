@@ -45,7 +45,7 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public ScheduledVisit chooseVisit() {
-        return new ScheduledVisit();
+        return null;
     }
 
     @Override

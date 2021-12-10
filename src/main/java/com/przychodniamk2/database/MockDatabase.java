@@ -34,7 +34,7 @@ public class MockDatabase implements Database {
 
     @Override
     public void createPlannedVisit(ScheduledVisit visit) {
-
+        System.out.println("Created visit: " + visit);
     }
 
     @Override

@@ -6,21 +6,18 @@ public class Date {
     private final int year;
     private final int month;
     private final int day;
-    private final Time time;
 
-    public Date(int year, int month, int day, int hour, int minutes){
+    public Date(int year, int month, int day){
         this.year = year;
         this.month = month;
         this.day = day;
-        this.time = new Time(hour, minutes);
     }
 
     public static Date today(){
         Calendar calendar = Calendar.getInstance();
         Builder builder = new Builder().withYear(calendar.get(Calendar.YEAR))
                 .withMonth(calendar.get(Calendar.MONTH) + 1)
-                .withDay(calendar.get(Calendar.DAY_OF_MONTH))
-                .withTime(Time.now());
+                .withDay(calendar.get(Calendar.DAY_OF_MONTH));
         return builder.build();
     }
 
@@ -30,7 +27,7 @@ public class Date {
 
     @Override
     public String toString(){
-        return dateString() + " " + time;
+        return dateString();
     }
 
     public int getYear() {
@@ -45,14 +42,6 @@ public class Date {
         return day;
     }
 
-    public int getHour() {
-        return time.getHour();
-    }
-
-    public int getMinutes() {
-        return time.getMinutes();
-    }
-
     public static class ValueOutOfRangeException extends Exception{
 
     }
@@ -62,15 +51,13 @@ public class Date {
         private int year = 1970;
         private int month = 0;
         private int day = 1;
-        private int hour = 0;
-        private int minutes = 0;
 
         public Builder(){
 
         }
 
         public Date build(){
-            return new Date(year, month, day, hour, minutes);
+            return new Date(year, month, day);
         }
 
         public Builder withYear(int year){
@@ -85,12 +72,6 @@ public class Date {
 
         public Builder withDay(int day){
             this.day = day;
-            return this;
-        }
-
-        public Builder withTime(Time time){
-            hour = time.getHour();
-            minutes = time.getMinutes();
             return this;
         }
     }
