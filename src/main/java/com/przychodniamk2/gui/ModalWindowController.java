@@ -41,8 +41,6 @@ public class ModalWindowController<C extends FXMLController<R>, R> {
 
             stage.showAndWait();
 
-            System.out.println(controller.data);
-
             data = (R)controller.data;
         } catch (IOException ignored){
             ignored.printStackTrace();

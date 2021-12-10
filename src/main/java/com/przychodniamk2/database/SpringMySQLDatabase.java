@@ -75,4 +75,9 @@ public class SpringMySQLDatabase implements Database {
 	public Date getFirstPossibleAppointmentDate(Doctor doctor) {
 		return null;
 	}
+
+	@Override
+	public List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date) {
+		return null;
+	}
 }

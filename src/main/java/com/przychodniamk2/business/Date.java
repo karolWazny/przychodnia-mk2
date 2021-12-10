@@ -6,27 +6,31 @@ public class Date {
     private final int year;
     private final int month;
     private final int day;
-    private final int hour;
-    private final int minutes;
+    private final Time time;
 
     public Date(int year, int month, int day, int hour, int minutes){
         this.year = year;
         this.month = month;
         this.day = day;
-        this.hour = hour;
-        this.minutes = minutes;
+        this.time = new Time(hour, minutes);
     }
 
     public static Date today(){
         Calendar calendar = Calendar.getInstance();
         Builder builder = new Builder().withYear(calendar.get(Calendar.YEAR))
                 .withMonth(calendar.get(Calendar.MONTH) + 1)
-                .withDay(calendar.get(Calendar.DAY_OF_MONTH));
+                .withDay(calendar.get(Calendar.DAY_OF_MONTH))
+                .withTime(Time.now());
         return builder.build();
     }
 
     public String dateString(){
         return "" + day + "." + month + "." + year;
+    }
+
+    @Override
+    public String toString(){
+        return dateString() + " " + time;
     }
 
     public int getYear() {
@@ -42,11 +46,11 @@ public class Date {
     }
 
     public int getHour() {
-        return hour;
+        return time.getHour();
     }
 
     public int getMinutes() {
-        return minutes;
+        return time.getMinutes();
     }
 
     public static class ValueOutOfRangeException extends Exception{
@@ -81,6 +85,12 @@ public class Date {
 
         public Builder withDay(int day){
             this.day = day;
+            return this;
+        }
+
+        public Builder withTime(Time time){
+            hour = time.getHour();
+            minutes = time.getMinutes();
             return this;
         }
     }

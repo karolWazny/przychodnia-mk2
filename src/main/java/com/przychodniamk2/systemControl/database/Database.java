@@ -24,4 +24,6 @@ public interface Database {
 	List<Doctor> readDoctors();
 
 	Date getFirstPossibleAppointmentDate(Doctor doctor);
+
+	List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date);
 }

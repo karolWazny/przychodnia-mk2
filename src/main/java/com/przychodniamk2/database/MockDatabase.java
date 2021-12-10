@@ -66,4 +66,13 @@ public class MockDatabase implements Database {
     public Date getFirstPossibleAppointmentDate(Doctor doctor) {
         return Date.today();
     }
+
+    @Override
+    public List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date) {
+        List<Time> times = new LinkedList<>();
+        for(int i = 0; i < 16; i++){
+            times.add(new Time(8 + i / 2, 30 * (i % 2)));
+        }
+        return times;
+    }
 }

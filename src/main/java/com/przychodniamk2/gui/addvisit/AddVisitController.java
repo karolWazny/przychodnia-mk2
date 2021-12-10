@@ -1,24 +1,25 @@
 package com.przychodniamk2.gui.addvisit;
 
-import com.przychodniamk2.business.Date;
-import com.przychodniamk2.business.Doctor;
-import com.przychodniamk2.business.Person;
-import com.przychodniamk2.business.ScheduledVisit;
+import com.przychodniamk2.business.*;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class AddVisitController extends FXMLController<ScheduledVisit> {
     private final static String fxml = "/src/main/resources/fxml/addVisit.fxml";
@@ -50,7 +51,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     private DatePicker datePicker;
 
     @FXML
-    private ComboBox<Integer> hourPicker;
+    private ComboBox<Time> hourPicker;
 
     public AddVisitController() {
         super(fxml);
@@ -58,10 +59,26 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void initialize(){
+        hourPicker.setPromptText("Wybierz godzinę");
+        hourPicker.setButtonCell(new ListCell<Time>() {
+            @Override
+            protected void updateItem(Time item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (empty || item == null) {
+                    setText("Wybierz godzinę");
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+
         date = new SimpleObjectProperty<>();
         date.addListener((observable, oldValue, newValue) -> {
-            System.out.println(new LocalDateStringConverter().toString(LocalDate.of(1970, 11, 11)));
             datePicker.setValue(new LocalDateStringConverter().fromString(date.getValue().dateString()));
+            List<Time> hours = database.getPossibleAppointmentTimes(doctor.getValue(), newValue);
+            ObservableList<Time> observableHours = FXCollections.observableArrayList();
+            observableHours.addAll(hours);
+            hourPicker.setItems(observableHours);
         });
 
         doctor = new SimpleObjectProperty<Doctor>();
@@ -96,8 +113,6 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
         Person person = userInteractionController.choosePatient();
         if(person != null)
             patient.setValue(person);
-
-        System.out.println(patient);
     }
 
     @FXML
@@ -106,8 +121,6 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
         if(doctor != null)
             this.doctor.setValue(doctor);
-
-        date = null;
     }
 
     @FXML
