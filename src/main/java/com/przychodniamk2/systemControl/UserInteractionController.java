@@ -13,5 +13,5 @@ public interface UserInteractionController {
     void addVisit();
     ScheduledVisit chooseVisit();
     void performVisit(ScheduledVisit visit);
-    void addPatient(Person patient);
+    void addPatient();
 }

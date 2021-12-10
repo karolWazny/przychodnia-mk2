@@ -17,5 +17,6 @@
       <Label layoutX="16.0" layoutY="132.0" text="Nazwisko" />
       <TextField fx:id="firstNameTextField" layoutX="14.0" layoutY="94.0" />
       <TextField fx:id="lastNameTextField" layoutX="14.0" layoutY="149.0" />
+      <Button layoutX="15.0" layoutY="188.0" mnemonicParsing="false" onAction="#createPatientClick" prefHeight="17.0" prefWidth="147.0" text="Stwórz nowego pacjenta" />
    </children>
 </AnchorPane>

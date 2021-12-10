@@ -2,6 +2,7 @@ package com.przychodniamk2.gui.choosepatient;
 
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.FXMLController;
+import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyProperty;
@@ -76,5 +77,11 @@ public class ChoosePatientController extends FXMLController<Person> {
     private void cancelClick(ActionEvent event){
         super.data = null;
         close();
+    }
+
+    @FXML
+    private void createPatientClick(ActionEvent event){
+        UserInteractionController controller = context.getBean("userInteractionController", UserInteractionController.class);
+        controller.addPatient();
     }
 }
