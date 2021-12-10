@@ -25,7 +25,7 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public Date chooseDate(Doctor doctor) {
-        return new Date();
+        return Date.today();
     }
 
     @Override

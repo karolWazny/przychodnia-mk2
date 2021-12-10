@@ -20,9 +20,13 @@ public class Date {
     public static Date today(){
         Calendar calendar = Calendar.getInstance();
         Builder builder = new Builder().withYear(calendar.get(Calendar.YEAR))
-                .withMonth(calendar.get(Calendar.MONTH))
+                .withMonth(calendar.get(Calendar.MONTH) + 1)
                 .withDay(calendar.get(Calendar.DAY_OF_MONTH));
         return builder.build();
+    }
+
+    public String dateString(){
+        return "" + day + "." + month + "." + year;
     }
 
     public int getYear() {
