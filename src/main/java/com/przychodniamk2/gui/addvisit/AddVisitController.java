@@ -10,6 +10,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -39,6 +41,12 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     @FXML
     private TextField patientPesel;
 
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private ComboBox<Integer> hourPicker;
+
     public AddVisitController() {
         super(fxml);
     }
@@ -58,6 +66,8 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
             patientLastName.setText(newValue.getLastName());
             patientPesel.setText(newValue.getPesel());
         });
+
+        System.out.println(datePicker.getValue());
     }
 
     @Autowired

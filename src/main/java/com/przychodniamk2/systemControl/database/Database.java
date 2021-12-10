@@ -22,4 +22,6 @@ public interface Database {
 	void createPatient(Person person);
 
 	List<Doctor> readDoctors();
+
+	Date getFirstPossibleAppointmentDate(Doctor doctor);
 }

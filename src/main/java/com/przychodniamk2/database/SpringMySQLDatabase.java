@@ -70,4 +70,9 @@ public class SpringMySQLDatabase implements Database {
 		}
 		return doctors;
 	}
+
+	@Override
+	public Date getFirstPossibleAppointmentDate(Doctor doctor) {
+		return null;
+	}
 }

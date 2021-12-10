@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +12,7 @@
       <Button fx:id="confirmButton" layoutX="371.0" layoutY="351.0" mnemonicParsing="false" onAction="#confirmClick" text="Zatwierdź" />
       <Button fx:id="cancelButton" layoutX="303.0" layoutY="351.0" mnemonicParsing="false" text="Anuluj" />
       <Button fx:id="choosePatientButton" layoutX="118.0" layoutY="150.0" mnemonicParsing="false" onAction="#choosePatientClick" text="Wybierz" />
-      <Button fx:id="chooseDateButton" layoutX="96.0" layoutY="339.0" mnemonicParsing="false" onAction="#chooseDateClick" text="Wybierz datę" />
+      <Button fx:id="chooseDateButton" layoutX="118.0" layoutY="339.0" mnemonicParsing="false" onAction="#chooseDateClick" text="Wybierz datę" />
       <Button fx:id="chooseDoctorButton" layoutX="293.0" layoutY="150.0" mnemonicParsing="false" onAction="#chooseDoctorClick" text="Wybierz" />
       <TextField fx:id="patientFirstName" disable="true" layoutX="24.0" layoutY="51.0" />
       <TextField fx:id="patientLastName" disable="true" layoutX="24.0" layoutY="82.0" />
@@ -19,11 +21,11 @@
       <TextField fx:id="doctorFirstName" disable="true" layoutX="248.0" layoutY="51.0" />
       <TextField fx:id="doctorLastName" disable="true" layoutX="248.0" layoutY="82.0" />
       <TextField fx:id="doctorSpecialization" disable="true" layoutX="248.0" layoutY="118.0" />
-      <TextField disable="true" layoutX="64.0" layoutY="273.0" />
-      <TextField disable="true" layoutX="64.0" layoutY="305.0" />
       <Label layoutX="79.0" layoutY="25.0" text="Pacjent" />
       <Label layoutX="306.0" layoutY="25.0" text="Lekarz" />
       <Label layoutX="14.0" layoutY="277.0" text="Data" />
       <Label layoutX="13.0" layoutY="309.0" text="Godzina" />
+      <DatePicker fx:id="datePicker" layoutX="74.0" layoutY="273.0" />
+      <ComboBox fx:id="hourPicker" layoutX="79.0" layoutY="305.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
