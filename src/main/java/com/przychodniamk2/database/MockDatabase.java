@@ -64,6 +64,6 @@ public class MockDatabase implements Database {
 
     @Override
     public Date getFirstPossibleAppointmentDate(Doctor doctor) {
-        return null;
+        return Date.today();
     }
 }
