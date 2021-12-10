@@ -11,14 +11,13 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 public class AddVisitController extends FXMLController<ScheduledVisit> {
     private final static String fxml = "/src/main/resources/fxml/addVisit.fxml";
 
-    private Person patient;
+    private ObjectProperty<Person> patient;
     private ObjectProperty<Doctor> doctor;
     private Date date;
 
@@ -30,6 +29,15 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private TextField doctorSpecialization;
+
+    @FXML
+    private TextField patientFirstName;
+
+    @FXML
+    private TextField patientLastName;
+
+    @FXML
+    private TextField patientPesel;
 
     public AddVisitController() {
         super(fxml);
@@ -43,6 +51,13 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
             doctorLastName.setText(newValue.getLastName());
             doctorSpecialization.setText(newValue.getSpecialization());
         });
+
+        patient = new SimpleObjectProperty<>();
+        patient.addListener((observable, oldValue, newValue) -> {
+            patientFirstName.setText(newValue.getFirstName());
+            patientLastName.setText(newValue.getLastName());
+            patientPesel.setText(newValue.getPesel());
+        });
     }
 
     @Autowired
@@ -55,14 +70,19 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void choosePatientClick(ActionEvent event){
-        patient = userInteractionController.choosePatient();
+        Person person = userInteractionController.choosePatient();
+        if(person != null)
+            patient.setValue(person);
 
         System.out.println(patient);
     }
 
     @FXML
     private void chooseDoctorClick(ActionEvent event){
-        doctor.setValue(userInteractionController.chooseDoctor());
+        Doctor doctor = userInteractionController.chooseDoctor();
+
+        if(doctor != null)
+            this.doctor.setValue(doctor);
 
         date = null;
     }

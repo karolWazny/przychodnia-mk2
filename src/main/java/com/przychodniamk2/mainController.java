@@ -83,7 +83,7 @@ public class mainController {
 
     @FXML
     private void addPatient(ActionEvent event){
-        Person patient = new Person(new Address(), "Jan", "Kowalski");
+        Person patient = new Person("Jan", "Kowalski", new Address());
         System.out.println("Added patient: " + patient);
     }
 
