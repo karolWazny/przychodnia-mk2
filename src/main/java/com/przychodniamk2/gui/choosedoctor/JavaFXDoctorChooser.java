@@ -2,7 +2,7 @@ package com.przychodniamk2.gui.choosedoctor;
 
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.systemControl.Database;
+import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.DoctorChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,10 +18,8 @@ public class JavaFXDoctorChooser implements DoctorChooser {
 
     @Override
     public Doctor chooseDoctor() {
-        database.readDoctors(null);
-        ModalWindowController<ChooseDoctorController, String> windowController = new ModalWindowController<>(ChooseDoctorController::new, context);
+        ModalWindowController<ChooseDoctorController, Doctor> windowController = new ModalWindowController<>(ChooseDoctorController::new, context);
         windowController.showStage();
-        System.out.println(windowController.getData());
-        return null;
+        return windowController.getData();
     }
 }

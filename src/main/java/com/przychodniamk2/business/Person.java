@@ -6,10 +6,19 @@ public class Person {
 	private String lastName;
 	private String pesel;
 
-	public Person(Address address, String firstName, String lastName) {
+	public Person(){
+		this("", "", "",new Address());
+	}
+
+	public Person(String firstName, String lastName, String pesel, Address address) {
 		this.address = address;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.pesel = pesel;
+	}
+
+	public Person(String firstName, String lastName, Address address) {
+		this(firstName, lastName, "", address);
 	}
 
 	public Address getAddress() {
@@ -42,5 +51,10 @@ public class Person {
 
 	public void setPesel(String pesel) {
 		this.pesel = pesel;
+	}
+
+	@Override
+	public String toString(){
+		return pesel + " " + firstName + " " + lastName;
 	}
 }

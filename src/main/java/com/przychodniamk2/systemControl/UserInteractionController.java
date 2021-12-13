@@ -7,11 +7,11 @@ import com.przychodniamk2.business.ScheduledVisit;
 
 public interface UserInteractionController {
     Person choosePatient();
-    Date chooseDate();
+    Date chooseDate(Doctor doctor);
     Doctor chooseDoctor();
     void addDoctor(Doctor doctor);
     void addVisit();
     ScheduledVisit chooseVisit();
     void performVisit(ScheduledVisit visit);
-    void addPatient(Person patient);
+    void addPatient();
 }

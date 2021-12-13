@@ -1,7 +1,7 @@
 package com.przychodniamk2.config;
 
 import com.przychodniamk2.database.MockDatabase;
-import com.przychodniamk2.systemControl.Database;
+import com.przychodniamk2.systemControl.database.Database;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

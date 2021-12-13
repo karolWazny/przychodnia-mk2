@@ -6,7 +6,7 @@ public class Doctor extends Person {
 	private final Integer employeeId;
 
 	public Doctor(String firstName, String lastName, Address address, Specialization specialization, Integer employeeId) {
-		super(address, firstName, lastName);
+		super(firstName, lastName, address);
 		this.specialization = specialization;
 		this.employeeId = employeeId;
 	}
@@ -20,8 +20,8 @@ public class Doctor extends Person {
 		return "" + this.specialization + " " + super.getFirstName() + " " + super.getLastName();
 	}
 
-	public Specialization getSpecialization() {
-		return specialization;
+	public String getSpecialization() {
+		return "" + specialization;
 	}
 
 	public void setSpecialization(Specialization specialization) {
