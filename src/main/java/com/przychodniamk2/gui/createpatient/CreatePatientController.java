@@ -1,17 +1,14 @@
 package com.przychodniamk2.gui.createpatient;
 
 import com.przychodniamk2.business.Address;
+import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.StringConverter;
 import org.springframework.context.ApplicationContext;
-
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
 
 public class CreatePatientController extends FXMLController<Person> {
     private final static String fxml = "/src/main/resources/fxml/createPatient.fxml";
@@ -58,12 +55,17 @@ public class CreatePatientController extends FXMLController<Person> {
 
     @FXML
     private void initialize(){
-        flatNumber.textFormatterProperty().setValue(new TextFormatter<String>(change -> {
+        flatNumber.textFormatterProperty().setValue(digitsOnlyFormatter());
+        pesel.textFormatterProperty().setValue(digitsOnlyFormatter());
+    }
+
+    private TextFormatter<String> digitsOnlyFormatter(){
+        return new TextFormatter<>(change -> {
             String newText = change.getText();
             String replacement = newText.replaceAll("[^0-9]*", "");
             change.setText(replacement);
             return change;
-        }));
+        });
     }
 
     @FXML
@@ -77,10 +79,12 @@ public class CreatePatientController extends FXMLController<Person> {
 
         Person patient = new Person(firstName.getText(),
                                     lastName.getText(),
+                                    new Date(birthDate.getValue()),
                                     pesel.getText(),
                                     address);
         Database database = context.getBean("database", Database.class);
         database.createPatient(patient);
+        super.data = patient;
         close();
     }
 

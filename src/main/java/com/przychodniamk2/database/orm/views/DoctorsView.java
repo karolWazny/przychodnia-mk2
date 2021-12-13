@@ -4,10 +4,12 @@ import org.hibernate.annotations.Immutable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Immutable
 @Table("DoctorsView")
+//@Entity
 public class DoctorsView {
     //Tutaj jedynie gettery porobione
     //https://thorben-janssen.com/spring-data-jpa-views/

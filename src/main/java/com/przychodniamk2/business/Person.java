@@ -5,20 +5,25 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private String pesel;
+	private Sex sex = Sex.MALE;
+	private Date dateOfBirth;
+	private String phoneNumber = "";
+	private Integer id;
 
 	public Person(){
-		this("", "", "",new Address());
+		this("", "", new Date(), "",new Address());
 	}
 
-	public Person(String firstName, String lastName, String pesel, Address address) {
+	public Person(String firstName, String lastName, Date dateOfBirth, String pesel, Address address) {
 		this.address = address;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.pesel = pesel;
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public Person(String firstName, String lastName, Address address) {
-		this(firstName, lastName, "", address);
+		this(firstName, lastName, new Date(), "", address);
 	}
 
 	public Address getAddress() {
@@ -53,8 +58,48 @@ public class Person {
 		this.pesel = pesel;
 	}
 
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	@Override
 	public String toString(){
 		return pesel + " " + firstName + " " + lastName;
+	}
+
+	public enum Sex{
+		MALE('m'),
+		FEMALE('f');
+
+		public final char code;
+
+		Sex(char code){
+			this.code = code;
+		}
+
+		@Override
+		public String toString(){
+			return ("" + code).toUpperCase();
+		}
 	}
 }
