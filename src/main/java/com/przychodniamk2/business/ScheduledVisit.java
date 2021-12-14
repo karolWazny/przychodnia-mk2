@@ -1,6 +1,6 @@
 package com.przychodniamk2.business;
 
-public class ScheduledVisit implements Visit {
+public class ScheduledVisit {
 	private final Date date;
 	private final Time time;
 	private final Patient patient;

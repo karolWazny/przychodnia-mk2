@@ -1,6 +1,7 @@
 package com.przychodniamk2.systemControl.database;
 
 import com.przychodniamk2.business.*;
+import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
@@ -9,9 +10,9 @@ public interface Database {
 
 	void setContext(ApplicationContext context);
 
-	List<Visit> readPlannedVisits(PlannedVisitQueryParameters parameters);
+	List<ScheduledVisit> readPlannedVisits(PlannedVisitQueryParameters parameters);
 
-	List<Visit> readPastVisits(Person person);
+	List<DoneVisit> readPastVisits(Person person);
 
 	void createDoneVisit(DoneVisit visit);
 
