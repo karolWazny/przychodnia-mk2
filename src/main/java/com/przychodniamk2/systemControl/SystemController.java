@@ -1,10 +1,7 @@
 package com.przychodniamk2.systemControl;
 
 import com.przychodniamk2.business.*;
-import com.przychodniamk2.systemControl.usecase.DoctorChooser;
-import com.przychodniamk2.systemControl.usecase.PatientChooser;
-import com.przychodniamk2.systemControl.usecase.PatientCreator;
-import com.przychodniamk2.systemControl.usecase.VisitPlanner;
+import com.przychodniamk2.systemControl.usecase.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +18,9 @@ public class SystemController implements UserInteractionController {
 
     @Autowired
     private PatientCreator patientCreator;
+
+    @Autowired
+    private VisitPerformer visitPerformer;
 
     @Override
     public Person choosePatient() {
@@ -54,7 +54,7 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public void performVisit(ScheduledVisit visit) {
-
+        visitPerformer.performVisit(visit);
     }
 
     @Override

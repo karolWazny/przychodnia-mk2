@@ -138,7 +138,7 @@ public class SpringMySQLDatabase implements Database {
 		CallableStatement statement;
 		try{
 			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
-			String sql = "{CALL PATIENTS_INSERT ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )}";
+			String sql = "{CALL SELECT_FIRST_POSSIBLE_DATE_BY_DOCTOR_ID ( ?, ? )}";
 			statement = connection.prepareCall(sql);
 			statement.setInt(1, doctor.getEmployeeId());
 			statement.registerOutParameter(2, Types.DATE);
