@@ -24,7 +24,7 @@ import java.util.List;
 public class AddVisitController extends FXMLController<ScheduledVisit> {
     private final static String fxml = "/src/main/resources/fxml/addVisit.fxml";
 
-    private ObjectProperty<Person> patient;
+    private ObjectProperty<Patient> patient;
     private ObjectProperty<Doctor> doctor;
     private ObjectProperty<Date> date;
     private Database database;
@@ -61,7 +61,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     @FXML
     private void initialize(){
         hourPicker.setPromptText("Wybierz godzinę");
-        hourPicker.setButtonCell(new ListCell<Time>() {
+        hourPicker.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(Time item, boolean empty) {
                 super.updateItem(item, empty) ;
@@ -74,9 +74,8 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
         });
 
         ReadOnlyProperty<Time> chosenTime = hourPicker.getSelectionModel().selectedItemProperty();
-        chosenTime.addListener((observable, oldValue, newValue)->{
-            time = newValue;
-        });
+        chosenTime.addListener((observable, oldValue, newValue)->
+            time = newValue);
 
         date = new SimpleObjectProperty<>();
         date.addListener((observable, oldValue, newValue) -> {
@@ -87,7 +86,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
             hourPicker.setItems(observableHours);
         });
 
-        doctor = new SimpleObjectProperty<Doctor>();
+        doctor = new SimpleObjectProperty<>();
         doctor.addListener((observable, oldValue, newValue) -> {
             doctorFirstName.setText(newValue.getFirstName());
             doctorLastName.setText(newValue.getLastName());
@@ -105,7 +104,6 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
         System.out.println(datePicker.getValue());
     }
 
-    @Autowired
     private UserInteractionController userInteractionController;
 
     @Override
@@ -116,7 +114,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void choosePatientClick(ActionEvent event){
-        Person person = userInteractionController.choosePatient();
+        Patient person = userInteractionController.choosePatient();
         if(person != null)
             patient.setValue(person);
     }
@@ -143,6 +141,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
                 .day(date.getValue())
                 .at(time);
         super.data = builder.build();
+        database.createPlannedVisit(super.data);
         close();
     }
 }

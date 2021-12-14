@@ -1,12 +1,11 @@
 package com.przychodniamk2.systemControl;
 
-import com.przychodniamk2.business.Date;
-import com.przychodniamk2.business.Doctor;
-import com.przychodniamk2.business.Person;
-import com.przychodniamk2.business.ScheduledVisit;
+import com.przychodniamk2.business.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface UserInteractionController {
-    Person choosePatient();
+    Patient choosePatient();
     Date chooseDate(Doctor doctor);
     Doctor chooseDoctor();
     void addDoctor(Doctor doctor);

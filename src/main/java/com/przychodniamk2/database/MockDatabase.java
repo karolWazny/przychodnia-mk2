@@ -38,12 +38,12 @@ public class MockDatabase implements Database {
     }
 
     @Override
-    public List<Person> readPatients(Person person) {
-        List<Person> patients = new LinkedList<>();
-        patients.add(new Person("Bob", "Ross", new Date(), "1233",null));
-        patients.add(new Person("Jan", "Kowalski", new Date(), "1724", null));
-        patients.add(new Person("Jack", "Daniels", new Date(), "3254", null));
-        patients.add(new Person("Sherlock", "Holmes", new Date(), "9896", null));
+    public List<Patient> readPatients(Person person) {
+        List<Patient> patients = new LinkedList<>();
+        patients.add(new Patient("Bob", "Ross", new Date(), "1233",null));
+        patients.add(new Patient("Jan", "Kowalski", new Date(), "1724", null));
+        patients.add(new Patient("Jack", "Daniels", new Date(), "3254", null));
+        patients.add(new Patient("Sherlock", "Holmes", new Date(), "9896", null));
         return patients;
     }
 

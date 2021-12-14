@@ -55,22 +55,45 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public void createPlannedVisit(ScheduledVisit visit) {
+		CallableStatement statement;
+		String result = "";
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL SCHEDULED_VISITS_INSERT ( ?, ?, ?, ?, ? )}";
+			statement = connection.prepareCall(sql);
+			statement.setDate(1, sqlDateFrom(visit.getDate()));
+			statement.setInt(2, visit.getDoctor().getEmployeeId());
+			statement.setInt(3, visit.getPatient().getPatientId());
+			statement.setTime(4, sqlTimeFrom(visit.getTime()));
+			statement.registerOutParameter(5, Types.VARCHAR);
+			statement.executeQuery();
+			result = statement.getString(5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(!result.equals("SUCCESS")){
+			throw new RuntimeException();
+		}
+	}
 
+	private java.sql.Time sqlTimeFrom(Time time){
+		return java.sql.Time.valueOf(time.exactTimeString());
 	}
 
 	@Override
-	public List<Person> readPatients(Person person) {
+	public List<Patient> readPatients(Person person) {
 		System.out.println("Wyciaganie pacjentow z bazy...");
 		Iterable<PatientsView> patientsViews = patientsViewRepository.findAll();
-		List<Person> patients = new LinkedList<>();
+		List<Patient> patients = new LinkedList<>();
 		for(PatientsView patient : patientsViews){
-			Person temp = new Person();
+			Patient temp = new Patient();
 			temp.setFirstName(patient.getFirstName());
 			temp.setLastName(patient.getLastName());
 			temp.setPesel(patient.getPESEL());
 			temp.setDateOfBirth(businessDateFrom(patient.getBirthDate()));
 			temp.setPhoneNumber(patient.getPhoneNumber());
 			temp.setSex(patient.getGender());
+			temp.setPatientId(patient.getID());
 			Address address = new Address();
 			address.flatNumber = patient.getApartmentNumber();
 			address.zipCode = patient.getZIPCode();
@@ -154,6 +177,6 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date) {
-		return null;
+		return new MockDatabase().getPossibleAppointmentTimes(doctor, date);
 	}
 }

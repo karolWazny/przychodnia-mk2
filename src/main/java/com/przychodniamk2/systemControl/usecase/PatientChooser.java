@@ -1,7 +1,7 @@
 package com.przychodniamk2.systemControl.usecase;
 
-import com.przychodniamk2.business.Person;
+import com.przychodniamk2.business.Patient;
 
 public interface PatientChooser {
-    Person choosePatient();
+    Patient choosePatient();
 }

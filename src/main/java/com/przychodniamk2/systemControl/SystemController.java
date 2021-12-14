@@ -23,7 +23,7 @@ public class SystemController implements UserInteractionController {
     private VisitPerformer visitPerformer;
 
     @Override
-    public Person choosePatient() {
+    public Patient choosePatient() {
         return patientChooser.choosePatient();
     }
 
