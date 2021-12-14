@@ -54,7 +54,7 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public void performVisit(ScheduledVisit visit) {
-        visitPerformer.performVisit();
+        visitPerformer.performVisit(visit);
     }
 
     @Override

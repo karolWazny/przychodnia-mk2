@@ -17,7 +17,6 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="chooseDateButton" mnemonicParsing="false" onAction="#chooseDate" text="ChooseDate" GridPane.rowIndex="1" />
       <Button fx:id="chooseDoctorButton" mnemonicParsing="false" onAction="#chooseDoctor" text="ChooseDoctor" GridPane.rowIndex="2" />
       <Button fx:id="choosePatientButton" mnemonicParsing="false" onAction="#choosePatient" text="Choose patient" />
       <Button fx:id="addDoctorButton" mnemonicParsing="false" onAction="#addDoctor" text="Add doctor" GridPane.rowIndex="3" />

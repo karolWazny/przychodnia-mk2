@@ -1,8 +1,7 @@
 package com.przychodniamk2.gui.performvisit;
 
-import com.przychodniamk2.business.DoneVisit;
+import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.gui.choosepatient.ChoosePatientController;
 import com.przychodniamk2.systemControl.usecase.VisitPerformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -14,8 +13,9 @@ public class JavaFXVisitPerformer implements VisitPerformer {
     private ApplicationContext context;
 
     @Override
-    public void performVisit() {
-        ModalWindowController<PerformVisitController, DoneVisit> windowController = new ModalWindowController<>(PerformVisitController::new, context);
+    public void performVisit(ScheduledVisit visit) {
+        ModalWindowController<PerformVisitController, ScheduledVisit> windowController = new ModalWindowController<>(PerformVisitController::new, context);
+        windowController.setData(visit);
         windowController.showStage();
     }
 }

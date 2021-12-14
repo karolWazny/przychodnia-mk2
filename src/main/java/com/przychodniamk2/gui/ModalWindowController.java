@@ -32,6 +32,7 @@ public class ModalWindowController<C extends FXMLController<R>, R> {
             Pane root = loader.load();
 
             controller = loader.getController();
+            controller.data = data;
             controller.setParent(stage);
             controller.setContext(context);
 
@@ -41,15 +42,19 @@ public class ModalWindowController<C extends FXMLController<R>, R> {
 
             stage.showAndWait();
 
-            data = (R)controller.data;
-        } catch (IOException ignored){
-            ignored.printStackTrace();
+            data = controller.data;
+        } catch (IOException e){
+            e.printStackTrace();
         }
 
     }
 
     public R getData() {
         return data;
+    }
+
+    public void setData(R data){
+        this.data = data;
     }
 
     public ApplicationContext getContext() {
