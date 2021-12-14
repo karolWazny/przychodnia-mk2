@@ -11,7 +11,7 @@
    <children>
       <Button layoutX="459.0" layoutY="361.0" mnemonicParsing="false" onAction="#confirmClick" text="Gotowe" />
       <Button layoutX="397.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelClick" text="Anuluj" />
-      <TextArea layoutX="260.0" layoutY="41.0" prefHeight="314.0" prefWidth="257.0" />
+      <TextArea fx:id="description" layoutX="260.0" layoutY="41.0" prefHeight="314.0" prefWidth="257.0" />
       <Label layoutX="260.0" layoutY="19.0" text="Opis" />
       <ChoiceBox layoutX="89.0" layoutY="329.0" prefWidth="150.0" />
       <ChoiceBox layoutX="89.0" layoutY="297.0" prefWidth="150.0" />

@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class DoneVisit implements Visit {
 	private ScheduledVisit scheduledVisit;
-	private String illness;
-	private String procedure;
+	private Integer illness;
+	private Integer procedure;
 	private String description;
 
-	private DoneVisit(ScheduledVisit scheduledVisit, String illness, String procedure, String description){
+	private DoneVisit(ScheduledVisit scheduledVisit, Integer illness, Integer procedure, String description){
 		this.scheduledVisit = Objects.requireNonNull(scheduledVisit);
 		this.illness = Objects.requireNonNull(illness);
 		this.procedure = Objects.requireNonNull(procedure);
@@ -19,11 +19,11 @@ public class DoneVisit implements Visit {
 		return scheduledVisit;
 	}
 
-	public String getIllness() {
+	public Integer getIllness() {
 		return illness;
 	}
 
-	public String getProcedure() {
+	public Integer getProcedure() {
 		return procedure;
 	}
 
@@ -34,8 +34,8 @@ public class DoneVisit implements Visit {
 	public static class Builder{
 		private ScheduledVisit scheduledVisit;
 		private String description;
-		private String medicalProcedure;
-		private String illness;
+		private Integer medicalProcedure;
+		private Integer illness;
 
 		public Builder(ScheduledVisit scheduledVisit){
 			this.scheduledVisit = scheduledVisit;
@@ -46,12 +46,12 @@ public class DoneVisit implements Visit {
 			return this;
 		}
 
-		public Builder withProcedure(String procedure){
+		public Builder withProcedure(Integer procedure){
 			this.medicalProcedure = procedure;
 			return this;
 		}
 
-		public Builder withIllness(String illness){
+		public Builder withIllness(Integer illness){
 			this.illness = illness;
 			return this;
 		}
