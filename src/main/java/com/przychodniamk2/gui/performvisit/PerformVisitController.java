@@ -77,5 +77,6 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
     @Override
     public void setContext(ApplicationContext context) {
         this.database = context.getBean("database", Database.class);
+        visit-performer
     }
 }
