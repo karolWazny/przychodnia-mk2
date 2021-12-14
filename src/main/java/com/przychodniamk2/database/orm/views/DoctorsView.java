@@ -9,14 +9,12 @@ import javax.persistence.Id;
 @Immutable
 @Table("DoctorsView")
 public class DoctorsView {
-    //Tutaj jedynie gettery porobione
-    //https://thorben-janssen.com/spring-data-jpa-views/
     @Id
     private Integer ID;
 
     @Column("ID")
     private String position;
-    @Column("specialization")
+    @Column("Specialization")
     private String specialization;
     @Column("FirstName")
     private String firstName;

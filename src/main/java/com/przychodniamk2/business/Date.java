@@ -1,5 +1,6 @@
 package com.przychodniamk2.business;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class Date {
@@ -13,6 +14,16 @@ public class Date {
         this.day = day;
     }
 
+    public Date() {
+        this(1970, 1, 1);
+    }
+
+    public Date(LocalDate value) {
+        this.year = value.getYear();
+        this.month = value.getMonthValue();
+        this.day = value.getDayOfMonth();
+    }
+
     public static Date today(){
         Calendar calendar = Calendar.getInstance();
         Builder builder = new Builder().withYear(calendar.get(Calendar.YEAR))
@@ -22,7 +33,7 @@ public class Date {
     }
 
     public String dateString(){
-        return "" + day + "." + month + "." + year;
+        return String.format("%02d", day) + "." + String.format("%02d", month) + "." + String.format("%04d", year);
     }
 
     @Override

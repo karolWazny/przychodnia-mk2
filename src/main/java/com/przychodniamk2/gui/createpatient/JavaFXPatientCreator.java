@@ -17,8 +17,5 @@ public class JavaFXPatientCreator implements PatientCreator {
     public void createPatient() {
         ModalWindowController<CreatePatientController, Person> windowController = new ModalWindowController<>(CreatePatientController::new, context);
         windowController.showStage();
-        Person newPatient = windowController.getData();
-        Database database = context.getBean("database", Database.class);
-        database.createPatient(newPatient);
     }
 }
