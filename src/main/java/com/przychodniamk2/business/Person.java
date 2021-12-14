@@ -100,18 +100,20 @@ public class Person {
 	}
 
 	public enum Sex{
-		MALE('m'),
-		FEMALE('f');
+		MALE('m', "mężczyzna"),
+		FEMALE('f', "kobieta");
 
 		public final char code;
+		public final String name;
 
-		Sex(char code){
+		Sex(char code, String name){
 			this.code = code;
+			this.name = name;
 		}
 
 		@Override
 		public String toString(){
-			return ("" + code).toUpperCase();
+			return name;
 		}
 	}
 }

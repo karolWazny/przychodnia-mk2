@@ -3,7 +3,6 @@ package com.przychodniamk2.database;
 import com.przychodniamk2.business.*;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Time;
-import com.przychodniamk2.database.orm.tables.Personals;
 import com.przychodniamk2.database.orm.views.DoctorsView;
 import com.przychodniamk2.database.orm.views.PatientsView;
 import com.przychodniamk2.database.repositories.*;
@@ -11,13 +10,11 @@ import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.database.PlannedVisitQueryParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.jdbc.core.CallableStatementCallback;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -138,6 +135,20 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public Date getFirstPossibleAppointmentDate(Doctor doctor) {
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL PATIENTS_INSERT ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )}";
+			statement = connection.prepareCall(sql);
+			statement.setInt(1, doctor.getEmployeeId());
+			statement.registerOutParameter(2, Types.DATE);
+			statement.executeQuery();
+			java.sql.Date sqlDate = statement.getDate(2);
+			System.out.println(sqlDate);
+			return businessDateFrom(sqlDate);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

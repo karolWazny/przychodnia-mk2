@@ -2,13 +2,18 @@ package com.przychodniamk2.gui.createpatient;
 
 import com.przychodniamk2.business.Address;
 import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.context.ApplicationContext;
+
+import java.util.*;
 
 public class CreatePatientController extends FXMLController<Person> {
     private final static String fxml = "/src/main/resources/fxml/createPatient.fxml";
@@ -44,6 +49,9 @@ public class CreatePatientController extends FXMLController<Person> {
     @FXML
     private TextField zipCode;
 
+    @FXML
+    private ChoiceBox<Person.Sex> sex;
+
     public CreatePatientController() {
         super(fxml);
     }
@@ -57,6 +65,13 @@ public class CreatePatientController extends FXMLController<Person> {
     private void initialize(){
         flatNumber.textFormatterProperty().setValue(digitsOnlyFormatter());
         pesel.textFormatterProperty().setValue(digitsOnlyFormatter());
+
+        List<Person.Sex> sexes = new LinkedList<>(Arrays.asList(Person.Sex.values()));
+        ObservableList<Person.Sex> observableList = FXCollections.observableArrayList();
+        observableList.addAll(sexes);
+
+        sex.setItems(observableList);
+        sex.setValue(Person.Sex.MALE);
     }
 
     private TextFormatter<String> digitsOnlyFormatter(){
@@ -84,7 +99,7 @@ public class CreatePatientController extends FXMLController<Person> {
         patient.setPesel(pesel.getText());
         patient.setFirstName(firstName.getText());
         patient.setLastName(lastName.getText());
-        patient.setSex(Person.Sex.MALE);
+        patient.setSex(sex.getValue());
         patient.setAddress(address);
         patient.setDateOfBirth(new Date(birthDate.getValue()));
         patient.setPhoneNumber(phoneNumber.getText());
