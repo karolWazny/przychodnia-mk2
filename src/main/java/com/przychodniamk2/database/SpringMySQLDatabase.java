@@ -56,17 +56,23 @@ public class SpringMySQLDatabase implements Database {
 	@Override
 	public void createPlannedVisit(ScheduledVisit visit) {
 		CallableStatement statement;
+		String result = "";
 		try{
 			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
-			String sql = "{CALL SCHEDULED_VISITS_INSERT ( ?, ?, ?, ? )}";
+			String sql = "{CALL SCHEDULED_VISITS_INSERT ( ?, ?, ?, ?, ? )}";
 			statement = connection.prepareCall(sql);
 			statement.setDate(1, sqlDateFrom(visit.getDate()));
 			statement.setInt(2, visit.getDoctor().getEmployeeId());
 			statement.setInt(3, visit.getPatient().getPatientId());
 			statement.setTime(4, sqlTimeFrom(visit.getTime()));
+			statement.registerOutParameter(5, Types.VARCHAR);
 			statement.executeQuery();
+			result = statement.getString(5);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		if(!result.equals("SUCCESS")){
+			throw new RuntimeException();
 		}
 	}
 

@@ -141,6 +141,7 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
                 .day(date.getValue())
                 .at(time);
         super.data = builder.build();
+        database.createPlannedVisit(super.data);
         close();
     }
 }
