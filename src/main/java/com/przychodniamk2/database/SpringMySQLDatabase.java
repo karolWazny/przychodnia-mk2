@@ -3,6 +3,7 @@ package com.przychodniamk2.database;
 import com.przychodniamk2.business.*;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Time;
+import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import com.przychodniamk2.database.orm.views.DoctorsView;
 import com.przychodniamk2.database.orm.views.PatientsView;
 import com.przychodniamk2.database.repositories.*;
@@ -30,6 +31,9 @@ public class SpringMySQLDatabase implements Database {
 	private PatientsViewRepository patientsViewRepository;
 
 	@Autowired
+	private MedicalVisitsRepository medicalVisitsRepository;
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
@@ -50,7 +54,12 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public void createDoneVisit(DoneVisit visit) {
-
+		MedicalVisits visitRecord = new MedicalVisits();
+		visitRecord.setDescription(visit.getDescription());
+		visitRecord.setScheduledVisitID(visit.getScheduledVisit().getId());
+		visitRecord.setIllnessID(visit.getIllness());
+		visitRecord.setProcedureID(visit.getProcedure());
+		medicalVisitsRepository.save(visitRecord);
 	}
 
 	@Override
