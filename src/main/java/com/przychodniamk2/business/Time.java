@@ -38,4 +38,11 @@ public class Time {
     public String toString(){
         return "" + hour + ":" + String.format("%02d", minutes);
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(! (o instanceof Time))
+            return false;
+        else return ((Time) o).hour == hour && ((Time) o).minutes == minutes;
+    }
 }
