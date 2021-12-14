@@ -7,11 +7,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przychodniamk2.gui.performvisit.PerformVisitController">
    <children>
-      <Button layoutX="459.0" layoutY="361.0" mnemonicParsing="false" text="Gotowe" />
-      <Button layoutX="397.0" layoutY="361.0" mnemonicParsing="false" text="Anuluj" />
+      <Button layoutX="459.0" layoutY="361.0" mnemonicParsing="false" onAction="#confirmClick" text="Gotowe" />
+      <Button layoutX="397.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelClick" text="Anuluj" />
       <TextArea layoutX="260.0" layoutY="41.0" prefHeight="314.0" prefWidth="257.0" />
       <Label layoutX="260.0" layoutY="19.0" text="Opis" />
       <ChoiceBox layoutX="89.0" layoutY="329.0" prefWidth="150.0" />
@@ -20,12 +19,12 @@
       <Label layoutX="14.0" layoutY="333.0" text="Procedura" />
       <Label layoutX="66.0" layoutY="19.0" text="Lekarz" />
       <Label layoutX="70.0" layoutY="138.0" text="Pacjent" />
-      <TextField layoutX="68.0" layoutY="40.0" prefHeight="25.0" prefWidth="169.0" />
-      <TextField layoutX="68.0" layoutY="71.0" prefHeight="25.0" prefWidth="169.0" />
-      <TextField layoutX="68.0" layoutY="103.0" prefHeight="25.0" prefWidth="169.0" />
-      <TextField layoutX="68.0" layoutY="155.0" prefHeight="25.0" prefWidth="169.0" />
-      <TextField layoutX="68.0" layoutY="185.0" prefHeight="25.0" prefWidth="169.0" />
-      <TextField layoutX="68.0" layoutY="217.0" prefHeight="25.0" prefWidth="169.0" />
+      <TextField fx:id="doctorFirstName" disable="true" layoutX="68.0" layoutY="40.0" prefHeight="25.0" prefWidth="169.0" />
+      <TextField fx:id="doctorLastName" disable="true" layoutX="68.0" layoutY="71.0" prefHeight="25.0" prefWidth="169.0" />
+      <TextField fx:id="doctorSpecialization" disable="true" layoutX="68.0" layoutY="103.0" prefHeight="25.0" prefWidth="169.0" />
+      <TextField fx:id="patientFirstName" disable="true" layoutX="68.0" layoutY="155.0" prefHeight="25.0" prefWidth="169.0" />
+      <TextField fx:id="patientLastName" disable="true" layoutX="68.0" layoutY="185.0" prefHeight="25.0" prefWidth="169.0" />
+      <TextField fx:id="patientPesel" disable="true" layoutX="68.0" layoutY="217.0" prefHeight="25.0" prefWidth="169.0" />
       <Button layoutX="64.0" layoutY="249.0" mnemonicParsing="false" text="Szczegóły" />
       <Button layoutX="136.0" layoutY="249.0" mnemonicParsing="false" text="Przeszłe wizyty" />
    </children>

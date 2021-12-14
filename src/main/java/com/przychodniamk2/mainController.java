@@ -47,7 +47,10 @@ public class mainController {
 
     @FXML
     private void performVisit(ActionEvent event) {
-        ScheduledVisit visit = userInteractionController.chooseVisit();
+        ScheduledVisit visit = new ScheduledVisit(new Doctor("Bob", "Ross", new Address(), new Specialization("ortopeda"), 1),
+                new Patient(),
+                new Date(),
+                new Time());
         userInteractionController.performVisit(visit);
     }
 

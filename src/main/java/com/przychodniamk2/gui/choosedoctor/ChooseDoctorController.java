@@ -39,9 +39,8 @@ public class ChooseDoctorController extends FXMLController<Doctor> {
     private void initialize(){
         ReadOnlyObjectProperty<Doctor> ind = listView.getSelectionModel().selectedItemProperty();
 
-        ind.addListener((observable, oldValue, newValue) -> {
-            super.data = newValue;
-        });
+        ind.addListener((observable, oldValue, newValue) ->
+            super.setData(newValue));
     }
 
     @FXML

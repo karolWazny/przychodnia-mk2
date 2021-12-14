@@ -140,8 +140,8 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
                 .withPatient(patient.getValue())
                 .day(date.getValue())
                 .at(time);
-        super.data = builder.build();
-        database.createPlannedVisit(super.data);
+        super.setData(builder.build());
+        database.createPlannedVisit(super.getData());
         close();
     }
 }
