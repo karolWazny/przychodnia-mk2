@@ -17,7 +17,7 @@ public interface Database {
 
 	void createPlannedVisit(ScheduledVisit visit);
 
-	List<Person> readPatients(Person person);
+	List<Patient> readPatients(Person person);
 
 	void createPatient(Person person);
 

@@ -52,7 +52,7 @@ public class PatientsView {
     private Short apartmentNumber;
 
     public Integer getID() {
-        return ID;
+        return PatientID;
     }
 
     public String getPESEL() {
