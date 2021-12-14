@@ -1,5 +1,8 @@
 package com.przychodniamk2.business;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class WorkingHours {
     private Time start;
     private Time end;
@@ -7,6 +10,20 @@ public class WorkingHours {
     public WorkingHours(Time start, Time end) {
         this.start = start;
         this.end = end;
+    }
+
+    public List<Time> possibleAppointments(){
+        List<Time> output = new LinkedList<>();
+        int hours = start.getHour();
+        int minutes = start.getMinutes();
+
+        while(hours < end.getHour() || (hours == end.getHour() && minutes < end.getMinutes())){
+            output.add(new Time(hours, minutes));
+            minutes += 30;
+            hours += minutes / 60;
+            minutes %= 60;
+        }
+        return output;
     }
 
     public Time getStart() {
