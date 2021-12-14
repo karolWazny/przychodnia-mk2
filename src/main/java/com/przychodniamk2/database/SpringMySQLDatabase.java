@@ -5,10 +5,8 @@ import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Time;
 import com.przychodniamk2.database.orm.tables.Personals;
 import com.przychodniamk2.database.orm.views.DoctorsView;
-import com.przychodniamk2.database.repositories.AddressRepository;
-import com.przychodniamk2.database.repositories.DoctorsViewRepository;
-import com.przychodniamk2.database.repositories.PersonalsRepository;
-import com.przychodniamk2.database.repositories.UserRepository;
+import com.przychodniamk2.database.orm.views.PatientsView;
+import com.przychodniamk2.database.repositories.*;
 import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.database.PlannedVisitQueryParameters;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +28,9 @@ public class SpringMySQLDatabase implements Database {
 	private PersonalsRepository personalsRepository;
 	@Autowired
 	private DoctorsViewRepository doctorsViewRepository;
+
+	@Autowired
+	private PatientsViewRepository patientsViewRepository;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -62,7 +64,31 @@ public class SpringMySQLDatabase implements Database {
 	@Override
 	public List<Person> readPatients(Person person) {
 		System.out.println("Wyciaganie pacjentow z bazy...");
-		throw new UnsupportedOperationException();
+		Iterable<PatientsView> patientsViews = patientsViewRepository.findAll();
+		List<Person> patients = new LinkedList<>();
+		for(PatientsView patient : patientsViews){
+			Person temp = new Person();
+			temp.setFirstName(patient.getFirstName());
+			temp.setLastName(patient.getLastName());
+			temp.setPesel(patient.getPESEL());
+			temp.setDateOfBirth(businessDateFrom(patient.getBirthDate()));
+			temp.setPhoneNumber(patient.getPhoneNumber());
+			temp.setSex(patient.getGender());
+			Address address = new Address();
+			address.flatNumber = patient.getApartmentNumber();
+			address.zipCode = patient.getZIPCode();
+			address.buildingNumber = patient.getHouseNumber();
+			address.street = patient.getStreet();
+			address.city = patient.getTown();
+			temp.setAddress(address);
+			patients.add(temp);
+		}
+		return patients;
+	}
+
+	private Date businessDateFrom(java.sql.Date date){
+		LocalDate localDate = date.toLocalDate();
+		return new Date(localDate);
 	}
 
 	@Override
@@ -95,7 +121,7 @@ public class SpringMySQLDatabase implements Database {
 		}
 	}
 
-	public java.sql.Date sqlDateFrom(Date date){
+	private java.sql.Date sqlDateFrom(Date date){
 		LocalDate localDate = LocalDate.of(date.getYear(), date.getMonth(), date.getDay());
 		return java.sql.Date.valueOf(localDate);
 	}

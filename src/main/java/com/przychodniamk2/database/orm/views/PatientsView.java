@@ -1,32 +1,57 @@
 package com.przychodniamk2.database.orm.views;
 
 import org.hibernate.annotations.Immutable;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
 
-@Entity
+@Table("PatientsView")
 @Immutable
 public class PatientsView {
-    //Tutaj jedynie gettery porobione
-    //https://thorben-janssen.com/spring-data-jpa-views/
+
     @Id
-    private Long ID;
+    @Column("PatientID")
+    private Integer PatientID;
 
+    @Column("ID")
+    private Integer ID;
+
+    @Column("PESEL")
     private String PESEL;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private java.sql.Date birthDate;
-    private char gender;
-    private String ZIPCode;
-    private String town;
-    private String street;
-    private String houseNumber;
-    private String apartmentNumber;
 
-    public Long getID() {
+    @Column("FirstName")
+    private String firstName;
+
+    @Column("LastName")
+    private String lastName;
+
+    @Column("PhoneNumber")
+    private String phoneNumber;
+
+    @Column("BirthDate")
+    private java.sql.Date birthDate;
+
+    @Column("Gender")
+    private char gender;
+
+    @Column("ZIPCode")
+    private String ZIPCode;
+
+    @Column("Town")
+    private String town;
+
+    @Column("Street")
+    private String street;
+
+    @Column("HouseNumber")
+    private String houseNumber;
+
+    @Column("ApartmentNumber")
+    private Short apartmentNumber;
+
+    public Integer getID() {
         return ID;
     }
 
@@ -70,7 +95,7 @@ public class PatientsView {
         return houseNumber;
     }
 
-    public String getApartmentNumber() {
+    public Short getApartmentNumber() {
         return apartmentNumber;
     }
 }

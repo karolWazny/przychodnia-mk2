@@ -70,22 +70,35 @@ public class CreatePatientController extends FXMLController<Person> {
 
     @FXML
     private void confirmClick(ActionEvent event){
+        Person patient = buildPatient();
+        Database database = context.getBean("database", Database.class);
+        database.createPatient(patient);
+        super.data = patient;
+        close();
+    }
+
+    private Person buildPatient(){
+        Address address = buildAddress();
+
+        Person patient = new Person();
+        patient.setPesel(pesel.getText());
+        patient.setFirstName(firstName.getText());
+        patient.setLastName(lastName.getText());
+        patient.setSex(Person.Sex.MALE);
+        patient.setAddress(address);
+        patient.setDateOfBirth(new Date(birthDate.getValue()));
+        patient.setPhoneNumber(phoneNumber.getText());
+        return patient;
+    }
+
+    private Address buildAddress(){
         Address address = new Address();
         address.buildingNumber = building.getText();
         address.city = city.getText();
         address.street = street.getText();
         address.zipCode = zipCode.getText();
         address.flatNumber = Short.parseShort(flatNumber.getText());
-
-        Person patient = new Person(firstName.getText(),
-                                    lastName.getText(),
-                                    new Date(birthDate.getValue()),
-                                    pesel.getText(),
-                                    address);
-        Database database = context.getBean("database", Database.class);
-        database.createPatient(patient);
-        super.data = patient;
-        close();
+        return address;
     }
 
     @FXML

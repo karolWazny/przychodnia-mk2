@@ -87,6 +87,18 @@ public class Person {
 		return pesel + " " + firstName + " " + lastName;
 	}
 
+	public void setSex(char gender) {
+		char code = Character.toLowerCase(gender);
+		if(code == Sex.MALE.code){
+			this.setSex(Sex.MALE);
+			return;
+		} else if(code == Sex.FEMALE.code) {
+			this.setSex(Sex.FEMALE);
+			return;
+		}
+		throw new IllegalArgumentException();
+	}
+
 	public enum Sex{
 		MALE('m'),
 		FEMALE('f');
