@@ -10,9 +10,10 @@ import javax.persistence.Id;
 @Table("DoctorsView")
 public class DoctorsView {
     @Id
+    @Column("ID")
     private Integer ID;
 
-    @Column("ID")
+    @Column("Position")
     private String position;
     @Column("Specialization")
     private String specialization;
