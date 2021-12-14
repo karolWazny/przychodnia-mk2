@@ -88,7 +88,7 @@ public class CreatePatientController extends FXMLController<Person> {
         Person patient = buildPatient();
         Database database = context.getBean("database", Database.class);
         database.createPatient(patient);
-        super.data = patient;
+        super.setData(patient);
         close();
     }
 

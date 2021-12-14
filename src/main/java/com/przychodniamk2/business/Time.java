@@ -11,6 +11,10 @@ public class Time {
         this.minutes = minutes;
     }
 
+    public Time() {
+        this(0, 0);
+    }
+
     public static Time now(){
         Calendar now = Calendar.getInstance();
         int hours = now.get(Calendar.HOUR_OF_DAY);

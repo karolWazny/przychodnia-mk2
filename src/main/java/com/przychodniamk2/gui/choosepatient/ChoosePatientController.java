@@ -44,7 +44,7 @@ public class ChoosePatientController extends FXMLController<Patient> {
         ReadOnlyObjectProperty<Patient> ind = patientsListView.getSelectionModel().selectedItemProperty();
 
         ind.addListener((observable, oldValue, newValue) ->
-            super.data = newValue);
+            super.setData(newValue));
 
         ReadOnlyProperty<String> peselProperty = peselTextField.textProperty();
         peselProperty.addListener((observable, oldValue, newValue) -> {
@@ -75,7 +75,7 @@ public class ChoosePatientController extends FXMLController<Patient> {
 
     @FXML
     private void cancelClick(ActionEvent event){
-        super.data = null;
+        super.setData(null);
         close();
     }
 

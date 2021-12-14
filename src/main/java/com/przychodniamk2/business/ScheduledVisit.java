@@ -5,12 +5,14 @@ public class ScheduledVisit implements Visit {
 	private final Time time;
 	private final Patient patient;
 	private final Doctor doctor;
+	private final Integer id;
 
-	public ScheduledVisit(Doctor doctor, Patient patient, Date date, Time time){
+	public ScheduledVisit(Doctor doctor, Patient patient, Date date, Time time, Integer id){
 		this.date = date;
 		this.time = time;
 		this.patient = patient;
 		this.doctor = doctor;
+		this.id = id;
 	}
 
 	public Date getDate() {
@@ -29,11 +31,16 @@ public class ScheduledVisit implements Visit {
 		return doctor;
 	}
 
+	public Integer getId(){
+		return id;
+	}
+
 	public static class Builder {
 		private Doctor doctor;
 		private Date date;
 		private Patient patient;
 		private Time time;
+		private Integer id;
 
 		public Builder withDoctor(Doctor doctor){
 			this.doctor = doctor;
@@ -51,9 +58,13 @@ public class ScheduledVisit implements Visit {
 			this.time = time;
 			return this;
 		}
+		public Builder withId(Integer id){
+			this.id = id;
+			return this;
+		}
 
 		public ScheduledVisit build(){
-			return new ScheduledVisit(doctor, patient, date, time);
+			return new ScheduledVisit(doctor, patient, date, time, id);
 		}
 	}
 }

@@ -4,7 +4,6 @@ import com.przychodniamk2.business.*;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +46,10 @@ public class mainController {
 
     @FXML
     private void performVisit(ActionEvent event) {
-        ScheduledVisit visit = userInteractionController.chooseVisit();
+        ScheduledVisit visit = new ScheduledVisit(new Doctor("Bob", "Ross", new Address(), new Specialization("ortopeda"), 1),
+                new Patient(),
+                new Date(),
+                new Time(), 2);
         userInteractionController.performVisit(visit);
     }
 

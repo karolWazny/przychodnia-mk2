@@ -26,7 +26,7 @@ public abstract class FXMLController<R> {
         return output;
     }
 
-    protected R data;
+    private R data;
 
     public Stage getParent(){
         return parent;
@@ -43,4 +43,12 @@ public abstract class FXMLController<R> {
     }
 
     public abstract void setContext(ApplicationContext context);
+
+    public R getData() {
+        return data;
+    }
+
+    public void setData(R data) {
+        this.data = data;
+    }
 }
