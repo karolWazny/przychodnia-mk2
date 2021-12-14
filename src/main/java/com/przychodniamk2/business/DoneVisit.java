@@ -2,7 +2,7 @@ package com.przychodniamk2.business;
 
 import java.util.Objects;
 
-public class DoneVisit implements Visit {
+public class DoneVisit {
 	private ScheduledVisit scheduledVisit;
 	private Integer illness;
 	private Integer procedure;

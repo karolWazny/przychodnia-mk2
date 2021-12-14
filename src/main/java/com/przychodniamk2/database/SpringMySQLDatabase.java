@@ -43,12 +43,12 @@ public class SpringMySQLDatabase implements Database {
 	}
 
 	@Override
-	public List<Visit> readPlannedVisits(PlannedVisitQueryParameters parameters) {
+	public List<ScheduledVisit> readPlannedVisits(PlannedVisitQueryParameters parameters) {
 		return null;
 	}
 
 	@Override
-	public List<Visit> readPastVisits(Person person) {
+	public List<DoneVisit> readPastVisits(Person person) {
 		return null;
 	}
 
