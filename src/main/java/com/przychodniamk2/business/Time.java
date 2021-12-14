@@ -26,8 +26,12 @@ public class Time {
         return minutes;
     }
 
+    public String exactTimeString(){
+        return this + ":00";
+    }
+
     @Override
     public String toString(){
-        return "" + hour + ":" + minutes;
+        return "" + hour + ":" + String.format("%02d", minutes);
     }
 }

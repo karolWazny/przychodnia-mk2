@@ -4,12 +4,10 @@ import com.przychodniamk2.gui.choosedoctor.JavaFXDoctorChooser;
 import com.przychodniamk2.gui.addvisit.JavaFXVisitPlanner;
 import com.przychodniamk2.gui.choosepatient.JavaFXPatientChooser;
 import com.przychodniamk2.gui.createpatient.JavaFXPatientCreator;
-import com.przychodniamk2.systemControl.usecase.DoctorChooser;
+import com.przychodniamk2.gui.performvisit.JavaFXVisitPerformer;
+import com.przychodniamk2.systemControl.usecase.*;
 import com.przychodniamk2.systemControl.SystemController;
 import com.przychodniamk2.systemControl.UserInteractionController;
-import com.przychodniamk2.systemControl.usecase.PatientChooser;
-import com.przychodniamk2.systemControl.usecase.PatientCreator;
-import com.przychodniamk2.systemControl.usecase.VisitPlanner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -38,5 +36,10 @@ public class UIConfig {
     @Bean
     public PatientCreator patientCreator(){
         return new JavaFXPatientCreator();
+    }
+
+    @Bean
+    public VisitPerformer visitPerformer(){
+        return new JavaFXVisitPerformer();
     }
 }

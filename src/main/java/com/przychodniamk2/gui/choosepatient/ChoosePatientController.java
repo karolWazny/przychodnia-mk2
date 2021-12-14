@@ -1,5 +1,6 @@
 package com.przychodniamk2.gui.choosepatient;
 
+import com.przychodniamk2.business.Patient;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.UserInteractionController;
@@ -16,12 +17,12 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 
-public class ChoosePatientController extends FXMLController<Person> {
+public class ChoosePatientController extends FXMLController<Patient> {
     private ApplicationContext context;
     private Database database;
 
     @FXML
-    private ListView<Person> patientsListView;
+    private ListView<Patient> patientsListView;
 
     @FXML
     private TextField peselTextField;
@@ -40,18 +41,17 @@ public class ChoosePatientController extends FXMLController<Person> {
 
     @FXML
     private void initialize(){
-        ReadOnlyObjectProperty<Person> ind = patientsListView.getSelectionModel().selectedItemProperty();
+        ReadOnlyObjectProperty<Patient> ind = patientsListView.getSelectionModel().selectedItemProperty();
 
-        ind.addListener((observable, oldValue, newValue) -> {
-            super.data = newValue;
-        });
+        ind.addListener((observable, oldValue, newValue) ->
+            super.data = newValue);
 
         ReadOnlyProperty<String> peselProperty = peselTextField.textProperty();
         peselProperty.addListener((observable, oldValue, newValue) -> {
             Person data = new Person();
             data.setPesel(newValue);
-            List<Person> patients = database.readPatients(data);
-            ObservableList<Person> observableList = FXCollections.observableArrayList();
+            List<Patient> patients = database.readPatients(data);
+            ObservableList<Patient> observableList = FXCollections.observableArrayList();
             observableList.addAll(patients);
             patientsListView.setItems(observableList);
         });
@@ -62,8 +62,8 @@ public class ChoosePatientController extends FXMLController<Person> {
         this.context = context;
 
         database = context.getBean("database", Database.class);
-        List<Person> patients = database.readPatients(new Person());
-        ObservableList<Person> observableList = FXCollections.observableArrayList();
+        List<Patient> patients = database.readPatients(new Person());
+        ObservableList<Patient> observableList = FXCollections.observableArrayList();
         observableList.addAll(patients);
         patientsListView.setItems(observableList);
     }

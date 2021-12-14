@@ -18,7 +18,5 @@ public class JavaFXVisitPlanner implements VisitPlanner {
     public void addVisit() {
         ModalWindowController<AddVisitController, ScheduledVisit> windowController = new ModalWindowController<>(AddVisitController::new, context);
         windowController.showStage();
-        Database database = context.getBean("database", Database.class);
-        database.createPlannedVisit(windowController.getData());
     }
 }

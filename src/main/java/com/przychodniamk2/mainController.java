@@ -13,30 +13,6 @@ public class mainController {
     @Autowired
     private UserInteractionController userInteractionController;
 
-    @FXML
-    Button choosePatientButton;
-
-    @FXML
-    Button chooseDateButton;
-
-    @FXML
-    Button chooseDoctorButton;
-
-    @FXML
-    Button addDoctorButton;
-
-    @FXML
-    Button addVisitButton;
-
-    @FXML
-    Button chooseVisitButton;
-
-    @FXML
-    Button performVisitButton;
-
-    @FXML
-    Button addPatientButton;
-
     public mainController(){
 
     }
@@ -44,11 +20,6 @@ public class mainController {
     @FXML
     private void choosePatient(ActionEvent event){
         System.out.println("Chosen patient: " + userInteractionController.choosePatient());
-    }
-
-    @FXML
-    private void chooseDate(ActionEvent event){
-        System.out.println("Chosen date: " + userInteractionController.chooseDate(null));
     }
 
     @FXML
@@ -71,14 +42,13 @@ public class mainController {
 
     @FXML
     private void chooseVisit(ActionEvent event){
-        System.out.println("Chosen visit: " + userInteractionController.chooseVisit());
+        userInteractionController.chooseVisit();
     }
 
     @FXML
     private void performVisit(ActionEvent event) {
         ScheduledVisit visit = userInteractionController.chooseVisit();
         userInteractionController.performVisit(visit);
-        System.out.println("Performed visit: " + visit);
     }
 
     @FXML
