@@ -13,6 +13,5 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
 
     @Override
     public void setContext(ApplicationContext context) {
-
     }
 }

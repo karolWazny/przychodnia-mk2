@@ -179,4 +179,35 @@ public class SpringMySQLDatabase implements Database {
 	public List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date) {
 		return new MockDatabase().getPossibleAppointmentTimes(doctor, date);
 	}
+
+	@Override
+	public List<ElementOfTreatment> getCurrentDiagnoses() {
+		return getElementsOfTreatment("DIAGNOSES");
+	}
+
+	@Override
+	public List<ElementOfTreatment> getCurrentProcedures() {
+		return getElementsOfTreatment("PROCEDURES");
+	}
+
+	private List<ElementOfTreatment> getElementsOfTreatment(String type){
+		CallableStatement statement;
+		List<ElementOfTreatment> output = new LinkedList<>();
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL GET_" + type.toUpperCase() + "_CURRENT_STANDARD ()}";
+			statement = connection.prepareCall(sql);
+			ResultSet resultSet = statement.executeQuery();
+
+			while(resultSet.next()){
+				ElementOfTreatment tmp = new ElementOfTreatment(resultSet.getInt("ID"),
+						resultSet.getString("Description"),
+						resultSet.getString("Code"));
+				output.add(tmp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return output;
+	}
 }

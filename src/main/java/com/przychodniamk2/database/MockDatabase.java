@@ -75,4 +75,14 @@ public class MockDatabase implements Database {
         }
         return times;
     }
+
+    @Override
+    public List<ElementOfTreatment> getCurrentDiagnoses() {
+        return null;
+    }
+
+    @Override
+    public List<ElementOfTreatment> getCurrentProcedures() {
+        return null;
+    }
 }
