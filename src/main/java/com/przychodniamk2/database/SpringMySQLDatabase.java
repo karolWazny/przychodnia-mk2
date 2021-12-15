@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -201,8 +203,58 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date) {
-		//return new MockDatabase().getPossibleAppointmentTimes(doctor, date);
-		return null;
+		CallableStatement statement;
+		List<Time> times =  getWorkingHours(doctor).possibleAppointments();
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL SELECT_VISITS_BY_DATE_AND_DOCTOR( ?, ?, ?)}";
+			statement = connection.prepareCall(sql);
+			statement.setDate(1, sqlDateFrom(date));
+			statement.setInt(2, doctor.getEmployeeId());
+			statement.registerOutParameter(3, Types.VARCHAR);
+
+			ResultSet resultSet = statement.executeQuery();
+
+			if("SUCCESS".equalsIgnoreCase(statement.getString(3))){
+				while(resultSet.next()){
+					times.remove(businessTimeFrom(resultSet.getTime(1)));
+				}
+			}
+			return times;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
+	}
+
+	private WorkingHours getWorkingHours(Doctor doctor){
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL SELECT_WORKING_HOURS_BY_EMPLOYEE_ID ( ? )}";
+			statement = connection.prepareCall(sql);
+			statement.setInt(1, doctor.getEmployeeId());
+			ResultSet resultSet = statement.executeQuery();
+
+			Time startTime = new Time();
+			Time endTime = new Time();
+			while(resultSet.next()){
+				java.sql.Time start = resultSet.getTime("Start");
+				startTime = businessTimeFrom(start);
+				java.sql.Time end = resultSet.getTime("End");
+				endTime = businessTimeFrom(end);
+			}
+			return new WorkingHours(startTime, endTime);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
+	}
+
+	private Time businessTimeFrom(java.sql.Time time){
+		LocalTime localTime = time.toLocalTime();
+		return new Time(localTime.getHour(), localTime.getMinute());
 	}
 
 	@Override

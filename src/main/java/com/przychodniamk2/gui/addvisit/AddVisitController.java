@@ -128,12 +128,6 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     }
 
     @FXML
-    private void chooseDateClick(ActionEvent event){
-        date.setValue(userInteractionController.chooseDate(doctor.getValue()));
-        System.out.println(date);
-    }
-
-    @FXML
     private void confirmClick(ActionEvent event){
         ScheduledVisit.Builder builder = new ScheduledVisit.Builder()
                 .withDoctor(doctor.getValue())
