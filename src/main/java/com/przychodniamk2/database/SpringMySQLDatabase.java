@@ -38,6 +38,21 @@ public class SpringMySQLDatabase implements Database {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	public SpringMySQLDatabase(AddressRepository addressRepository,
+							   PersonalsRepository personalsRepository,
+							   DoctorsViewRepository doctorsViewRepository,
+							   PatientsViewRepository patientsViewRepository,
+							   MedicalVisitsRepository medicalVisitsRepository,
+							   JdbcTemplate jdbcTemplate){
+		this.jdbcTemplate = jdbcTemplate;
+		this.medicalVisitsRepository = medicalVisitsRepository;
+		this.patientsViewRepository = patientsViewRepository;
+		this.doctorsViewRepository = doctorsViewRepository;
+		this.addressRepository = addressRepository;
+		this.personalsRepository = personalsRepository;
+	}
+
 	@Override
 	public void setContext(ApplicationContext context) {
 		addressRepository = context.getBean("addressRepository", AddressRepository.class);
