@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class UIConfig {
-    @Bean
+/*    @Bean
     public DoctorChooser doctorChooser(){
         return new JavaFXDoctorChooser();
-    }
+    }*/
 
     @Bean
     public UserInteractionController userInteractionController(){
