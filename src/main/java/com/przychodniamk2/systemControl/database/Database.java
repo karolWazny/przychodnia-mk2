@@ -3,9 +3,12 @@ package com.przychodniamk2.systemControl.database;
 import com.przychodniamk2.business.*;
 import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Component
 public interface Database {
 
 	void setContext(ApplicationContext context);

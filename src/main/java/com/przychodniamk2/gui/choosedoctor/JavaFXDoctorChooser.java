@@ -5,16 +5,18 @@ import com.przychodniamk2.gui.ModalWindowController;
 import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.DoctorChooser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXDoctorChooser implements DoctorChooser {
-    @Autowired
-    Database database;
+    private ApplicationContext context;
 
     @Autowired
-    ApplicationContext context;
+    public void setContext(ApplicationContext context) {
+        this.context = context;
+    }
 
     @Override
     public Doctor chooseDoctor() {

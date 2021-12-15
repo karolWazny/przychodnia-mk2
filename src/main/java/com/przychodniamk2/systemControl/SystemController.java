@@ -7,20 +7,36 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SystemController implements UserInteractionController {
-    @Autowired
     private DoctorChooser doctorChooser;
-
-    @Autowired
     private VisitPlanner visitPlanner;
-
-    @Autowired
     private PatientChooser patientChooser;
-
-    @Autowired
     private PatientCreator patientCreator;
+    private VisitPerformer visitPerformer;
 
     @Autowired
-    private VisitPerformer visitPerformer;
+    public void setDoctorChooser(DoctorChooser doctorChooser) {
+        this.doctorChooser = doctorChooser;
+    }
+
+    @Autowired
+    public void setVisitPlanner(VisitPlanner visitPlanner) {
+        this.visitPlanner = visitPlanner;
+    }
+
+    @Autowired
+    public void setPatientChooser(PatientChooser patientChooser) {
+        this.patientChooser = patientChooser;
+    }
+
+    @Autowired
+    public void setPatientCreator(PatientCreator patientCreator) {
+        this.patientCreator = patientCreator;
+    }
+
+    @Autowired
+    public void setVisitPerformer(VisitPerformer visitPerformer) {
+        this.visitPerformer = visitPerformer;
+    }
 
     @Override
     public Patient choosePatient() {

@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXPatientChooser implements PatientChooser {
-    @Autowired
     ApplicationContext context;
+
+    @Autowired
+    public void setContext(ApplicationContext context) {
+        this.context = context;
+    }
 
     @Override
     public Patient choosePatient() {

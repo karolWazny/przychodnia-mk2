@@ -22,8 +22,6 @@ import java.util.List;
 public class ChooseDoctorController extends FXMLController<Doctor> {
     private UserInteractionController userInteractionController;
 
-    private Database database;
-
     private ApplicationContext context;
 
     private final static String fxml = "/src/main/resources/fxml/chooseDoctor.fxml";
@@ -55,7 +53,7 @@ public class ChooseDoctorController extends FXMLController<Doctor> {
     @Override
     public void setContext(ApplicationContext context) {
         this.context = context;
-        this.database = context.getBean("database", Database.class);
+        Database database = context.getBean("database", Database.class);
 
         List<Doctor> doctors = database.readDoctors();
         ObservableList<Doctor> observableList = FXCollections.observableArrayList();

@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXVisitPerformer implements VisitPerformer {
-    @Autowired
     private ApplicationContext context;
+
+    @Autowired
+    public void setContext(ApplicationContext context) {
+        this.context = context;
+    }
 
     @Override
     public void performVisit(ScheduledVisit visit) {

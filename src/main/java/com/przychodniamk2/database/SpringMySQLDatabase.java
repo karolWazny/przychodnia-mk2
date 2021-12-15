@@ -12,31 +12,53 @@ import com.przychodniamk2.systemControl.database.PlannedVisitQueryParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-@Service
+@Component
 public class SpringMySQLDatabase implements Database {
 	private AddressRepository addressRepository;
 	private PersonalsRepository personalsRepository;
-	@Autowired
 	private DoctorsViewRepository doctorsViewRepository;
-
-	@Autowired
 	private PatientsViewRepository patientsViewRepository;
-
-	@Autowired
 	private MedicalVisitsRepository medicalVisitsRepository;
+	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	public void setAddressRepository(AddressRepository addressRepository) {
+		this.addressRepository = addressRepository;
+	}
+
+	@Autowired
+	public void setPersonalsRepository(PersonalsRepository personalsRepository) {
+		this.personalsRepository = personalsRepository;
+	}
+
+	@Autowired
+	public void setDoctorsViewRepository(DoctorsViewRepository doctorsViewRepository) {
+		this.doctorsViewRepository = doctorsViewRepository;
+	}
+
+	@Autowired
+	public void setPatientsViewRepository(PatientsViewRepository patientsViewRepository) {
+		this.patientsViewRepository = patientsViewRepository;
+	}
+
+	@Autowired
+	public void setMedicalVisitsRepository(MedicalVisitsRepository medicalVisitsRepository) {
+		this.medicalVisitsRepository = medicalVisitsRepository;
+	}
+
+	@Autowired
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public void setContext(ApplicationContext context) {
