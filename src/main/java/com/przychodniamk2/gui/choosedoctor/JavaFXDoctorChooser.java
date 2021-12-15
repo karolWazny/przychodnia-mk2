@@ -11,13 +11,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXDoctorChooser implements DoctorChooser {
-    private Database database;
     private ApplicationContext context;
 
     @Autowired
-    public JavaFXDoctorChooser(Database database, ApplicationContext applicationContext){
-        this.database = database;
-        this.context = applicationContext;
+    public void setContext(ApplicationContext context) {
+        this.context = context;
     }
 
     @Override

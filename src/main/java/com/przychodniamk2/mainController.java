@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class mainController {
-    @Autowired
     private UserInteractionController userInteractionController;
 
     public mainController(){
@@ -62,6 +61,7 @@ public class mainController {
     private void initialize(ActionEvent event){
     }
 
+    @Autowired
     public void setUserInteractionController(UserInteractionController userInteractionController) {
         this.userInteractionController = userInteractionController;
     }

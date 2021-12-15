@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JavaFXVisitPlanner implements VisitPlanner {
-    @Autowired
     ApplicationContext context;
+
+    @Autowired
+    public void setContext(ApplicationContext context) {
+        this.context = context;
+    }
 
     @Override
     public void addVisit() {
