@@ -10,6 +10,8 @@ public abstract class FXMLController<R> {
 
     private final String fxml;
 
+    private final static String fxmlResourcesPath = "/src/main/resources/fxml/";
+
     private Stage parent;
 
     protected FXMLController(String fxml) {
@@ -19,7 +21,7 @@ public abstract class FXMLController<R> {
     public URL fxmlLocation(){
         URL output = null;
         try {
-            output = new URL("file:///" + System.getProperty("user.dir") + fxml);
+            output = new URL("file:///" + System.getProperty("user.dir") + fxmlResourcesPath + fxml);
         } catch (MalformedURLException ignored) {
 
         }

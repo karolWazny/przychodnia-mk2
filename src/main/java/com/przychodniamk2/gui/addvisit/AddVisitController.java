@@ -22,7 +22,7 @@ import org.springframework.context.ApplicationContext;
 import java.util.List;
 
 public class AddVisitController extends FXMLController<ScheduledVisit> {
-    private final static String fxml = "/src/main/resources/fxml/addVisit.fxml";
+    private final static String fxml = "addVisit.fxml";
 
     private ObjectProperty<Patient> patient;
     private ObjectProperty<Doctor> doctor;

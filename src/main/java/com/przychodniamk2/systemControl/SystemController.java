@@ -12,6 +12,12 @@ public class SystemController implements UserInteractionController {
     private PatientChooser patientChooser;
     private PatientCreator patientCreator;
     private VisitPerformer visitPerformer;
+    private PastPatientsVisitBrowser pastPatientsVisitBrowser;
+
+    @Autowired
+    public void setPastPatientsVisitBrowser(PastPatientsVisitBrowser pastPatientsVisitBrowser) {
+        this.pastPatientsVisitBrowser = pastPatientsVisitBrowser;
+    }
 
     @Autowired
     public void setDoctorChooser(DoctorChooser doctorChooser) {
@@ -76,5 +82,10 @@ public class SystemController implements UserInteractionController {
     @Override
     public void addPatient() {
         patientCreator.createPatient();
+    }
+
+    @Override
+    public void browsePastVisits(Patient patient) {
+        pastPatientsVisitBrowser.browseVisits(patient);
     }
 }

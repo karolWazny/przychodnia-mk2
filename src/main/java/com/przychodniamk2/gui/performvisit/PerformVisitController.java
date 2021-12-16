@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import org.springframework.context.ApplicationContext;
 
 public class PerformVisitController extends FXMLController<ScheduledVisit> {
-    private final static String fxml = "/src/main/resources/fxml/performVisit.fxml";
+    private final static String fxml = "performVisit.fxml";
 
     private Database database;
     @FXML

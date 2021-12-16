@@ -61,6 +61,12 @@ public class mainController {
     private void initialize(ActionEvent event){
     }
 
+    @FXML
+    private void browsePastVisitsClick(ActionEvent event){
+        Patient patient = userInteractionController.choosePatient();
+        userInteractionController.browsePastVisits(patient);
+    }
+
     @Autowired
     public void setUserInteractionController(UserInteractionController userInteractionController) {
         this.userInteractionController = userInteractionController;

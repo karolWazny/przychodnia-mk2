@@ -16,7 +16,7 @@ import org.springframework.context.ApplicationContext;
 import java.util.*;
 
 public class CreatePatientController extends FXMLController<Person> {
-    private final static String fxml = "/src/main/resources/fxml/createPatient.fxml";
+    private final static String fxml = "createPatient.fxml";
 
     private ApplicationContext context;
     @FXML

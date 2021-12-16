@@ -9,10 +9,10 @@ public class DoneVisit {
 	private String description;
 
 	private DoneVisit(ScheduledVisit scheduledVisit, Integer illness, Integer procedure, String description){
-		this.scheduledVisit = Objects.requireNonNull(scheduledVisit);
-		this.illness = Objects.requireNonNull(illness);
-		this.procedure = Objects.requireNonNull(procedure);
-		this.description = Objects.requireNonNull(description);
+		this.scheduledVisit = scheduledVisit;
+		this.illness = illness;
+		this.procedure = procedure;
+		this.description = description;
 	}
 
 	public ScheduledVisit getScheduledVisit() {
