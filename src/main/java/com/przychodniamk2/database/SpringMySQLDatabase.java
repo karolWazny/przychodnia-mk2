@@ -41,7 +41,37 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public List<ScheduledVisit> readPlannedVisits(Doctor doctor, Date date) {
-		return null;
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL SELECT_ON_DATE_SCHEDULED_VISITS_BY_EMPLOYEESID ( ?, ? )}";
+			statement = connection.prepareCall(sql);
+			statement.setInt(1, doctor.getEmployeeId());
+			statement.setDate(2, sqlDateFrom(date));
+			ResultSet resultSet = statement.executeQuery();
+			List<ScheduledVisit> visits = new LinkedList<>();
+
+			while(resultSet.next()){
+				Patient patient = new Patient();
+				patient.setPesel("PatientsPESEL");
+				patient.setFirstName("PatientsFirstName");
+				patient.setLastName("PatientsLastName");
+				patient.setPatientId(resultSet.getInt("PatientsID"));
+
+				ScheduledVisit scheduledVisit = new ScheduledVisit.Builder().withDoctor(doctor)
+						.at(businessTimeFrom(resultSet.getTime("Time")))
+						.day(date)
+						.withPatient(patient)
+						.withId(resultSet.getInt("ID"))
+						.build();
+
+				visits.add(scheduledVisit);
+			}
+			return visits;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
 	}
 
 	@Override

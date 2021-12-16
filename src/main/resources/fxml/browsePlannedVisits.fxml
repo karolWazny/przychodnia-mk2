@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przychodniamk2.gui.browseplannedvisits.BrowsePlannedVisitsController">
    <children>
-      <ListView layoutX="14.0" layoutY="14.0" prefHeight="332.0" prefWidth="200.0" />
+      <ListView fx:id="listView" layoutX="14.0" layoutY="14.0" prefHeight="332.0" prefWidth="200.0" />
       <Button layoutX="114.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#confirmClick" text="Wybierz" />
       <Button layoutX="57.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#cancelClick" text="Anuluj" />
+      <DatePicker fx:id="datePicker" layoutX="242.0" layoutY="14.0" />
    </children>
 </AnchorPane>
