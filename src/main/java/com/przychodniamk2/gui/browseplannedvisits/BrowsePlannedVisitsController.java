@@ -1,5 +1,6 @@
 package com.przychodniamk2.gui.browseplannedvisits;
 
+import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
 import org.springframework.context.ApplicationContext;
@@ -9,9 +10,15 @@ public class BrowsePlannedVisitsController extends FXMLController<ScheduledVisit
     public BrowsePlannedVisitsController() {
         super(fxml);
     }
+    private Doctor doctor;
 
     @Override
     public void setContext(ApplicationContext context) {
 
+    }
+
+    @Override
+    public void setData(ScheduledVisit scheduledVisit){
+        doctor = scheduledVisit.getDoctor();
     }
 }

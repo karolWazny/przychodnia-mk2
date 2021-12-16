@@ -3,7 +3,6 @@ package com.przychodniamk2.gui.browseplannedvisits;
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.gui.choosedoctor.ChooseDoctorController;
 import com.przychodniamk2.systemControl.usecase.DoctorPlannedVisitBrowser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +20,8 @@ public class JavaFXPlannedVisitsBrowser implements DoctorPlannedVisitBrowser {
     @Override
     public ScheduledVisit browseVisits(Doctor doctor) {
         ModalWindowController<BrowsePlannedVisitsController, ScheduledVisit> windowController = new ModalWindowController<>(BrowsePlannedVisitsController::new, context);
+        ScheduledVisit scheduledVisit = new ScheduledVisit.Builder().withDoctor(doctor).build();
+        windowController.setData(scheduledVisit);
         windowController.showStage();
         return windowController.getData();
     }
