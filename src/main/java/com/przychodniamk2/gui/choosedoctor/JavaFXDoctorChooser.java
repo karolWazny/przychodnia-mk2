@@ -2,10 +2,8 @@ package com.przychodniamk2.gui.choosedoctor;
 
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.DoctorChooser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 

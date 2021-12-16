@@ -181,12 +181,25 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public List<Doctor> readDoctors() {
-		Iterable<DoctorsView> doctorViews = doctorsViewRepository.findAll();
-		List<Doctor> doctors = new LinkedList<>();
-		for(DoctorsView doctorsView : doctorViews){
-			doctors.add(new Doctor(doctorsView.getFirstName(), doctorsView.getLastName(), null, new Specialization(doctorsView.getSpecialization()), doctorsView.getEmployeeId()));
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL SELECT_CURRENTLY_WORKING_DOCTORS ()}";
+			statement = connection.prepareCall(sql);
+			ResultSet resultSet = statement.executeQuery();
+			List<Doctor> doctors = new LinkedList<>();
+			while(resultSet.next()){
+				doctors.add(new Doctor(resultSet.getString("FirstName"),
+						resultSet.getString("LastName"),
+						null,
+						new Specialization(resultSet.getString("specialization")),
+						resultSet.getInt("EmployeesID")));
+			}
+			return doctors;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return doctors;
+		throw new RuntimeException();
 	}
 
 	@Override
@@ -205,7 +218,7 @@ public class SpringMySQLDatabase implements Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		throw new RuntimeException();
 	}
 
 	@Override
