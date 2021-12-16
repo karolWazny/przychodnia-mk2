@@ -33,7 +33,7 @@ public class ChoosePatientController extends FXMLController<Patient> {
     @FXML
     private TextField lastNameTextField;
 
-    private final static String fxml = "/src/main/resources/fxml/choosePatient.fxml";
+    private final static String fxml = "choosePatient.fxml";
 
     public ChoosePatientController() {
         super(fxml);

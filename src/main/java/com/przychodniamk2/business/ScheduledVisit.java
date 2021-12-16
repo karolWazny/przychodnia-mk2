@@ -15,7 +15,7 @@ public class ScheduledVisit {
 		this.id = id;
 	}
 
-	public Date getDate() {
+    public Date getDate() {
 		return date;
 	}
 

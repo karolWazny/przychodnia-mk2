@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import org.springframework.context.ApplicationContext;
 
 public class PerformVisitController extends FXMLController<ScheduledVisit> {
-    private final static String fxml = "/src/main/resources/fxml/performVisit.fxml";
+    private final static String fxml = "performVisit.fxml";
 
     private Database database;
     @FXML
@@ -75,8 +75,8 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
     private DoneVisit buildVisit(){
         return new DoneVisit.Builder(super.getData())
                 .withDescription(description.getText())
-                .withIllness(diagnosis.getValue().getId())
-                .withProcedure(procedure.getValue().getId())
+                .withIllness(diagnosis.getValue())
+                .withProcedure(procedure.getValue())
                 .build();
     }
 

@@ -40,7 +40,8 @@ public class mainController {
 
     @FXML
     private void chooseVisit(ActionEvent event){
-        userInteractionController.chooseVisit();
+        Doctor doctor = userInteractionController.chooseDoctor();
+        System.out.println(userInteractionController.browseDoctorsPlannedVisits(doctor));
     }
 
     @FXML
@@ -59,6 +60,12 @@ public class mainController {
 
     @FXML
     private void initialize(ActionEvent event){
+    }
+
+    @FXML
+    private void browsePastVisitsClick(ActionEvent event){
+        Patient patient = userInteractionController.choosePatient();
+        userInteractionController.browsePastVisits(patient);
     }
 
     @Autowired

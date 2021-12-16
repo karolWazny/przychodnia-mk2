@@ -21,7 +21,7 @@ public class ChooseDoctorController extends FXMLController<Doctor> {
 
     private ApplicationContext context;
 
-    private final static String fxml = "/src/main/resources/fxml/chooseDoctor.fxml";
+    private final static String fxml = "chooseDoctor.fxml";
 
     @FXML
     ListView<Doctor> listView;
