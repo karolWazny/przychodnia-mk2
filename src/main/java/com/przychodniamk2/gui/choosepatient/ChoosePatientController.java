@@ -45,16 +45,6 @@ public class ChoosePatientController extends FXMLController<Patient> {
 
         ind.addListener((observable, oldValue, newValue) ->
             super.setData(newValue));
-
-        ReadOnlyProperty<String> peselProperty = peselTextField.textProperty();
-        peselProperty.addListener((observable, oldValue, newValue) -> {
-            Person data = new Person();
-            data.setPesel(newValue);
-            List<Patient> patients = database.readPatients(data);
-            ObservableList<Patient> observableList = FXCollections.observableArrayList();
-            observableList.addAll(patients);
-            patientsListView.setItems(observableList);
-        });
     }
 
     @Override
@@ -62,10 +52,24 @@ public class ChoosePatientController extends FXMLController<Patient> {
         this.context = context;
 
         database = context.getBean("database", Database.class);
-        List<Patient> patients = database.readPatients(new Person());
+        updateListView();
+    }
+
+    private void updateListView(){
+        Person person = new Person();
+        person.setPesel(peselTextField.getText());
+        person.setFirstName(firstNameTextField.getText());
+        person.setLastName(lastNameTextField.getText());
+
+        List<Patient> patients = database.readPatients(person);
         ObservableList<Patient> observableList = FXCollections.observableArrayList();
         observableList.addAll(patients);
         patientsListView.setItems(observableList);
+    }
+
+    @FXML
+    private void searchClick(ActionEvent event){
+        updateListView();
     }
 
     @FXML
