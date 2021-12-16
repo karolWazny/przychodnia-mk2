@@ -20,9 +20,8 @@ public class JavaFXPastVisitsBrowser implements PastPatientsVisitBrowser {
 
     @Override
     public void browseVisits(Patient patient) {
-        ModalWindowController<BrowsePastVisitsController, DoneVisit> windowController = new ModalWindowController<>(BrowsePastVisitsController::new, context);
-        DoneVisit visit = new DoneVisit.Builder(new ScheduledVisit.Builder().withPatient(patient).build()).build();
-        windowController.setData(visit);
+        ModalWindowController<BrowsePastVisitsController, Patient> windowController = new ModalWindowController<>(BrowsePastVisitsController::new, context);
+        windowController.setData(patient);
         windowController.showStage();
     }
 }

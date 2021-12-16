@@ -75,8 +75,8 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
     private DoneVisit buildVisit(){
         return new DoneVisit.Builder(super.getData())
                 .withDescription(description.getText())
-                .withIllness(diagnosis.getValue().getId())
-                .withProcedure(procedure.getValue().getId())
+                .withIllness(diagnosis.getValue())
+                .withProcedure(procedure.getValue())
                 .build();
     }
 

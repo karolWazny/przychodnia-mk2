@@ -40,13 +40,50 @@ public class SpringMySQLDatabase implements Database {
 	}
 
 	@Override
-	public List<ScheduledVisit> readPlannedVisits(PlannedVisitQueryParameters parameters) {
+	public List<ScheduledVisit> readPlannedVisits(Doctor doctor, Date date) {
 		return null;
 	}
 
 	@Override
-	public List<DoneVisit> readPastVisits(Person person) {
-		return null;
+	public List<DoneVisit> readPastVisits(Patient person) {
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL SELECT_MEDICAL_VISITS_VIEW_BY_PATIENT_ID ( ? )}";
+			statement = connection.prepareCall(sql);
+			statement.setInt(1, person.getPatientId());
+			ResultSet resultSet = statement.executeQuery();
+			List<DoneVisit> visits = new LinkedList<>();
+
+			while(resultSet.next()){
+				ElementOfTreatment illness = new ElementOfTreatment(resultSet.getString("IllnessDescription"),
+						resultSet.getString("IllnessCode"));
+				ElementOfTreatment procedure = new ElementOfTreatment(resultSet.getString("ProcedureDescription"),
+						resultSet.getString("ProcedureCode"));
+				Doctor doctor = new Doctor(resultSet.getString("DoctorsFirstName"),
+						resultSet.getString("DoctorsLastName"),
+						null,
+						null);
+				Date date = businessDateFrom(resultSet.getDate("Date"));
+				String description = resultSet.getString("VisitDescription");
+
+				ScheduledVisit scheduledVisit = new ScheduledVisit.Builder()
+						.withPatient(person)
+						.withDoctor(doctor)
+						.day(date)
+						.build();
+				DoneVisit doneVisit = new DoneVisit.Builder(scheduledVisit)
+						.withDescription(description)
+						.withIllness(illness)
+						.withProcedure(procedure)
+						.build();
+				visits.add(doneVisit);
+			}
+			return visits;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
 	}
 
 	@Override
@@ -54,8 +91,8 @@ public class SpringMySQLDatabase implements Database {
 		MedicalVisits visitRecord = new MedicalVisits();
 		visitRecord.setDescription(visit.getDescription());
 		visitRecord.setScheduledVisitID(visit.getScheduledVisit().getId());
-		visitRecord.setIllnessID(visit.getIllness());
-		visitRecord.setProcedureID(visit.getProcedure());
+		visitRecord.setIllnessID(visit.getIllness().getId());
+		visitRecord.setProcedureID(visit.getProcedure().getId());
 		medicalVisitsRepository.save(visitRecord);
 	}
 
@@ -74,6 +111,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.registerOutParameter(5, Types.VARCHAR);
 			statement.executeQuery();
 			result = statement.getString(5);
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

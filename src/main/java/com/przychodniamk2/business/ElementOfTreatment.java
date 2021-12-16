@@ -3,7 +3,15 @@ package com.przychodniamk2.business;
 public class ElementOfTreatment {
     private Integer id;
     private String description;
-    private String code;
+    private String code = "";
+
+    public ElementOfTreatment(String description, String code){
+        this(null, description, code);
+    }
+
+    public ElementOfTreatment(String description){
+        this.description = description;
+    }
 
     public ElementOfTreatment(Integer id, String description, String code) {
         this.id = id;
