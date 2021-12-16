@@ -1,4 +1,6 @@
 package com.przychodniamk2.gui.browsePastVisits;
 
-public class JavaFXPastVisitsBrowser {
+import com.przychodniamk2.systemControl.usecase.PastPatientsVisitBrowser;
+
+public class JavaFXPastVisitsBrowser implements PastPatientsVisitBrowser {
 }
