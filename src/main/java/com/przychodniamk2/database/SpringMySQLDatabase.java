@@ -4,8 +4,6 @@ import com.przychodniamk2.business.*;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Time;
 import com.przychodniamk2.database.orm.tables.MedicalVisits;
-import com.przychodniamk2.database.orm.views.DoctorsView;
-import com.przychodniamk2.database.orm.views.PatientsView;
 import com.przychodniamk2.database.repositories.*;
 import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.database.PlannedVisitQueryParameters;
@@ -23,32 +21,8 @@ import java.util.Objects;
 
 @Component
 public class SpringMySQLDatabase implements Database {
-	private AddressRepository addressRepository;
-	private PersonalsRepository personalsRepository;
-	private DoctorsViewRepository doctorsViewRepository;
-	private PatientsViewRepository patientsViewRepository;
 	private MedicalVisitsRepository medicalVisitsRepository;
 	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void setAddressRepository(AddressRepository addressRepository) {
-		this.addressRepository = addressRepository;
-	}
-
-	@Autowired
-	public void setPersonalsRepository(PersonalsRepository personalsRepository) {
-		this.personalsRepository = personalsRepository;
-	}
-
-	@Autowired
-	public void setDoctorsViewRepository(DoctorsViewRepository doctorsViewRepository) {
-		this.doctorsViewRepository = doctorsViewRepository;
-	}
-
-	@Autowired
-	public void setPatientsViewRepository(PatientsViewRepository patientsViewRepository) {
-		this.patientsViewRepository = patientsViewRepository;
-	}
 
 	@Autowired
 	public void setMedicalVisitsRepository(MedicalVisitsRepository medicalVisitsRepository) {
@@ -62,8 +36,7 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public void setContext(ApplicationContext context) {
-		addressRepository = context.getBean("addressRepository", AddressRepository.class);
-		personalsRepository = context.getBean("personalsRepository", PersonalsRepository.class);
+
 	}
 
 	@Override
@@ -115,28 +88,47 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public List<Patient> readPatients(Person person) {
-		System.out.println("Wyciaganie pacjentow z bazy...");
-		Iterable<PatientsView> patientsViews = patientsViewRepository.findAll();
-		List<Patient> patients = new LinkedList<>();
-		for(PatientsView patient : patientsViews){
-			Patient temp = new Patient();
-			temp.setFirstName(patient.getFirstName());
-			temp.setLastName(patient.getLastName());
-			temp.setPesel(patient.getPESEL());
-			temp.setDateOfBirth(businessDateFrom(patient.getBirthDate()));
-			temp.setPhoneNumber(patient.getPhoneNumber());
-			temp.setSex(patient.getGender());
-			temp.setPatientId(patient.getID());
-			Address address = new Address();
-			address.flatNumber = patient.getApartmentNumber();
-			address.zipCode = patient.getZIPCode();
-			address.buildingNumber = patient.getHouseNumber();
-			address.street = patient.getStreet();
-			address.city = patient.getTown();
-			temp.setAddress(address);
-			patients.add(temp);
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL  SELECT_PATIENT_BY_PESEL_AND_NAME ( ?, ?, ? )}";
+			statement = connection.prepareCall(sql);
+			statement.setString(1, person.getPesel());
+			statement.setString(2, person.getFirstName());
+			statement.setString(3, person.getLastName());
+			ResultSet resultSet = statement.executeQuery();
+
+			List<Patient> patients = new LinkedList<>();
+
+			while(resultSet.next()){
+				patients.add(patientFromResultSet(resultSet));
+			}
+			return patients;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return patients;
+		throw new RuntimeException();
+	}
+
+	private Patient patientFromResultSet(ResultSet resultSet) throws SQLException {
+		Patient temp = new Patient();
+		temp.setFirstName(resultSet.getString("FirstName"));
+		temp.setLastName(resultSet.getString("LastName"));
+		temp.setPesel(resultSet.getString("PESEL"));
+		temp.setDateOfBirth(businessDateFrom(resultSet.getDate("BirthDate")));
+		temp.setPhoneNumber(resultSet.getString("PhoneNumber"));
+		temp.setSex(resultSet.getString("Gender").charAt(0));
+		temp.setPatientId(resultSet.getInt("PatientID"));
+
+		Address address = new Address();
+		address.flatNumber = resultSet.getShort("ApartmentNumber");
+		address.zipCode = resultSet.getString("ZIPCode");
+		address.buildingNumber = resultSet.getString("HouseNumber");
+		address.street = resultSet.getString("Street");
+		address.city = resultSet.getString("Town");
+		temp.setAddress(address);
+
+		return temp;
 	}
 
 	private Date businessDateFrom(java.sql.Date date){
@@ -218,7 +210,7 @@ public class SpringMySQLDatabase implements Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		throw new RuntimeException();
+		return null;
 	}
 
 	@Override
