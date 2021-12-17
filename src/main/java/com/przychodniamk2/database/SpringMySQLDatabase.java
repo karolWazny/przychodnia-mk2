@@ -92,6 +92,7 @@ public class SpringMySQLDatabase implements Database {
 				Doctor doctor = new Doctor(resultSet.getString("DoctorsFirstName"),
 						resultSet.getString("DoctorsLastName"),
 						null,
+						new Specialization(resultSet.getString("DoctorsSpecialization")),
 						null);
 				Date date = businessDateFrom(resultSet.getDate("Date"));
 				String description = resultSet.getString("VisitDescription");
