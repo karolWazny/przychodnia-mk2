@@ -33,10 +33,9 @@ public class BrowsePastVisitsController extends FXMLController<Patient> {
     @FXML
     private void initialize(){
         ReadOnlyObjectProperty<DoneVisit> chosenVisitProperty = visitsListView.getSelectionModel().selectedItemProperty();
-        chosenVisitProperty.addListener((observable, oldValue, newValue)->{
-                    chosenVisit = newValue;
-                    System.out.println("chosen visit changed");
-                });
+        chosenVisitProperty.addListener((observable, oldValue, newValue)->
+                    chosenVisit = newValue
+        );
     }
 
     @FXML
@@ -47,7 +46,6 @@ public class BrowsePastVisitsController extends FXMLController<Patient> {
     @FXML
     private void listViewClick(MouseEvent event){
         if(event.getClickCount() == 2){
-            System.out.println("Visit: " + chosenVisit);
             doneVisitDisplayer.display(chosenVisit);
         }
     }
