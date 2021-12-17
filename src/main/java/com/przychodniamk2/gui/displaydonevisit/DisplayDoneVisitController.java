@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 
 public class DisplayDoneVisitController extends FXMLController<DoneVisit> {
     private final static String fxml = "displayDoneVisit.fxml";
-    protected DisplayDoneVisitController() {
+    public DisplayDoneVisitController() {
         super(fxml);
     }
 

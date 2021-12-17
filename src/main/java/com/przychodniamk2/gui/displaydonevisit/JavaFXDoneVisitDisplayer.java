@@ -19,6 +19,7 @@ public class JavaFXDoneVisitDisplayer implements DoneVisitDisplayer {
     @Override
     public void display(DoneVisit visit){
         ModalWindowController<DisplayDoneVisitController, DoneVisit> windowController = new ModalWindowController<>(DisplayDoneVisitController::new, context);
+        windowController.setData(visit);
         windowController.showStage();
     }
 }
