@@ -6,7 +6,6 @@ import com.przychodniamk2.business.Time;
 import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import com.przychodniamk2.database.repositories.*;
 import com.przychodniamk2.systemControl.database.Database;
-import com.przychodniamk2.systemControl.database.PlannedVisitQueryParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
