@@ -53,9 +53,9 @@ public class SpringMySQLDatabase implements Database {
 
 			while(resultSet.next()){
 				Patient patient = new Patient();
-				patient.setPesel("PatientsPESEL");
-				patient.setFirstName("PatientsFirstName");
-				patient.setLastName("PatientsLastName");
+				patient.setPesel(resultSet.getString("PatientsPESEL"));
+				patient.setFirstName(resultSet.getString("PatientsFirstName"));
+				patient.setLastName(resultSet.getString("PatientsLastName"));
 				patient.setPatientId(resultSet.getInt("PatientsID"));
 
 				ScheduledVisit scheduledVisit = new ScheduledVisit.Builder().withDoctor(doctor)
