@@ -45,6 +45,11 @@ public class DoneVisit {
 		return getScheduledVisit().getTime();
 	}
 
+	@Override
+	public String toString(){
+		return getDate().toString() + " " + getDoctor().getSpecialization();
+	}
+
 	public static class Builder{
 		private ScheduledVisit scheduledVisit;
 		private String description;

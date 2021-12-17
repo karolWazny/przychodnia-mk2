@@ -35,6 +35,12 @@ public class ScheduledVisit {
 		return id;
 	}
 
+	@Override
+	public String toString(){
+		return getTime().toString() + " " + getDate() + " " + getPatient().getFirstName()
+				+ " " + getPatient().getLastName();
+	}
+
 	public static class Builder {
 		private Doctor doctor;
 		private Date date;

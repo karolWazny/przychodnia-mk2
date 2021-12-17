@@ -6,7 +6,6 @@ import com.przychodniamk2.business.Time;
 import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import com.przychodniamk2.database.repositories.*;
 import com.przychodniamk2.systemControl.database.Database;
-import com.przychodniamk2.systemControl.database.PlannedVisitQueryParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -53,9 +52,9 @@ public class SpringMySQLDatabase implements Database {
 
 			while(resultSet.next()){
 				Patient patient = new Patient();
-				patient.setPesel("PatientsPESEL");
-				patient.setFirstName("PatientsFirstName");
-				patient.setLastName("PatientsLastName");
+				patient.setPesel(resultSet.getString("PatientsPESEL"));
+				patient.setFirstName(resultSet.getString("PatientsFirstName"));
+				patient.setLastName(resultSet.getString("PatientsLastName"));
 				patient.setPatientId(resultSet.getInt("PatientsID"));
 
 				ScheduledVisit scheduledVisit = new ScheduledVisit.Builder().withDoctor(doctor)
