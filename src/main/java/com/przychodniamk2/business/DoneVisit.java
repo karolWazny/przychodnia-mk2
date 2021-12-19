@@ -13,6 +13,22 @@ public class DoneVisit {
 		this.description = description;
 	}
 
+	public void setScheduledVisit(ScheduledVisit scheduledVisit) {
+		this.scheduledVisit = scheduledVisit;
+	}
+
+	public void setIllness(ElementOfTreatment illness) {
+		this.illness = illness;
+	}
+
+	public void setProcedure(ElementOfTreatment procedure) {
+		this.procedure = procedure;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public ScheduledVisit getScheduledVisit() {
 		return scheduledVisit;
 	}
