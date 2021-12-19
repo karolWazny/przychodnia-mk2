@@ -4,6 +4,7 @@ import com.przychodniamk2.gui.choosedoctor.JavaFXDoctorChooser;
 import com.przychodniamk2.gui.addvisit.JavaFXVisitPlanner;
 import com.przychodniamk2.gui.choosepatient.JavaFXPatientChooser;
 import com.przychodniamk2.gui.createpatient.JavaFXPatientCreator;
+import com.przychodniamk2.gui.displaydonevisit.JavaFXDoneVisitDisplayer;
 import com.przychodniamk2.gui.performvisit.JavaFXVisitPerformer;
 import com.przychodniamk2.systemControl.usecase.*;
 import com.przychodniamk2.systemControl.SystemController;
@@ -41,5 +42,10 @@ public class UIConfig {
     @Bean
     public VisitPerformer visitPerformer(){
         return new JavaFXVisitPerformer();
+    }
+
+    @Bean
+    public DoneVisitDisplayer doneVisitDisplayer(){
+        return new JavaFXDoneVisitDisplayer();
     }
 }

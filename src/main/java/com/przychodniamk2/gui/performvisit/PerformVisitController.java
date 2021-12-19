@@ -4,6 +4,7 @@ import com.przychodniamk2.business.DoneVisit;
 import com.przychodniamk2.business.ElementOfTreatment;
 import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
+import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,11 +13,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import org.springframework.context.ApplicationContext;
 
 public class PerformVisitController extends FXMLController<ScheduledVisit> {
-    private final static String fxml = "/src/main/resources/fxml/performVisit.fxml";
+    private final static String fxml = "performVisit.fxml";
 
+    private UserInteractionController userInteractionController;
     private Database database;
     @FXML
     TextField doctorFirstName;
@@ -72,11 +75,16 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
         close();
     }
 
+    @FXML
+    private void pastVisitsClick(MouseEvent event){
+        userInteractionController.browsePastVisits(getData().getPatient());
+    }
+
     private DoneVisit buildVisit(){
         return new DoneVisit.Builder(super.getData())
                 .withDescription(description.getText())
-                .withIllness(diagnosis.getValue().getId())
-                .withProcedure(procedure.getValue().getId())
+                .withIllness(diagnosis.getValue())
+                .withProcedure(procedure.getValue())
                 .build();
     }
 
@@ -88,6 +96,7 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
     @Override
     public void setContext(ApplicationContext context) {
         this.database = context.getBean("database", Database.class);
+        userInteractionController = context.getBean("userInteractionController", UserInteractionController.class);
         ObservableList<ElementOfTreatment> observableProcedures = FXCollections.observableList(database.getCurrentProcedures());
         procedure.setItems(observableProcedures);
 

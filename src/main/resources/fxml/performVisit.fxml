@@ -26,6 +26,6 @@
       <TextField fx:id="patientLastName" disable="true" layoutX="68.0" layoutY="185.0" prefHeight="25.0" prefWidth="169.0" />
       <TextField fx:id="patientPesel" disable="true" layoutX="68.0" layoutY="217.0" prefHeight="25.0" prefWidth="169.0" />
       <Button layoutX="64.0" layoutY="249.0" mnemonicParsing="false" text="Szczegóły" />
-      <Button layoutX="136.0" layoutY="249.0" mnemonicParsing="false" text="Przeszłe wizyty" />
+      <Button layoutX="136.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#pastVisitsClick" text="Przeszłe wizyty" />
    </children>
 </AnchorPane>

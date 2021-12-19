@@ -1,29 +1,27 @@
 package com.przychodniamk2.business;
 
-import java.util.Objects;
-
 public class DoneVisit {
 	private ScheduledVisit scheduledVisit;
-	private Integer illness;
-	private Integer procedure;
+	private ElementOfTreatment illness;
+	private ElementOfTreatment procedure;
 	private String description;
 
-	private DoneVisit(ScheduledVisit scheduledVisit, Integer illness, Integer procedure, String description){
-		this.scheduledVisit = Objects.requireNonNull(scheduledVisit);
-		this.illness = Objects.requireNonNull(illness);
-		this.procedure = Objects.requireNonNull(procedure);
-		this.description = Objects.requireNonNull(description);
+	private DoneVisit(ScheduledVisit scheduledVisit, ElementOfTreatment illness, ElementOfTreatment procedure, String description){
+		this.scheduledVisit = scheduledVisit;
+		this.illness = illness;
+		this.procedure = procedure;
+		this.description = description;
 	}
 
 	public ScheduledVisit getScheduledVisit() {
 		return scheduledVisit;
 	}
 
-	public Integer getIllness() {
+	public ElementOfTreatment getIllness() {
 		return illness;
 	}
 
-	public Integer getProcedure() {
+	public ElementOfTreatment getProcedure() {
 		return procedure;
 	}
 
@@ -31,11 +29,32 @@ public class DoneVisit {
 		return description;
 	}
 
+	public Patient getPatient(){
+		return getScheduledVisit().getPatient();
+	}
+
+	public Doctor getDoctor(){
+		return getScheduledVisit().getDoctor();
+	}
+
+	public Date getDate(){
+		return getScheduledVisit().getDate();
+	}
+
+	public Time getTime(){
+		return getScheduledVisit().getTime();
+	}
+
+	@Override
+	public String toString(){
+		return getDate().toString() + " " + getDoctor().getSpecialization();
+	}
+
 	public static class Builder{
 		private ScheduledVisit scheduledVisit;
 		private String description;
-		private Integer medicalProcedure;
-		private Integer illness;
+		private ElementOfTreatment medicalProcedure;
+		private ElementOfTreatment illness;
 
 		public Builder(ScheduledVisit scheduledVisit){
 			this.scheduledVisit = scheduledVisit;
@@ -46,12 +65,12 @@ public class DoneVisit {
 			return this;
 		}
 
-		public Builder withProcedure(Integer procedure){
+		public Builder withProcedure(ElementOfTreatment procedure){
 			this.medicalProcedure = procedure;
 			return this;
 		}
 
-		public Builder withIllness(Integer illness){
+		public Builder withIllness(ElementOfTreatment illness){
 			this.illness = illness;
 			return this;
 		}

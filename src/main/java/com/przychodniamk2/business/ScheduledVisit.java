@@ -15,7 +15,7 @@ public class ScheduledVisit {
 		this.id = id;
 	}
 
-	public Date getDate() {
+    public Date getDate() {
 		return date;
 	}
 
@@ -33,6 +33,12 @@ public class ScheduledVisit {
 
 	public Integer getId(){
 		return id;
+	}
+
+	@Override
+	public String toString(){
+		return getTime().toString() + " " + getDate() + " " + getPatient().getFirstName()
+				+ " " + getPatient().getLastName();
 	}
 
 	public static class Builder {
