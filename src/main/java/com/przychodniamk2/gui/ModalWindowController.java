@@ -22,12 +22,13 @@ public class ModalWindowController<C extends FXMLController<R>, R> {
     }
 
     public void showStage() {
-        try{
+
             FXMLController<R> controller = supplier.get();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(controller.fxmlLocation());
+        try{
 
             Pane root = loader.load();
 
