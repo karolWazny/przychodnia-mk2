@@ -33,8 +33,6 @@ public class App extends Application {
     @Override
     public void init() {
         applicationContext = new SpringApplicationBuilder(App.class).child(DatabaseConfig.class).child(UIConfig.class).run();
-        Database o = applicationContext.getBean("database", Database.class);
-        o.setContext(applicationContext);
     }
 
     @Override
