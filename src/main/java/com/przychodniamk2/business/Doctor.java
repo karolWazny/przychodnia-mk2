@@ -1,14 +1,11 @@
 package com.przychodniamk2.business;
 
-public class Doctor extends Person {
+public class Doctor extends Employee {
 	private Specialization specialization;
 
-	private final Integer employeeId;
-
 	public Doctor(String firstName, String lastName, Address address, Specialization specialization, Integer employeeId) {
-		super(firstName, lastName, address);
+		super(firstName, lastName, address, employeeId);
 		this.specialization = specialization;
-		this.employeeId = employeeId;
 	}
 
 	public Doctor(String firstName, String lastName, Address address, Integer employeeId) {
@@ -28,7 +25,4 @@ public class Doctor extends Person {
 		this.specialization = specialization;
 	}
 
-	public Integer getEmployeeId() {
-		return employeeId;
-	}
 }

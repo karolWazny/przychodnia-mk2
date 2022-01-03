@@ -347,6 +347,11 @@ public class SpringMySQLDatabase implements Database {
 		return getElementsOfTreatment("PROCEDURES");
 	}
 
+	@Override
+	public Employee logIn(String user, String password) {
+		return null;
+	}
+
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
 		CallableStatement statement;
 		List<ElementOfTreatment> output = new LinkedList<>();

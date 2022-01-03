@@ -1,5 +1,6 @@
 package com.przychodniamk2;
 
+import com.przychodniamk2.business.Employee;
 import com.przychodniamk2.config.DatabaseConfig;
 import com.przychodniamk2.config.UIConfig;
 import com.przychodniamk2.systemControl.database.Database;
@@ -7,9 +8,15 @@ import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
@@ -17,6 +24,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
+import java.util.Optional;
 
 @SpringBootApplication
 public class App extends Application {
@@ -43,6 +51,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Employee employee = LogInDialog.logIn(applicationContext);
+
+        if(employee == null)
+            return;
+
         FXMLLoader loader = new FXMLLoader();
         String currentPath = System.getProperty("user.dir");
         loader.setLocation(new URL("file:///" + currentPath + "/src/main/resources/main.fxml"));

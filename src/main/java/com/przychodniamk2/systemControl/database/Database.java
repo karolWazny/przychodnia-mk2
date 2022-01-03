@@ -1,10 +1,8 @@
 package com.przychodniamk2.systemControl.database;
 
 import com.przychodniamk2.business.*;
-import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -23,4 +21,5 @@ public interface Database {
 	List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date);
 	List<ElementOfTreatment> getCurrentDiagnoses();
 	List<ElementOfTreatment> getCurrentProcedures();
+    Employee logIn(String user, String password);
 }
