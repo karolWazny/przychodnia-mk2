@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 public class CreateUserController extends FXMLController<User> {
     private static final String fxml = "createUser.fxml";
 
-    protected CreateUserController() {
+    public CreateUserController() {
         super(fxml);
     }
 
