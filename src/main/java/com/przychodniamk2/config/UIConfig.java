@@ -5,6 +5,7 @@ import com.przychodniamk2.gui.choosedoctor.JavaFXDoctorChooser;
 import com.przychodniamk2.gui.addvisit.JavaFXVisitPlanner;
 import com.przychodniamk2.gui.choosepatient.JavaFXPatientChooser;
 import com.przychodniamk2.gui.createpatient.JavaFXPatientCreator;
+import com.przychodniamk2.gui.createuser.JavaFXUserCreator;
 import com.przychodniamk2.gui.displaydonevisit.JavaFXDoneVisitDisplayer;
 import com.przychodniamk2.gui.login.JavaFXLogInService;
 import com.przychodniamk2.gui.login.LogInDialog;
@@ -70,5 +71,10 @@ public class UIConfig {
     @Bean
     public User loggedUser(){
         return this.javaFXLogInService.getLoggedUser();
+    }
+
+    @Bean
+    public UserCreator userCreator(){
+        return new JavaFXUserCreator();
     }
 }

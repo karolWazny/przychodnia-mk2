@@ -15,6 +15,12 @@ public class SystemController implements UserInteractionController {
     private PastPatientsVisitBrowser pastPatientsVisitBrowser;
     private DoctorPlannedVisitBrowser doctorPlannedVisitBrowser;
     private LogInService logInService;
+    private UserCreator userCreator;
+
+    @Autowired
+    public void setUserCreator(UserCreator userCreator) {
+        this.userCreator = userCreator;
+    }
 
     @Autowired
     public void setLogInService(LogInService logInService) {
@@ -109,5 +115,10 @@ public class SystemController implements UserInteractionController {
     @Override
     public boolean logIn() {
         return logInService.logIn();
+    }
+
+    @Override
+    public void createNewUser() {
+        userCreator.createNewUser();
     }
 }
