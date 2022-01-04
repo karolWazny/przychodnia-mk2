@@ -4,7 +4,7 @@ public class Doctor extends Employee {
 	private Specialization specialization;
 
 	public Doctor(String firstName, String lastName, Address address, Specialization specialization, Integer employeeId) {
-		super(firstName, lastName, address, employeeId);
+		super(firstName, lastName, employeeId);
 		this.specialization = specialization;
 	}
 

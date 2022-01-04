@@ -20,7 +20,7 @@ public class LogInDialog {
     public static Employee logIn(ApplicationContext context){
         LogInDialog dialog = new LogInDialog(context);
         Result result = dialog.tryLoggingInFirstTime();
-        while(result != Result.CANCEL){
+        while(result == Result.FAILURE){
             result = dialog.tryLoggingInNextTime();
         }
         return dialog.loggedUser;

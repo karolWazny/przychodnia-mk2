@@ -12,7 +12,7 @@ public class Employees {
     @Column("ID")
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Id
-    private Long id;
+    private Integer id;
 
     @Column("PositionsID")
     private Integer positionsID;
@@ -36,11 +36,11 @@ public class Employees {
         this.personalsID = personalsID;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 }
