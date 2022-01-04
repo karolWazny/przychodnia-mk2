@@ -30,5 +30,6 @@
       <Button mnemonicParsing="false" onAction="#browsePastVisitsClick" text="BrowsePastVisits" GridPane.rowIndex="2" />
       <Label text="Logged as:" />
       <Label fx:id="userName" text="Label" GridPane.columnIndex="1" />
+      <Button mnemonicParsing="false" onMouseClicked="#createUser" text="Create user" GridPane.columnIndex="2" GridPane.rowIndex="1" />
    </children>
 </GridPane>

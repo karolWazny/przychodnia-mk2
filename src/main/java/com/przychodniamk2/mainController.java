@@ -70,6 +70,11 @@ public class mainController {
         userInteractionController.browsePastVisits(patient);
     }
 
+    @FXML
+    private void createUser(){
+        userInteractionController.createNewUser();
+    }
+
     public void setUserInteractionController(UserInteractionController userInteractionController) {
         this.userInteractionController = userInteractionController;
         userName.textProperty().set("" + userInteractionController.getLoggedUser());
