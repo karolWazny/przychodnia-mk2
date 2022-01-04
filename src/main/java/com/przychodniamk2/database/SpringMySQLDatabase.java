@@ -349,7 +349,25 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public Employee logIn(String user, String password) {
-		return null;
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL LOG_IN (?, ?, ?, ?)}";
+			statement = connection.prepareCall(sql);
+			statement.setString(1, user);
+			statement.setString(2, password);
+			statement.registerOutParameter(3, Types.INTEGER);
+			statement.registerOutParameter(4, Types.VARCHAR);
+			ResultSet resultSet = statement.executeQuery();
+			List<Doctor> doctors = new LinkedList<>();
+			Integer employeeId = statement.getInt(3);
+			String result = statement.getString(4);
+			System.out.println(result);
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
 	}
 
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
