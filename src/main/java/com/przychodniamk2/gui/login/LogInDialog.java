@@ -1,23 +1,23 @@
-package com.przychodniamk2;
+package com.przychodniamk2.gui.login;
 
 import com.przychodniamk2.business.Employee;
+import com.przychodniamk2.business.User;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.util.Pair;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Optional;
 
 public class LogInDialog {
-    private Employee loggedUser;
+    private User loggedUser;
     private ApplicationContext context;
     private Database database;
 
-    public static Employee logIn(ApplicationContext context){
+    public static User logIn(ApplicationContext context){
         LogInDialog dialog = new LogInDialog(context);
         Result result = dialog.tryLoggingInFirstTime();
         while(result == Result.FAILURE){

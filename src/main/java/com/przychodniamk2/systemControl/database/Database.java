@@ -21,5 +21,5 @@ public interface Database {
 	List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date);
 	List<ElementOfTreatment> getCurrentDiagnoses();
 	List<ElementOfTreatment> getCurrentProcedures();
-    Employee logIn(String user, String password);
+    User logIn(String user, String password);
 }

@@ -99,4 +99,9 @@ public class SystemController implements UserInteractionController {
     public ScheduledVisit browseDoctorsPlannedVisits(Doctor doctor) {
         return doctorPlannedVisitBrowser.browseVisits(doctor);
     }
+
+    @Override
+    public boolean logIn() {
+        return false;
+    }
 }

@@ -3,7 +3,6 @@ package com.przychodniamk2.database;
 import com.przychodniamk2.business.*;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Time;
-import com.przychodniamk2.database.orm.tables.Employees;
 import com.przychodniamk2.database.orm.tables.MedicalVisits;
 import com.przychodniamk2.database.orm.views.EmployeesView;
 import com.przychodniamk2.database.repositories.*;
@@ -357,7 +356,7 @@ public class SpringMySQLDatabase implements Database {
 	}
 
 	@Override
-	public Employee logIn(String user, String password) {
+	public User logIn(String user, String password) {
 		CallableStatement statement;
 		try{
 			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
@@ -377,7 +376,7 @@ public class SpringMySQLDatabase implements Database {
 				return null;
 			}
 			EmployeesView view = optionalView.get();
-			return new Employee(view.getFirstName(), view.getLastName(), view.getID(), view.getPositionsName());
+			return new User(new Employee(view.getFirstName(), view.getLastName(), view.getID(), view.getPositionsName()), user);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -15,4 +15,5 @@ public interface UserInteractionController {
     void addPatient();
     void browsePastVisits(Patient patient);
     ScheduledVisit browseDoctorsPlannedVisits(Doctor doctor);
+    boolean logIn();
 }
