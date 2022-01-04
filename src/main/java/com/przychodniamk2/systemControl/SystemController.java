@@ -118,6 +118,11 @@ public class SystemController implements UserInteractionController {
     }
 
     @Override
+    public User getLoggedUser() {
+        return logInService.getLoggedUser();
+    }
+
+    @Override
     public void createNewUser() {
         userCreator.createNewUser();
     }

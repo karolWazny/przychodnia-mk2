@@ -13,7 +13,7 @@ public class Employee extends Person{
     public Employee(String firstName, String lastName, Integer employeeId, Position position){
         super(firstName, lastName, null);
         this.employeeId = employeeId;
-        this.position = Position.GUEST;
+        this.position = position;
     }
 
     public Employee(String firstName, String lastName, Integer employeeId){
@@ -49,5 +49,10 @@ public class Employee extends Person{
             }
             return valueOf(name.toUpperCase(Locale.ROOT));
         }
+    }
+
+    @Override
+    public String toString(){
+        return "" + super.toString() + ", " + position;
     }
 }
