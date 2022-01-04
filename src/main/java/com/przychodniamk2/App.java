@@ -45,8 +45,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LogInService logInService = applicationContext.getBean("logInService", LogInService.class);
-        if(!logInService.logIn())
+        UserInteractionController controller = applicationContext.getBean("userInteractionController", UserInteractionController.class);
+        if(!controller.logIn())
             return;
 
         FXMLLoader loader = new FXMLLoader();
