@@ -1,9 +1,11 @@
 package com.przychodniamk2;
 
+import com.przychodniamk2.business.Employee;
 import com.przychodniamk2.config.DatabaseConfig;
 import com.przychodniamk2.config.UIConfig;
-import com.przychodniamk2.systemControl.database.Database;
+import com.przychodniamk2.gui.login.LogInDialog;
 import com.przychodniamk2.systemControl.UserInteractionController;
+import com.przychodniamk2.systemControl.usecase.LogInService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +45,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        LogInService logInService = applicationContext.getBean("logInService", LogInService.class);
+        if(!logInService.logIn())
+            return;
+
         FXMLLoader loader = new FXMLLoader();
         String currentPath = System.getProperty("user.dir");
         loader.setLocation(new URL("file:///" + currentPath + "/src/main/resources/main.fxml"));

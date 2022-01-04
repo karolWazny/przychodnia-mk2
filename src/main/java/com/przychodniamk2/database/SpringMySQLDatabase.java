@@ -4,6 +4,7 @@ import com.przychodniamk2.business.*;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Time;
 import com.przychodniamk2.database.orm.tables.MedicalVisits;
+import com.przychodniamk2.database.orm.views.EmployeesView;
 import com.przychodniamk2.database.repositories.*;
 import com.przychodniamk2.systemControl.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,18 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class SpringMySQLDatabase implements Database {
 	private MedicalVisitsRepository medicalVisitsRepository;
+	private EmployeesViewRepository employeesViewRepository;
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public void setEmployeesViewRepository(EmployeesViewRepository employeesViewRepository) {
+		this.employeesViewRepository = employeesViewRepository;
+	}
 
 	@Autowired
 	public void setMedicalVisitsRepository(MedicalVisitsRepository medicalVisitsRepository) {
@@ -345,6 +353,34 @@ public class SpringMySQLDatabase implements Database {
 	@Override
 	public List<ElementOfTreatment> getCurrentProcedures() {
 		return getElementsOfTreatment("PROCEDURES");
+	}
+
+	@Override
+	public User logIn(String user, String password) {
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL LOG_IN (?, ?, ?, ?)}";
+			statement = connection.prepareCall(sql);
+			statement.setString(1, user);
+			statement.setString(2, password);
+			statement.registerOutParameter(3, Types.INTEGER);
+			statement.registerOutParameter(4, Types.VARCHAR);
+			statement.executeQuery();
+			Integer employeeId = statement.getInt(3);
+			String result = statement.getString(4);
+			if(!result.equalsIgnoreCase("SUCCESS"))
+				return null;
+			Optional<EmployeesView> optionalView = employeesViewRepository.findById(employeeId);
+			if(optionalView.isEmpty()){
+				return null;
+			}
+			EmployeesView view = optionalView.get();
+			return new User(new Employee(view.getFirstName(), view.getLastName(), view.getID(), view.getPositionsName()), user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
 	}
 
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
