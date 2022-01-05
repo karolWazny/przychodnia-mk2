@@ -1,7 +1,5 @@
 package com.przychodniamk2.gui.createpatient;
 
-import com.przychodniamk2.business.Address;
-import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.CreateXXXController;
 import com.przychodniamk2.systemControl.database.Database;
