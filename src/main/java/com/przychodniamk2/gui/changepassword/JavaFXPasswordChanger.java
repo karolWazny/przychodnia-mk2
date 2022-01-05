@@ -1,8 +1,5 @@
 package com.przychodniamk2.gui.changepassword;
 
-import com.przychodniamk2.business.Doctor;
-import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.gui.choosedoctor.ChooseDoctorController;
 import com.przychodniamk2.systemControl.usecase.PasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
