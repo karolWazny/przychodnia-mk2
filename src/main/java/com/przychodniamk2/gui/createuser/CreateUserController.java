@@ -1,6 +1,7 @@
 package com.przychodniamk2.gui.createuser;
 
 import com.przychodniamk2.business.Employee;
+import com.przychodniamk2.business.Person;
 import com.przychodniamk2.business.User;
 import com.przychodniamk2.gui.CreateXXXController;
 import com.przychodniamk2.systemControl.database.Database;
@@ -9,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Arrays;
@@ -21,6 +24,15 @@ public class CreateUserController extends CreateXXXController<User> {
 
     @FXML
     private ComboBox<String> specialization;
+
+    @FXML
+    private PasswordField passField;
+
+    @FXML
+    private PasswordField repeatPassField;
+
+    @FXML
+    private TextField loginField;
 
     @FXML
     private ChoiceBox<Employee.Position> function;
@@ -47,6 +59,18 @@ public class CreateUserController extends CreateXXXController<User> {
 
     @FXML
     private void confirm(){
+        if(!passField.textProperty().get().equals(repeatPassField.textProperty().get()))
+            throw new RuntimeException();
+        if(loginField.textProperty().get().equals("") || loginField.textProperty().get() == null)
+            throw new RuntimeException();
+
+        Person person = buildPerson();
+
+        Employee employee = new Employee(person, function.getValue());
+
+        User user = new User(employee, loginField.textProperty().get());
+        database.createUser(user, passField.textProperty().get());
+
         super.close();
     }
 

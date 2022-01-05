@@ -385,7 +385,7 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public void createUser(User user, String password) {
-
+		throw new UnsupportedOperationException();
 	}
 
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
