@@ -2,53 +2,18 @@ package com.przychodniamk2.gui.createpatient;
 
 import com.przychodniamk2.business.Address;
 import com.przychodniamk2.business.Date;
-import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.CreateXXXController;
-import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.context.ApplicationContext;
 
-import java.util.*;
-
 public class CreatePatientController extends CreateXXXController<Person> {
     private final static String fxml = "createPatient.fxml";
 
     private ApplicationContext context;
-    @FXML
-    private TextField firstName;
-
-    @FXML
-    private TextField lastName;
-
-    @FXML
-    private DatePicker birthDate;
-
-    @FXML
-    private TextField pesel;
-
-    @FXML
-    private TextField phoneNumber;
-
-    @FXML
-    private TextField street;
-
-    @FXML
-    private TextField building;
-
-    @FXML
-    private TextField flatNumber;
-
-    @FXML
-    private TextField city;
-
-    @FXML
-    private TextField zipCode;
 
     public CreatePatientController() {
         super(fxml);
@@ -61,19 +26,7 @@ public class CreatePatientController extends CreateXXXController<Person> {
 
     @FXML
     private void initialize(){
-        flatNumber.textFormatterProperty().setValue(digitsOnlyFormatter());
-        pesel.textFormatterProperty().setValue(digitsOnlyFormatter());
-
-        initializeItems();
-    }
-
-    private TextFormatter<String> digitsOnlyFormatter(){
-        return new TextFormatter<>(change -> {
-            String newText = change.getText();
-            String replacement = newText.replaceAll("[^0-9]*", "");
-            change.setText(replacement);
-            return change;
-        });
+        initializeSexAndFormatters();
     }
 
     @FXML
@@ -97,16 +50,6 @@ public class CreatePatientController extends CreateXXXController<Person> {
         patient.setDateOfBirth(new Date(birthDate.getValue()));
         patient.setPhoneNumber(phoneNumber.getText());
         return patient;
-    }
-
-    private Address buildAddress(){
-        Address address = new Address();
-        address.buildingNumber = building.getText();
-        address.city = city.getText();
-        address.street = street.getText();
-        address.zipCode = zipCode.getText();
-        address.flatNumber = Short.parseShort(flatNumber.getText());
-        return address;
     }
 
     @FXML

@@ -31,10 +31,16 @@ public class Employee extends Person{
     }
 
     public enum Position{
-        ADMIN,
-        DOCTOR,
-        REGISTER_LADY,
-        GUEST;
+        ADMIN("Administrator"),
+        DOCTOR("Lekarz"),
+        REGISTER_LADY("Rejestratorka"),
+        GUEST("Gość");
+
+        public final String name;
+
+        Position(String name){
+            this.name = name;
+        }
 
         public static Position from(String name){
             switch(name.toUpperCase(Locale.ROOT)){
@@ -48,6 +54,11 @@ public class Employee extends Person{
                     return Position.GUEST;
             }
             return valueOf(name.toUpperCase(Locale.ROOT));
+        }
+
+        @Override
+        public String toString(){
+            return name;
         }
     }
 
