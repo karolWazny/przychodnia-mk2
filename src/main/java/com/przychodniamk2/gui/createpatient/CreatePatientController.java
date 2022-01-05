@@ -64,12 +64,7 @@ public class CreatePatientController extends CreateXXXController<Person> {
         flatNumber.textFormatterProperty().setValue(digitsOnlyFormatter());
         pesel.textFormatterProperty().setValue(digitsOnlyFormatter());
 
-        List<Person.Sex> sexes = new LinkedList<>(Arrays.asList(Person.Sex.values()));
-        ObservableList<Person.Sex> observableList = FXCollections.observableArrayList();
-        observableList.addAll(sexes);
-
-        sex.setItems(observableList);
-        sex.setValue(Person.Sex.MALE);
+        initializeItems();
     }
 
     private TextFormatter<String> digitsOnlyFormatter(){

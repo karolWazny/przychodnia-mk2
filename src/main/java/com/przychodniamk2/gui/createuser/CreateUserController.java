@@ -23,12 +23,7 @@ public class CreateUserController extends CreateXXXController<User> {
 
     @FXML
     private void initialize(){
-        List<Person.Sex> sexes = new LinkedList<>(Arrays.asList(Person.Sex.values()));
-        ObservableList<Person.Sex> observableList = FXCollections.observableArrayList();
-        observableList.addAll(sexes);
-
-        sex.setItems(observableList);
-        sex.setValue(Person.Sex.MALE);
+        initializeItems();
     }
 
     @FXML
