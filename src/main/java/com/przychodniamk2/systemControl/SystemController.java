@@ -16,6 +16,12 @@ public class SystemController implements UserInteractionController {
     private DoctorPlannedVisitBrowser doctorPlannedVisitBrowser;
     private LogInService logInService;
     private UserCreator userCreator;
+    private PasswordChanger passwordChanger;
+
+    @Autowired
+    public void setPasswordChanger(PasswordChanger passwordChanger) {
+        this.passwordChanger = passwordChanger;
+    }
 
     @Autowired
     public void setUserCreator(UserCreator userCreator) {
@@ -125,5 +131,10 @@ public class SystemController implements UserInteractionController {
     @Override
     public void createNewUser() {
         userCreator.createNewUser();
+    }
+
+    @Override
+    public void changePassword() {
+        passwordChanger.changePassword();
     }
 }

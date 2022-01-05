@@ -76,8 +76,8 @@ public class mainController {
     }
 
     @FXML
-    private void changePassword(){
-
+    private void changePasswordClick(){
+        userInteractionController.changePassword();
     }
 
     public void setUserInteractionController(UserInteractionController userInteractionController) {
