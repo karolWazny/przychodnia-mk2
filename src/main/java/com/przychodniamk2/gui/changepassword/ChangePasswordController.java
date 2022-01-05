@@ -5,7 +5,9 @@ import com.przychodniamk2.gui.FXMLController;
 import org.springframework.context.ApplicationContext;
 
 public class ChangePasswordController extends FXMLController<User> {
-    protected ChangePasswordController(String fxml) {
+    private final static String fxml = "changePassword.fxml";
+
+    public ChangePasswordController() {
         super(fxml);
     }
 

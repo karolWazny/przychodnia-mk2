@@ -1,5 +1,7 @@
 package com.przychodniamk2.gui.changepassword;
 
+import com.przychodniamk2.business.User;
+import com.przychodniamk2.gui.ModalWindowController;
 import com.przychodniamk2.systemControl.usecase.PasswordChanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +13,8 @@ public class JavaFXPasswordChanger implements PasswordChanger {
 
     @Override
     public void changePassword() {
+        ModalWindowController<ChangePasswordController, User> windowController = new ModalWindowController<>(ChangePasswordController::new, context);
+        windowController.showStage();
     }
 
     @Autowired
