@@ -10,6 +10,17 @@ public class Person {
 	private String phoneNumber = "";
 	private Integer id;
 
+	public Person(Person person){
+		this.firstName = person.firstName;
+		this.lastName = person.lastName;
+		this.pesel = person.pesel;
+		this.sex = person.sex;
+		this.dateOfBirth = person.dateOfBirth;
+		this.phoneNumber = person.phoneNumber;
+		this.id = person.id;
+		this.address = person.address;
+	}
+
 	public Person(){
 		this("", "", new Date(), "",new Address());
 	}
