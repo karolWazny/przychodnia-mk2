@@ -383,6 +383,11 @@ public class SpringMySQLDatabase implements Database {
 		throw new RuntimeException();
 	}
 
+	@Override
+	public void createUser(User user, String password) {
+
+	}
+
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
 		CallableStatement statement;
 		List<ElementOfTreatment> output = new LinkedList<>();
