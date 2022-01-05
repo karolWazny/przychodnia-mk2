@@ -1,6 +1,7 @@
 package com.przychodniamk2.gui;
 
 import com.przychodniamk2.business.Address;
+import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,5 +72,19 @@ public abstract class CreateXXXController<R> extends FXMLController<R>{
         address.zipCode = zipCode.getText();
         address.flatNumber = Short.parseShort(flatNumber.getText());
         return address;
+    }
+
+    protected Person buildPerson(){
+        Address address = buildAddress();
+
+        Person patient = new Person();
+        patient.setPesel(pesel.getText());
+        patient.setFirstName(firstName.getText());
+        patient.setLastName(lastName.getText());
+        patient.setSex(sex.getValue());
+        patient.setAddress(address);
+        patient.setDateOfBirth(new Date(birthDate.getValue()));
+        patient.setPhoneNumber(phoneNumber.getText());
+        return patient;
     }
 }
