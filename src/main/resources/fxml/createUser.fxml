@@ -8,19 +8,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="313.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przychodniamk2.gui.createuser.CreateUserController">
    <children>
       <Button layoutX="518.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#confirm" text="Zatwierdź" />
       <Button layoutX="462.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#cancel" text="Anuluj" />
-      <ChoiceBox layoutX="108.0" layoutY="223.0" prefWidth="150.0" />
-      <ComboBox layoutX="108.0" layoutY="261.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="function" layoutX="108.0" layoutY="223.0" prefWidth="150.0" />
+      <ComboBox fx:id="specialization" layoutX="108.0" layoutY="261.0" prefWidth="150.0" />
       <DatePicker layoutX="108.0" layoutY="122.0" />
       <TextField layoutX="108.0" layoutY="14.0" />
       <TextField layoutX="108.0" layoutY="52.0" />
       <TextField layoutX="108.0" layoutY="88.0" />
       <TextField layoutX="108.0" layoutY="156.0" />
-      <ChoiceBox layoutX="108.0" layoutY="188.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="sex" layoutX="108.0" layoutY="188.0" prefWidth="150.0" />
       <TextField layoutX="437.0" layoutY="14.0" />
       <TextField layoutX="437.0" layoutY="52.0" />
       <TextField layoutX="437.0" layoutY="88.0" />

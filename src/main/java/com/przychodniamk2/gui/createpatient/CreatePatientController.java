@@ -4,6 +4,7 @@ import com.przychodniamk2.business.Address;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Person;
+import com.przychodniamk2.gui.CreateXXXController;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.collections.FXCollections;
@@ -15,7 +16,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.*;
 
-public class CreatePatientController extends FXMLController<Person> {
+public class CreatePatientController extends CreateXXXController<Person> {
     private final static String fxml = "createPatient.fxml";
 
     private ApplicationContext context;
@@ -48,9 +49,6 @@ public class CreatePatientController extends FXMLController<Person> {
 
     @FXML
     private TextField zipCode;
-
-    @FXML
-    private ChoiceBox<Person.Sex> sex;
 
     public CreatePatientController() {
         super(fxml);
