@@ -3,8 +3,13 @@ package com.przychodniamk2.business;
 import java.util.Locale;
 
 public class Employee extends Person{
-    private final Integer employeeId;
-    private final Position position;
+    private Integer employeeId;
+    private Position position;
+
+    public Employee(Person person, Position position){
+        super(person);
+        this.position = position;
+    }
 
     public Employee(String firstName, String lastName, Integer employeeId, String position){
         this(firstName, lastName, employeeId, Position.from(position));
@@ -28,6 +33,14 @@ public class Employee extends Person{
 
     public Position getPosition() {
         return position;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public enum Position{
