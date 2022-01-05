@@ -383,6 +383,39 @@ public class SpringMySQLDatabase implements Database {
 		throw new RuntimeException();
 	}
 
+	@Override
+	public void createUser(User user, String password) {
+		CallableStatement statement;
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL CREATE_USER (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			statement = connection.prepareCall(sql);
+			statement.setString(1, user.getEmployee().getPesel());
+			statement.setString(2, user.getEmployee().getFirstName());
+			statement.setString(3, user.getEmployee().getLastName());
+			statement.setString(4, user.getEmployee().getPhoneNumber());
+			statement.setDate(5, sqlDateFrom(user.getEmployee().getDateOfBirth()));
+			statement.setString(6, "" + user.getEmployee().getSex().code);
+			statement.setString(7, user.getEmployee().getAddress().getZipCode());
+			statement.setString(8, user.getEmployee().getAddress().getCity());
+			statement.setString(9, user.getEmployee().getAddress().getStreet());
+			statement.setString(10, user.getEmployee().getAddress().getBuildingNumber());
+			statement.setShort(11, user.getEmployee().getAddress().getFlatNumber());
+			statement.setString(12, "" + user.getEmployee().getPosition());
+			statement.setString(13, password);
+			statement.setString(14, user.getUsername());
+			statement.registerOutParameter(15, Types.VARCHAR);
+			statement.executeQuery();
+			String message = statement.getString(15);
+			System.out.println(message);
+			if(message.equalsIgnoreCase("SUCCESS"))
+				return;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException();
+	}
+
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
 		CallableStatement statement;
 		List<ElementOfTreatment> output = new LinkedList<>();

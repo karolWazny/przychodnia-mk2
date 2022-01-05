@@ -3,8 +3,13 @@ package com.przychodniamk2.business;
 import java.util.Locale;
 
 public class Employee extends Person{
-    private final Integer employeeId;
-    private final Position position;
+    private Integer employeeId;
+    private Position position;
+
+    public Employee(Person person, Position position){
+        super(person);
+        this.position = position;
+    }
 
     public Employee(String firstName, String lastName, Integer employeeId, String position){
         this(firstName, lastName, employeeId, Position.from(position));
@@ -13,7 +18,7 @@ public class Employee extends Person{
     public Employee(String firstName, String lastName, Integer employeeId, Position position){
         super(firstName, lastName, null);
         this.employeeId = employeeId;
-        this.position = Position.GUEST;
+        this.position = position;
     }
 
     public Employee(String firstName, String lastName, Integer employeeId){
@@ -30,11 +35,25 @@ public class Employee extends Person{
         return position;
     }
 
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
     public enum Position{
-        ADMIN,
-        DOCTOR,
-        REGISTER_LADY,
-        GUEST;
+        ADMIN("Administrator"),
+        DOCTOR("Lekarz"),
+        REGISTER_LADY("Rejestratorka"),
+        GUEST("Gość");
+
+        public final String name;
+
+        Position(String name){
+            this.name = name;
+        }
 
         public static Position from(String name){
             switch(name.toUpperCase(Locale.ROOT)){
@@ -49,5 +68,15 @@ public class Employee extends Person{
             }
             return valueOf(name.toUpperCase(Locale.ROOT));
         }
+
+        @Override
+        public String toString(){
+            return name;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return "" + super.toString() + ", " + position;
     }
 }

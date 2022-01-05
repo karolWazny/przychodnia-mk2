@@ -4,12 +4,16 @@ import com.przychodniamk2.business.*;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class mainController {
     private UserInteractionController userInteractionController;
+
+    @FXML
+    private Label userName;
 
     public mainController(){
 
@@ -57,7 +61,7 @@ public class mainController {
     }
 
     @FXML
-    private void initialize(ActionEvent event){
+    private void initialize(){
     }
 
     @FXML
@@ -66,8 +70,13 @@ public class mainController {
         userInteractionController.browsePastVisits(patient);
     }
 
-    @Autowired
+    @FXML
+    private void createUser(){
+        userInteractionController.createNewUser();
+    }
+
     public void setUserInteractionController(UserInteractionController userInteractionController) {
         this.userInteractionController = userInteractionController;
+        userName.textProperty().set("" + userInteractionController.getLoggedUser());
     }
 }

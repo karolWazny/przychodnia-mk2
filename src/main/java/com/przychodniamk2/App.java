@@ -45,8 +45,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LogInService logInService = applicationContext.getBean("logInService", LogInService.class);
-        if(!logInService.logIn())
+        UserInteractionController controller = applicationContext.getBean("userInteractionController", UserInteractionController.class);
+        if(!controller.logIn())
             return;
 
         FXMLLoader loader = new FXMLLoader();
@@ -54,7 +54,7 @@ public class App extends Application {
         loader.setLocation(new URL("file:///" + currentPath + "/src/main/resources/main.fxml"));
         Pane gridPane = loader.load();
 
-        ((mainController)loader.getController()).setUserInteractionController(applicationContext.getBean("userInteractionController", UserInteractionController.class));
+        ((mainController)loader.getController()).setUserInteractionController(controller);
 
         Scene scene = new Scene(gridPane);
         primaryStage.setScene(scene);

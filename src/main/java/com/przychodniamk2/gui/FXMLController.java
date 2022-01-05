@@ -1,5 +1,6 @@
 package com.przychodniamk2.gui;
 
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 
@@ -52,5 +53,14 @@ public abstract class FXMLController<R> {
 
     public void setData(R data) {
         this.data = data;
+    }
+
+    protected TextFormatter<String> digitsOnlyFormatter(){
+        return new TextFormatter<>(change -> {
+            String newText = change.getText();
+            String replacement = newText.replaceAll("[^0-9]*", "");
+            change.setText(replacement);
+            return change;
+        });
     }
 }

@@ -22,4 +22,5 @@ public interface Database {
 	List<ElementOfTreatment> getCurrentDiagnoses();
 	List<ElementOfTreatment> getCurrentProcedures();
     User logIn(String user, String password);
+	void createUser(User user, String password);
 }
