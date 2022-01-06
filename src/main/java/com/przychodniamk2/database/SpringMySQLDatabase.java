@@ -417,7 +417,7 @@ public class SpringMySQLDatabase implements Database {
 	}
 
 	@Override
-	public void changePassword(User user, String oldPassword, String newPassword) {
+	public void changePassword(String user, String oldPassword, String newPassword) {
 		throw new UnsupportedOperationException();
 	}
 

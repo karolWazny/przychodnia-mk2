@@ -2,6 +2,7 @@ package com.przychodniamk2.gui.changepassword;
 
 import com.przychodniamk2.business.User;
 import com.przychodniamk2.gui.FXMLController;
+import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.LogInService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -52,6 +53,15 @@ public class ChangePasswordController extends FXMLController<User> {
 
         if(!oldPassField.textProperty().get().equals(repeatPassField.textProperty().get()))
             throw new RuntimeException("Próba zmiany hasła na identyczne ze starym!");
+
+        String userName = user.getUsername();
+        String oldPassword = oldPassField.textProperty().get();
+        String newPassword = newPassField.textProperty().get();
+
+        Database database = context.getBean("database", Database.class);
+
+        database.changePassword(userName, oldPassword, newPassword);
+
         close();
     }
 
