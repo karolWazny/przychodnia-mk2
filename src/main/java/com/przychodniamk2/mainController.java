@@ -71,12 +71,12 @@ public class mainController {
     }
 
     @FXML
-    private void createUser(){
+    private void createUser(ActionEvent event){
         userInteractionController.createNewUser();
     }
 
     @FXML
-    private void changePasswordClick(){
+    private void changePasswordClick(ActionEvent event){
         userInteractionController.changePassword();
     }
 
