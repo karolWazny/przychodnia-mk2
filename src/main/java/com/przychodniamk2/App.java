@@ -1,11 +1,8 @@
 package com.przychodniamk2;
 
-import com.przychodniamk2.business.Employee;
 import com.przychodniamk2.config.DatabaseConfig;
 import com.przychodniamk2.config.UIConfig;
-import com.przychodniamk2.gui.login.LogInDialog;
 import com.przychodniamk2.systemControl.UserInteractionController;
-import com.przychodniamk2.systemControl.usecase.LogInService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
