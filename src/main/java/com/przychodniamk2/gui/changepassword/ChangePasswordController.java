@@ -51,7 +51,7 @@ public class ChangePasswordController extends FXMLController<User> {
         if(!newPassField.textProperty().get().equals(repeatPassField.textProperty().get()))
             throw new RuntimeException("Wprowadzone hasła różnią się między sobą!");
 
-        if(!oldPassField.textProperty().get().equals(repeatPassField.textProperty().get()))
+        if(oldPassField.textProperty().get().equals(repeatPassField.textProperty().get()))
             throw new RuntimeException("Próba zmiany hasła na identyczne ze starym!");
 
         String userName = user.getUsername();

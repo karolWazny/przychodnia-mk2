@@ -418,7 +418,24 @@ public class SpringMySQLDatabase implements Database {
 
 	@Override
 	public void changePassword(String user, String oldPassword, String newPassword) {
-		throw new UnsupportedOperationException();
+		CallableStatement statement;
+		String message = "";
+		try{
+			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+			String sql = "{CALL CHANGE_PASSWORD (?, ?, ?, ?)}";
+			statement = connection.prepareCall(sql);
+			statement.setString(1, user);
+			statement.setString(2, oldPassword);
+			statement.setString(3, newPassword);
+			statement.registerOutParameter(4, Types.VARCHAR);
+			statement.executeQuery();
+			message = statement.getString(4);
+			if(message.equalsIgnoreCase("SUCCESS"))
+				return;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new RuntimeException(message);
 	}
 
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
