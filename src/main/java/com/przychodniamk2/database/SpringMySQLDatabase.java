@@ -416,6 +416,11 @@ public class SpringMySQLDatabase implements Database {
 		throw new RuntimeException();
 	}
 
+	@Override
+	public void changePassword(User user, String oldPassword, String newPassword) {
+		throw new UnsupportedOperationException();
+	}
+
 	private List<ElementOfTreatment> getElementsOfTreatment(String type){
 		CallableStatement statement;
 		List<ElementOfTreatment> output = new LinkedList<>();
