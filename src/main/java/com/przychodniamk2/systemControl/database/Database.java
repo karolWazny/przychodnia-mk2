@@ -23,4 +23,5 @@ public interface Database {
 	List<ElementOfTreatment> getCurrentProcedures();
     User logIn(String user, String password);
 	void createUser(User user, String password);
+	void changePassword(String user, String oldPassword, String newPassword);
 }

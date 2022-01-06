@@ -18,4 +18,5 @@ public interface UserInteractionController {
     boolean logIn();
     User getLoggedUser();
     void createNewUser();
+    void changePassword();
 }

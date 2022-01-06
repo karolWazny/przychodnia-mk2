@@ -75,6 +75,11 @@ public class mainController {
         userInteractionController.createNewUser();
     }
 
+    @FXML
+    private void changePasswordClick(){
+        userInteractionController.changePassword();
+    }
+
     public void setUserInteractionController(UserInteractionController userInteractionController) {
         this.userInteractionController = userInteractionController;
         userName.textProperty().set("" + userInteractionController.getLoggedUser());
