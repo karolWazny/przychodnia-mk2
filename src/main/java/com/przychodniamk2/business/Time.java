@@ -41,8 +41,8 @@ public class Time {
 
     @Override
     public boolean equals(Object o){
-        if(! (o instanceof Time))
-            return false;
-        else return ((Time) o).hour == hour && ((Time) o).minutes == minutes;
+        return (o instanceof Time)
+                && ((Time) o).hour == hour
+                && ((Time) o).minutes == minutes;
     }
 }
