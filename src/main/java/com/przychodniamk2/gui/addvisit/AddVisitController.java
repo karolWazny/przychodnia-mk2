@@ -79,7 +79,6 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
             time = newValue);
 
         date = new SimpleObjectProperty<>();
-        //date.setValue(Date.today());
         date.addListener((observable, oldValue, newValue) -> {
             if(!newValue.equals(oldValue)){
                 datePicker.setValue(new LocalDateStringConverter().fromString(date.getValue().dateString()));
