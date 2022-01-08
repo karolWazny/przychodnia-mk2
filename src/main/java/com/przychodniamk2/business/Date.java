@@ -33,7 +33,7 @@ public class Date {
     }
 
     public String dateString(){
-        return String.format("%02d", day) + "." + String.format("%02d", month) + "." + String.format("%04d", year);
+        return String.format("%02d", day) + "." + String.format("%02d", month) + "." + year;
     }
 
     @Override
