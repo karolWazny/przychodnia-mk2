@@ -19,6 +19,7 @@ import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class AddVisitController extends FXMLController<ScheduledVisit> {
@@ -78,13 +79,18 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
             time = newValue);
 
         date = new SimpleObjectProperty<>();
+        //date.setValue(Date.today());
         date.addListener((observable, oldValue, newValue) -> {
-            datePicker.setValue(new LocalDateStringConverter().fromString(date.getValue().dateString()));
-            List<Time> hours = database.getPossibleAppointmentTimes(doctor.getValue(), newValue);
-            ObservableList<Time> observableHours = FXCollections.observableArrayList();
-            observableHours.addAll(hours);
-            hourPicker.setItems(observableHours);
+            if(!newValue.equals(oldValue)){
+                datePicker.setValue(new LocalDateStringConverter().fromString(date.getValue().dateString()));
+                List<Time> hours = database.getPossibleAppointmentTimes(doctor.getValue(), newValue);
+                ObservableList<Time> observableHours = FXCollections.observableArrayList();
+                observableHours.addAll(hours);
+                hourPicker.setItems(observableHours);
+            }
         });
+
+        disableTimeChoosingFields();
 
         doctor = new SimpleObjectProperty<>();
         doctor.addListener((observable, oldValue, newValue) -> {
@@ -100,8 +106,11 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
             patientLastName.setText(newValue.getLastName());
             patientPesel.setText(newValue.getPesel());
         });
+    }
 
-        System.out.println(datePicker.getValue());
+    private void disableTimeChoosingFields(){
+        datePicker.setDisable(true);
+        hourPicker.setDisable(true);
     }
 
     private UserInteractionController userInteractionController;
@@ -123,8 +132,23 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     private void chooseDoctorClick(ActionEvent event){
         Doctor doctor = userInteractionController.chooseDoctor();
 
-        if(doctor != null)
+        if(doctor != null){
             this.doctor.setValue(doctor);
+            enableTimeChoosingFields();
+        }
+    }
+
+    private void enableTimeChoosingFields(){
+        datePicker.setDisable(false);
+        hourPicker.setDisable(false);
+    }
+
+    @FXML
+    private void datePickerAction(){
+        Date newValue = new Date(datePicker.getValue());
+        if(!newValue.equals(date.getValue())){
+            date.setValue(newValue);
+        }
     }
 
     @FXML

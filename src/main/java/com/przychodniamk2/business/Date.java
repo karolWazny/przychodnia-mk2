@@ -53,6 +53,16 @@ public class Date {
         return day;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof LocalDate)
+            return equals(new Date((LocalDate) o));
+        return o instanceof Date
+                && ((Date) o).day == day
+                && ((Date) o).month == month
+                && ((Date) o).year == year;
+    }
+
     public static class ValueOutOfRangeException extends Exception{
 
     }
