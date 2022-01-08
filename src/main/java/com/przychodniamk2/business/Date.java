@@ -55,8 +55,6 @@ public class Date {
 
     @Override
     public boolean equals(Object o){
-        if(o instanceof LocalDate)
-            return equals(new Date((LocalDate) o));
         return o instanceof Date
                 && ((Date) o).day == day
                 && ((Date) o).month == month
