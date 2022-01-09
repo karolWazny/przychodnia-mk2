@@ -14,7 +14,6 @@ import java.util.Optional;
 
 public class LogInDialog {
     private User loggedUser;
-    private ApplicationContext context;
     private Database database;
 
     public static User logIn(ApplicationContext context){
@@ -96,7 +95,6 @@ public class LogInDialog {
     }
 
     private LogInDialog(ApplicationContext context){
-        this.context = context;
         this.database = context.getBean("database", Database.class);
     }
 
