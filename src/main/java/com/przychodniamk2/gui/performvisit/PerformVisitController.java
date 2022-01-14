@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -71,8 +72,17 @@ public class PerformVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void confirmClick(ActionEvent event){
-        database.createDoneVisit(buildVisit());
-        close();
+        try{
+            database.createDoneVisit(buildVisit());
+            close();
+        } catch (RuntimeException exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd!");
+            alert.setHeaderText("Wystąpił błąd.");
+            alert.setContentText("Coś poszło nie tak...");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
