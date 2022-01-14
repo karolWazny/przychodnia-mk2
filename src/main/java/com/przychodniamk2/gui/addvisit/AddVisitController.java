@@ -11,10 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -152,13 +149,22 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
 
     @FXML
     private void confirmClick(ActionEvent event){
-        ScheduledVisit.Builder builder = new ScheduledVisit.Builder()
-                .withDoctor(doctor.getValue())
-                .withPatient(patient.getValue())
-                .day(date.getValue())
-                .at(time);
-        super.setData(builder.build());
-        database.createPlannedVisit(super.getData());
-        close();
+        try{
+            ScheduledVisit.Builder builder = new ScheduledVisit.Builder()
+                    .withDoctor(doctor.getValue())
+                    .withPatient(patient.getValue())
+                    .day(date.getValue())
+                    .at(time);
+            super.setData(builder.build());
+            database.createPlannedVisit(super.getData());
+            close();
+        } catch(RuntimeException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd!");
+            alert.setHeaderText("Wystąpił błąd.");
+            alert.setContentText("Coś poszło nie tak... Sprawdź, czy wybrany dzień nie jest sobotą lub niedzielą!");
+
+            alert.showAndWait();
+        }
     }
 }
