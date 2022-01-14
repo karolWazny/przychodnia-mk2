@@ -7,6 +7,8 @@ import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +47,10 @@ public class ChoosePatientController extends FXMLController<Patient> {
 
         ind.addListener((observable, oldValue, newValue) ->
             super.setData(newValue));
+
+        firstNameTextField.textProperty().addListener(((observable) -> updateListView()));
+        lastNameTextField.textProperty().addListener(((observable) -> updateListView()));
+        peselTextField.textProperty().addListener(((observable) -> updateListView()));
     }
 
     @Override
@@ -65,11 +71,6 @@ public class ChoosePatientController extends FXMLController<Patient> {
         ObservableList<Patient> observableList = FXCollections.observableArrayList();
         observableList.addAll(patients);
         patientsListView.setItems(observableList);
-    }
-
-    @FXML
-    private void searchClick(ActionEvent event){
-        updateListView();
     }
 
     @FXML
