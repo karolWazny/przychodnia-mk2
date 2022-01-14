@@ -8,10 +8,7 @@ import com.przychodniamk2.systemControl.database.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Arrays;
@@ -59,19 +56,29 @@ public class CreateUserController extends CreateXXXController<User> {
 
     @FXML
     private void confirm(){
-        if(!passField.textProperty().get().equals(repeatPassField.textProperty().get()))
-            throw new RuntimeException();
-        if(loginField.textProperty().get().equals("") || loginField.textProperty().get() == null)
-            throw new RuntimeException();
+        try{
+            if(!passField.textProperty().get().equals(repeatPassField.textProperty().get()))
+                throw new RuntimeException("Wprowadzone hasła różnią się!");
+            if(loginField.textProperty().get().equals("") || loginField.textProperty().get() == null)
+                throw new RuntimeException("Pole login nie może być puste!");
 
-        Person person = buildPerson();
+            Person person = buildPerson();
 
-        Employee employee = new Employee(person, function.getValue());
+            Employee employee = new Employee(person, function.getValue());
 
-        User user = new User(employee, loginField.textProperty().get());
-        database.createUser(user, passField.textProperty().get());
+            User user = new User(employee, loginField.textProperty().get());
+            database.createUser(user, passField.textProperty().get());
 
-        super.close();
+            super.close();
+        } catch (RuntimeException exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd!");
+            alert.setHeaderText("Wystąpił błąd.");
+            alert.setContentText(exception.getMessage());
+
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
