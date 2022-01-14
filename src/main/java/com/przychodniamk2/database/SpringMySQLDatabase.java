@@ -74,6 +74,7 @@ public class SpringMySQLDatabase implements Database {
 
 				visits.add(scheduledVisit);
 			}
+			connection.close();
 			return visits;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,6 +118,7 @@ public class SpringMySQLDatabase implements Database {
 						.build();
 				visits.add(doneVisit);
 			}
+			connection.close();
 			return visits;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +141,8 @@ public class SpringMySQLDatabase implements Database {
 		CallableStatement statement;
 		String result = "";
 		try{
-			Connection connection= Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
+
+			Connection connection = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection();
 			String sql = "{CALL SCHEDULED_VISITS_INSERT ( ?, ?, ?, ?, ? )}";
 			statement = connection.prepareCall(sql);
 			statement.setDate(1, sqlDateFrom(visit.getDate()));
@@ -149,7 +152,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.registerOutParameter(5, Types.VARCHAR);
 			statement.executeQuery();
 			result = statement.getString(5);
-			System.out.println(result);
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -179,6 +182,7 @@ public class SpringMySQLDatabase implements Database {
 			while(resultSet.next()){
 				patients.add(patientFromResultSet(resultSet));
 			}
+			connection.close();
 			return patients;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -231,6 +235,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.setString(10, person.getAddress().buildingNumber);
 			statement.setShort(11, person.getAddress().flatNumber);
 			ResultSet resultSet = statement.executeQuery();
+			connection.close();
 			boolean next = resultSet.next();
 			System.out.println(next);
 			if(next){
@@ -263,6 +268,7 @@ public class SpringMySQLDatabase implements Database {
 						new Specialization(resultSet.getString("specialization")),
 						resultSet.getInt("EmployeesID")));
 			}
+			connection.close();
 			return doctors;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -281,7 +287,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.registerOutParameter(2, Types.DATE);
 			statement.executeQuery();
 			java.sql.Date sqlDate = statement.getDate(2);
-			System.out.println(sqlDate);
+			connection.close();
 			return businessDateFrom(sqlDate);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -308,6 +314,7 @@ public class SpringMySQLDatabase implements Database {
 					times.remove(businessTimeFrom(resultSet.getTime(1)));
 				}
 			}
+			connection.close();
 			return times;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -332,6 +339,7 @@ public class SpringMySQLDatabase implements Database {
 				java.sql.Time end = resultSet.getTime("End");
 				endTime = businessTimeFrom(end);
 			}
+			connection.close();
 			return new WorkingHours(startTime, endTime);
 
 		} catch (SQLException e) {
@@ -369,6 +377,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.executeQuery();
 			Integer employeeId = statement.getInt(3);
 			String result = statement.getString(4);
+			connection.close();
 			if(!result.equalsIgnoreCase("SUCCESS"))
 				return null;
 			Optional<EmployeesView> optionalView = employeesViewRepository.findById(employeeId);
@@ -407,7 +416,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.registerOutParameter(15, Types.VARCHAR);
 			statement.executeQuery();
 			String message = statement.getString(15);
-			System.out.println(message);
+			connection.close();
 			if(message.equalsIgnoreCase("SUCCESS"))
 				return;
 		} catch (SQLException e) {
@@ -430,6 +439,7 @@ public class SpringMySQLDatabase implements Database {
 			statement.registerOutParameter(4, Types.VARCHAR);
 			statement.executeQuery();
 			message = statement.getString(4);
+			connection.close();
 			if(message.equalsIgnoreCase("SUCCESS"))
 				return;
 		} catch (SQLException e) {
@@ -446,6 +456,7 @@ public class SpringMySQLDatabase implements Database {
 			String sql = "{CALL GET_" + type.toUpperCase() + "_CURRENT_STANDARD ()}";
 			statement = connection.prepareCall(sql);
 			ResultSet resultSet = statement.executeQuery();
+			connection.close();
 
 			while(resultSet.next()){
 				ElementOfTreatment tmp = new ElementOfTreatment(resultSet.getInt("ID"),
