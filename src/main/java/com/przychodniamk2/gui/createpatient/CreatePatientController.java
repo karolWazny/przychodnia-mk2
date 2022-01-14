@@ -5,6 +5,7 @@ import com.przychodniamk2.gui.CreateXXXController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import org.springframework.context.ApplicationContext;
 
 public class CreatePatientController extends CreateXXXController<Person> {
@@ -28,11 +29,20 @@ public class CreatePatientController extends CreateXXXController<Person> {
 
     @FXML
     private void confirmClick(ActionEvent event){
-        Person patient = buildPerson();
-        Database database = context.getBean("database", Database.class);
-        database.createPatient(patient);
-        super.setData(patient);
-        close();
+        try{
+            Person patient = buildPerson();
+            Database database = context.getBean("database", Database.class);
+            database.createPatient(patient);
+            super.setData(patient);
+            close();
+        } catch(RuntimeException exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd!");
+            alert.setHeaderText("Wystąpił błąd.");
+            alert.setContentText("Coś poszło nie tak...");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
