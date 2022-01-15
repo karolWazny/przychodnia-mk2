@@ -71,4 +71,40 @@ public class Time {
                 && ((Time) o).hour == hour
                 && ((Time) o).minutes == minutes;
     }
+
+    public boolean isBefore(Time time){
+        //godziny mniejsze
+        if(this.hour < time.hour) {
+            return true;
+        }
+        //godziny równe, minuty mniejsze
+        else if(this.hour == time.hour && this.minutes < time.minutes){
+            return true;
+        }
+        //Wszystko równe
+        else if(this.hour == time.hour && this.minutes == time.minutes) {
+            return false;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean isAfter(Time time){
+        //godziny większe
+        if(this.hour > time.hour) {
+            return true;
+        }
+        //godziny równe, minuty większe
+        else if(this.hour == time.hour && this.minutes > time.minutes){
+            return true;
+        }
+        //Wszystko równe
+        else if(this.hour == time.hour && this.minutes == time.minutes) {
+            return false;
+        }
+        else{
+            return false;
+        }
+    }
 }
