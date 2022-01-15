@@ -41,4 +41,26 @@ public class WorkingHours {
     public void setEnd(Time end) {
         this.end = end;
     }
+
+    public boolean isDuring(Time time){
+        //Jeśli początek pracy
+        if(this.start.equals(time)){
+            return true;
+        }
+        //Jeśli koniec pracy
+        else if(this.end.equals(time)){
+            return false;
+        }
+        //Jeśli przed pracą
+        else if(time.isBefore(this.start)){
+            return false;
+        }
+        //Jeśli po pracy
+        else if(time.isAfter(this.end)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }
