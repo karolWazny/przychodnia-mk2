@@ -7,8 +7,14 @@ public class Time {
     private final int minutes;
 
     public Time(int hours, int minutes) {
+        if(argumentsNotValid(hours, minutes))
+            throw new IllegalArgumentException();
         this.hour = hours;
         this.minutes = minutes;
+    }
+
+    private static boolean argumentsNotValid(int hours, int minutes){
+        return hours > 23 || hours < 0 || minutes > 59 || minutes < 0;
     }
 
     public Time() {
