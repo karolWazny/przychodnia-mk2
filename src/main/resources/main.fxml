@@ -21,14 +21,14 @@
    <children>
       <Label text="Logged as:" />
       <Label fx:id="userName" text="Label" GridPane.columnIndex="1" />
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Pane fx:id="doctorActions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <Button fx:id="performVisitButton" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#performVisit" text="PerformVisit" />
             <Button fx:id="chooseVisitButton" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#chooseVisit" prefHeight="17.0" prefWidth="78.0" text="ChooseVisit" />
             <Button fx:id="browsePastVisitsButton" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" onAction="#browsePastVisitsClick" text="BrowsePastVisits" />
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <Pane fx:id="registerActions" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
             <Button fx:id="addVisitButton" layoutX="14.0" layoutY="99.0" mnemonicParsing="false" onAction="#addVisit" text="Add visit" />
             <Button fx:id="chooseDoctorButton" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#chooseDoctor" text="ChooseDoctor" />
@@ -36,7 +36,7 @@
             <Button fx:id="choosePatientButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#choosePatient" text="Choose patient" />
          </children>
       </Pane>
-      <Pane prefHeight="41.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Pane fx:id="administrativeActions" prefHeight="41.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
             <Button fx:id="addDoctorButton" layoutX="27.0" layoutY="54.0" mnemonicParsing="false" onAction="#addDoctor" text="Add doctor" />
             <Button fx:id="createUserButton" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#createUser" text="Create user" />

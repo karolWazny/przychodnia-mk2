@@ -5,7 +5,7 @@ import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import org.springframework.beans.factory.annotation.Autowired;
+import javafx.scene.layout.Pane;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +14,15 @@ public class mainController {
 
     @FXML
     private Label userName;
+
+    @FXML
+    private Pane registerActions;
+
+    @FXML
+    private Pane doctorActions;
+
+    @FXML
+    private Pane administrativeActions;
 
     public mainController(){
 
@@ -62,6 +71,12 @@ public class mainController {
 
     @FXML
     private void initialize(){
+        administrativeActions.setDisable(true);
+        administrativeActions.setVisible(false);
+        doctorActions.setDisable(true);
+        doctorActions.setVisible(false);
+        registerActions.setDisable(true);
+        registerActions.setVisible(false);
     }
 
     @FXML
@@ -82,6 +97,29 @@ public class mainController {
 
     public void setUserInteractionController(UserInteractionController userInteractionController) {
         this.userInteractionController = userInteractionController;
+        Employee.Position position = userInteractionController.getLoggedUser().getEmployee().getPosition();
+        switch(position){
+            case REGISTER_LADY:
+                registerActions.setDisable(false);
+                registerActions.setVisible(true);
+                break;
+            case DOCTOR:
+                doctorActions.setDisable(false);
+                doctorActions.setVisible(true);
+                break;
+            case ADMIN:
+                administrativeActions.setDisable(false);
+                administrativeActions.setVisible(true);
+
+                doctorActions.setDisable(false);
+                doctorActions.setVisible(true);
+
+                registerActions.setDisable(false);
+                registerActions.setVisible(true);
+                break;
+            default:
+                break;
+        }
         userName.textProperty().set("" + userInteractionController.getLoggedUser());
     }
 }
