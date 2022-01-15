@@ -3,8 +3,8 @@ package com.przychodniamk2.business;
 import java.util.Calendar;
 
 public class Time {
-    private final int hour;
-    private final int minutes;
+    private int hour;
+    private int minutes;
 
     public Time(int hours, int minutes) {
         if(argumentsNotValid(hours, minutes))
@@ -14,7 +14,7 @@ public class Time {
     }
 
     private static boolean argumentsNotValid(int hours, int minutes){
-        return hours > 23 || hours < 0 || minutes > 59 || minutes < 0;
+        return !validHour(hours) || !validMinutes(minutes);
     }
 
     public Time() {
@@ -26,6 +26,26 @@ public class Time {
         int hours = now.get(Calendar.HOUR_OF_DAY);
         int minutes = now.get(Calendar.MINUTE);
         return new Time(hours, minutes);
+    }
+
+    public void setHour(int hour) {
+        if(!validHour(hour))
+            throw new IllegalArgumentException();
+        this.hour = hour;
+    }
+
+    private static boolean validHour(int hour){
+        return hour <=23 && hour >= 0;
+    }
+
+    public void setMinutes(int minutes) {
+        if(!validMinutes(minutes))
+            throw new IllegalArgumentException();
+        this.minutes = minutes;
+    }
+
+    private static boolean validMinutes(int minutes){
+        return minutes < 60 && minutes >= 0;
     }
 
     public int getHour() {
