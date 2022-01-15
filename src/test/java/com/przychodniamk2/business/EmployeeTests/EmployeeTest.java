@@ -1,7 +1,8 @@
-package com.przychodniamk2.business;
+package com.przychodniamk2.business.EmployeeTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.przychodniamk2.business.Employee;
 import org.junit.jupiter.api.Test;
 
 class EmployeeTest {
