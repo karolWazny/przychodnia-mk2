@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class TimeConstraintsTest {
-    static Data data;
+    Data data;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
