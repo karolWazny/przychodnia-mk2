@@ -38,7 +38,6 @@
       </Pane>
       <Pane fx:id="administrativeActions" prefHeight="41.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="addDoctorButton" layoutX="27.0" layoutY="54.0" mnemonicParsing="false" onAction="#addDoctor" text="Nowy lekarz" />
             <Button fx:id="createUserButton" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#createUser" text="Nowy użytkownik" />
          </children>
       </Pane>
