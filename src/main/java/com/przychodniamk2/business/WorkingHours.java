@@ -8,6 +8,8 @@ public class WorkingHours {
     private Time end;
 
     public WorkingHours(Time start, Time end) {
+        if(start.isAfter(end) || start.equals(end))
+            throw new IllegalArgumentException("Start must happen before the end.");
         this.start = start;
         this.end = end;
     }
