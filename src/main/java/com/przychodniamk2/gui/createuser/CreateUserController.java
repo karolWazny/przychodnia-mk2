@@ -20,9 +20,6 @@ public class CreateUserController extends CreateXXXController<User> {
     private Database database;
 
     @FXML
-    private ComboBox<String> specialization;
-
-    @FXML
     private PasswordField passField;
 
     @FXML

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przychodniamk2.mainController">
@@ -14,23 +15,37 @@
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="303.0" minHeight="2.0" prefHeight="282.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="chooseDoctorButton" mnemonicParsing="false" onAction="#chooseDoctor" text="ChooseDoctor" GridPane.rowIndex="3" />
-      <Button fx:id="choosePatientButton" mnemonicParsing="false" onAction="#choosePatient" text="Choose patient" GridPane.rowIndex="1" />
-      <Button fx:id="addDoctorButton" mnemonicParsing="false" onAction="#addDoctor" text="Add doctor" GridPane.rowIndex="4" />
-      <Button fx:id="addVisitButton" mnemonicParsing="false" onAction="#addVisit" text="Add visit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="chooseVisitButton" mnemonicParsing="false" onAction="#chooseVisit" text="ChooseVisit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Button fx:id="performVisitButton" mnemonicParsing="false" onAction="#performVisit" text="PerformVisit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button fx:id="addPatientButton" mnemonicParsing="false" onAction="#addPatient" text="Add patient" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="browsePastVisitsButton" mnemonicParsing="false" onAction="#browsePastVisitsClick" text="BrowsePastVisits" GridPane.rowIndex="2" />
       <Label text="Logged as:" />
       <Label fx:id="userName" text="Label" GridPane.columnIndex="1" />
-      <Button fx:id="createUserButton" mnemonicParsing="false" onAction="#createUser" text="Create user" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordClick" text="Change password" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="performVisitButton" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#performVisit" text="PerformVisit" />
+            <Button fx:id="chooseVisitButton" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#chooseVisit" prefHeight="17.0" prefWidth="78.0" text="ChooseVisit" />
+            <Button fx:id="browsePastVisitsButton" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" onAction="#browsePastVisitsClick" text="BrowsePastVisits" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="addVisitButton" layoutX="14.0" layoutY="99.0" mnemonicParsing="false" onAction="#addVisit" text="Add visit" />
+            <Button fx:id="chooseDoctorButton" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#chooseDoctor" text="ChooseDoctor" />
+            <Button fx:id="addPatientButton" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#addPatient" text="Add patient" />
+            <Button fx:id="choosePatientButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#choosePatient" text="Choose patient" />
+         </children>
+      </Pane>
+      <Pane prefHeight="41.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="addDoctorButton" layoutX="27.0" layoutY="54.0" mnemonicParsing="false" onAction="#addDoctor" text="Add doctor" />
+            <Button fx:id="createUserButton" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#createUser" text="Create user" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <Button fx:id="changePasswordButton" layoutX="45.0" layoutY="19.0" mnemonicParsing="false" onAction="#changePasswordClick" text="Change password" />
+         </children>
+      </Pane>
    </children>
 </GridPane>
