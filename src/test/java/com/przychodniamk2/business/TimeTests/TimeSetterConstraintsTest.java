@@ -1,5 +1,6 @@
-package com.przychodniamk2.business;
+package com.przychodniamk2.business.TimeTests;
 
+import com.przychodniamk2.business.Time;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.przychodniamk2.business;
+package com.przychodniamk2.business.TimeTests;
 
 public class TimeConstraintsData {
     public Entity[] sampleData = { new Entity(0, 0, true),
