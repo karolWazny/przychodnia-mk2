@@ -19,7 +19,7 @@
     <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Logged as:" />
+      <Label text="Zalogowany jako:" />
       <Label fx:id="userName" text="Label" GridPane.columnIndex="1" />
       <Pane fx:id="doctorActions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
@@ -43,7 +43,7 @@
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="changePasswordButton" layoutX="45.0" layoutY="19.0" mnemonicParsing="false" onAction="#changePasswordClick" text="Change password" />
+            <Button fx:id="changePasswordButton" layoutX="45.0" layoutY="19.0" mnemonicParsing="false" onAction="#changePasswordClick" text="Zmiana hasła" />
          </children>
       </Pane>
    </children>
