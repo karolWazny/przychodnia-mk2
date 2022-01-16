@@ -5,6 +5,7 @@ import com.przychodniamk2.business.WorkingHours;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Assertions;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+@Category(SlowTests.class)
 @RunWith(Parameterized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WorkingHoursConstraintsTest {

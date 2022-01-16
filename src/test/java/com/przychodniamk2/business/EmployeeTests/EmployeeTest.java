@@ -3,14 +3,13 @@ package com.przychodniamk2.business.EmployeeTests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.przychodniamk2.business.Employee;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class EmployeeTest {
+public class EmployeeTest {
     @Test
-    void addition() {
+    public void testMethod() {
         Employee employee = new Employee("John", "Watson", 4, "gueST");
         assertEquals(Employee.Position.GUEST, employee.getPosition());
     }
-
 }
 
