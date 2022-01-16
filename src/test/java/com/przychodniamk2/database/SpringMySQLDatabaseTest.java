@@ -3,6 +3,8 @@ package com.przychodniamk2.database;
 import com.przychodniamk2.business.Date;
 import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.business.Time;
+import mockit.Injectable;
+import mockit.Tested;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
