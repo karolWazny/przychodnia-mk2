@@ -46,4 +46,24 @@ public class EmployeesView {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    public void setPositionsName(String positionsName) {
+        this.positionsName = positionsName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        LastName = lastName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 }
