@@ -6,11 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserInteractionController {
     Patient choosePatient();
-    Date chooseDate(Doctor doctor);
     Doctor chooseDoctor();
-    void addDoctor(Doctor doctor);
     void addVisit();
-    ScheduledVisit chooseVisit();
     void performVisit(ScheduledVisit visit);
     void addPatient();
     void browsePastVisits(Patient patient);

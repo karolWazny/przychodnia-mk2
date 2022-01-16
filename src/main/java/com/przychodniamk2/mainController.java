@@ -40,13 +40,6 @@ public class mainController {
     }
 
     @FXML
-    private void addDoctor(ActionEvent event){
-        Doctor doctor = new Doctor("Jan", "Kowalski", null, new Specialization("ortopeda"), 0);
-        userInteractionController.addDoctor(doctor);
-        System.out.println("Added doctor: " + doctor);
-    }
-
-    @FXML
     private void addVisit(ActionEvent event){
         userInteractionController.addVisit();
     }

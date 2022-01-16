@@ -74,28 +74,13 @@ public class SystemController implements UserInteractionController {
     }
 
     @Override
-    public Date chooseDate(Doctor doctor) {
-        return Date.today();
-    }
-
-    @Override
     public Doctor chooseDoctor() {
         return doctorChooser.chooseDoctor();
     }
 
     @Override
-    public void addDoctor(Doctor doctor) {
-
-    }
-
-    @Override
     public void addVisit() {
         visitPlanner.addVisit();
-    }
-
-    @Override
-    public ScheduledVisit chooseVisit() {
-        return null;
     }
 
     @Override
@@ -120,16 +105,20 @@ public class SystemController implements UserInteractionController {
 
     @Override
     public boolean logIn() {
+        //todo test
         return logInService.logIn();
     }
 
     @Override
     public User getLoggedUser() {
+        //todo test
         return logInService.getLoggedUser();
     }
 
     @Override
     public void createNewUser() {
+        //todo security layer
+        //todo test
         userCreator.createNewUser();
     }
 

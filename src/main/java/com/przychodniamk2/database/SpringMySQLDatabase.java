@@ -456,7 +456,6 @@ public class SpringMySQLDatabase implements Database {
 			String sql = "{CALL GET_" + type.toUpperCase() + "_CURRENT_STANDARD ()}";
 			statement = connection.prepareCall(sql);
 			ResultSet resultSet = statement.executeQuery();
-			connection.close();
 
 			while(resultSet.next()){
 				ElementOfTreatment tmp = new ElementOfTreatment(resultSet.getInt("ID"),
@@ -464,6 +463,7 @@ public class SpringMySQLDatabase implements Database {
 						resultSet.getString("Code"));
 				output.add(tmp);
 			}
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

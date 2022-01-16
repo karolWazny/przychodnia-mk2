@@ -148,6 +148,11 @@ public class AddVisitController extends FXMLController<ScheduledVisit> {
     }
 
     @FXML
+    private void cancelClick(){
+        close();
+    }
+
+    @FXML
     private void confirmClick(ActionEvent event){
         try{
             ScheduledVisit.Builder builder = new ScheduledVisit.Builder()

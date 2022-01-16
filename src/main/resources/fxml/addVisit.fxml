@@ -10,13 +10,12 @@
 <AnchorPane prefHeight="400.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przychodniamk2.gui.addvisit.AddVisitController">
    <children>
       <Button fx:id="confirmButton" layoutX="371.0" layoutY="351.0" mnemonicParsing="false" onAction="#confirmClick" text="Zatwierdź" />
-      <Button fx:id="cancelButton" layoutX="303.0" layoutY="351.0" mnemonicParsing="false" text="Anuluj" />
-      <Button fx:id="choosePatientButton" layoutX="118.0" layoutY="150.0" mnemonicParsing="false" onAction="#choosePatientClick" text="Wybierz" />
+      <Button fx:id="cancelButton" layoutX="303.0" layoutY="351.0" mnemonicParsing="false" onAction="#cancelClick" text="Anuluj" />
+      <Button fx:id="choosePatientButton" layoutX="69.0" layoutY="150.0" mnemonicParsing="false" onAction="#choosePatientClick" text="Wybierz" />
       <Button fx:id="chooseDoctorButton" layoutX="293.0" layoutY="150.0" mnemonicParsing="false" onAction="#chooseDoctorClick" text="Wybierz" />
       <TextField fx:id="patientFirstName" disable="true" layoutX="24.0" layoutY="51.0" />
       <TextField fx:id="patientLastName" disable="true" layoutX="24.0" layoutY="82.0" />
       <TextField fx:id="patientPesel" disable="true" layoutX="24.0" layoutY="118.0" />
-      <Button fx:id="patientDetailsButton" layoutX="23.0" layoutY="150.0" mnemonicParsing="false" text="Szczegóły" />
       <TextField fx:id="doctorFirstName" disable="true" layoutX="248.0" layoutY="51.0" />
       <TextField fx:id="doctorLastName" disable="true" layoutX="248.0" layoutY="82.0" />
       <TextField fx:id="doctorSpecialization" disable="true" layoutX="248.0" layoutY="118.0" />
