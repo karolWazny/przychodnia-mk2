@@ -14,10 +14,17 @@ public class ConnectionMock implements Connection {
         this.visitsByDateAndDoctor = visitsByDateAndDoctor;
     }
 
+    public void setWorkingHoursByEmployee(CallableStatement workingHoursByEmployee) {
+        this.workingHoursByEmployee = workingHoursByEmployee;
+    }
+
     @Override
     public CallableStatement prepareCall(String sql) throws SQLException {
-        return visitsByDateAndDoctor;
-        //todo
+        if(sql.equalsIgnoreCase("{CALL SELECT_WORKING_HOURS_BY_EMPLOYEE_ID ( ? )}"))
+            return workingHoursByEmployee;
+        else if(sql.equalsIgnoreCase("{CALL SELECT_VISITS_BY_DATE_AND_DOCTOR( ?, ?, ?)}"))
+            return visitsByDateAndDoctor;
+        throw new SQLException("Unknown procedure!");
     }
 
     @Override

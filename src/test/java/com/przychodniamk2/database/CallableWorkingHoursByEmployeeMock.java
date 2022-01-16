@@ -5,10 +5,23 @@ import java.io.Reader;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Map;
 
 public class CallableWorkingHoursByEmployeeMock implements CallableStatement {
+
+    private Object[][] result = {{Time.valueOf("10:00:00"), Time.valueOf("14:00:00")}};
+
+    public void setResult(Object[][] result) {
+        this.result = result;
+    }
+
+    @Override
+    public ResultSet executeQuery() throws SQLException {
+        return new ResultSetMock(Arrays.asList(result), new String[]{"start", "end"});
+    }
+
     @Override
     public void registerOutParameter(int parameterIndex, int sqlType) throws SQLException {
 
@@ -571,11 +584,6 @@ public class CallableWorkingHoursByEmployeeMock implements CallableStatement {
 
     @Override
     public <T> T getObject(String parameterName, Class<T> type) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public ResultSet executeQuery() throws SQLException {
         return null;
     }
 

@@ -7,9 +7,15 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
 public class DataSourceMock implements javax.sql.DataSource {
+    ConnectionMock connectionMock = new ConnectionMock();
+
+    public void setConnectionMock(ConnectionMock connectionMock) {
+        this.connectionMock = connectionMock;
+    }
+
     @Override
     public Connection getConnection() throws SQLException {
-        return new ConnectionMock();
+        return this.connectionMock;
     }
 
     @Override

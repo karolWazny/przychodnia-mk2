@@ -5,13 +5,42 @@ import java.io.Reader;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
-import java.util.Calendar;
-import java.util.Map;
+import java.sql.Date;
+import java.util.*;
 
 public class ResultSetMock implements ResultSet {
+
+    private List<Object[]> results;
+    private Iterator<Object[]> resultIterator;
+    private Object[] currentResult;
+    private List<String> columnNames;
+
+    public ResultSetMock(List<Object[]> results, String[] columnNames){
+        this.results = results;
+        resultIterator = results.iterator();
+        this.columnNames = new ArrayList<>();
+        for(String columnName : columnNames){
+            this.columnNames.add(columnName.toUpperCase(Locale.ROOT));
+        }
+    }
+
     @Override
     public boolean next() throws SQLException {
+        if(resultIterator.hasNext()){
+            currentResult = resultIterator.next();
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public String getString(int columnIndex) throws SQLException {
+        return (String)currentResult[columnIndex - 1];
+    }
+
+    @Override
+    public Time getTime(int columnIndex) throws SQLException {
+        return (Time)currentResult[columnIndex - 1];
     }
 
     @Override
@@ -22,11 +51,6 @@ public class ResultSetMock implements ResultSet {
     @Override
     public boolean wasNull() throws SQLException {
         return false;
-    }
-
-    @Override
-    public String getString(int columnIndex) throws SQLException {
-        return null;
     }
 
     @Override
@@ -76,11 +100,6 @@ public class ResultSetMock implements ResultSet {
 
     @Override
     public Date getDate(int columnIndex) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Time getTime(int columnIndex) throws SQLException {
         return null;
     }
 
@@ -161,7 +180,10 @@ public class ResultSetMock implements ResultSet {
 
     @Override
     public Time getTime(String columnLabel) throws SQLException {
-        return null;
+        int columnIndex = columnNames.indexOf(columnLabel.toUpperCase(Locale.ROOT));
+        if(columnIndex == -1)
+            throw new SQLException("Unknown column name!");
+        return getTime(columnIndex + 1);
     }
 
     @Override
