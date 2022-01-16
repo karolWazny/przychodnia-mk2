@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 import org.springframework.stereotype.Service;
 
 @Service
-public class mainController {
+public class MainController {
     private UserInteractionController userInteractionController;
 
     @FXML
@@ -24,7 +24,7 @@ public class mainController {
     @FXML
     private Pane administrativeActions;
 
-    public mainController(){
+    public MainController(){
 
     }
 
