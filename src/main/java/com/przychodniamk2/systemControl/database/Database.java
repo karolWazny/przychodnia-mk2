@@ -18,10 +18,10 @@ public interface Database {
 	void createPatient(Person person);
 	List<Doctor> readDoctors();
 	Date getFirstPossibleAppointmentDate(Doctor doctor);
-	List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date);
+	List<Time> getPossibleAppointmentTimes(Doctor doctor, Date date); //tutaj
 	List<ElementOfTreatment> getCurrentDiagnoses();
 	List<ElementOfTreatment> getCurrentProcedures();
-    User logIn(String user, String password);
+    User logIn(String user, String password); //tutaj
 	void createUser(User user, String password);
-	void changePassword(String user, String oldPassword, String newPassword);
+	void changePassword(String user, String oldPassword, String newPassword); //tutaj
 }
