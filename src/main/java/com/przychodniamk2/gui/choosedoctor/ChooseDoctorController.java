@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.choosedoctor;
 
-import com.przychodniamk2.unit.business.Doctor;
+import com.przychodniamk2.business.Doctor;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.UserInteractionController;

@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.login;
 
-import com.przychodniamk2.unit.business.User;
+import com.przychodniamk2.business.User;
 import com.przychodniamk2.systemControl.usecase.LogInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

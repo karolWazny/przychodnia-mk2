@@ -1,6 +1,6 @@
 package com.przychodniamk2.unit.business.TimeTests;
 
-import com.przychodniamk2.unit.business.Time;
+import com.przychodniamk2.business.Time;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;

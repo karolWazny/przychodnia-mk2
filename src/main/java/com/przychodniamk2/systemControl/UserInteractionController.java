@@ -1,6 +1,6 @@
 package com.przychodniamk2.systemControl;
 
-import com.przychodniamk2.unit.business.*;
+import com.przychodniamk2.business.*;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,8 +1,9 @@
 package com.przychodniamk2.unit.database;
 
-import com.przychodniamk2.unit.business.Date;
-import com.przychodniamk2.unit.business.Doctor;
-import com.przychodniamk2.unit.business.Time;
+import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Doctor;
+import com.przychodniamk2.business.Time;
+import com.przychodniamk2.systemControl.database.SpringMySQLDatabase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

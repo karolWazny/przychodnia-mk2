@@ -1,9 +1,10 @@
 package com.przychodniamk2.unit.database;
 
-import com.przychodniamk2.unit.business.Employee;
-import com.przychodniamk2.unit.business.User;
-import com.przychodniamk2.unit.database.orm.views.EmployeesView;
-import com.przychodniamk2.unit.database.repositories.EmployeesViewRepository;
+import com.przychodniamk2.business.Employee;
+import com.przychodniamk2.business.User;
+import com.przychodniamk2.systemControl.database.SpringMySQLDatabase;
+import com.przychodniamk2.systemControl.database.orm.views.EmployeesView;
+import com.przychodniamk2.systemControl.database.repositories.EmployeesViewRepository;
 import mockit.Expectations;
 import mockit.Injectable;
 import mockit.Tested;

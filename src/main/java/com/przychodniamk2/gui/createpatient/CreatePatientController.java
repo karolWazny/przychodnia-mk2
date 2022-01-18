@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.createpatient;
 
-import com.przychodniamk2.unit.business.Person;
+import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.CreateXXXController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.event.ActionEvent;

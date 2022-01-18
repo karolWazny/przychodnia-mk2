@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.changepassword;
 
-import com.przychodniamk2.unit.business.User;
+import com.przychodniamk2.business.User;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.LogInService;

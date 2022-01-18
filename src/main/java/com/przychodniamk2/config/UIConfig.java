@@ -1,6 +1,6 @@
 package com.przychodniamk2.config;
 
-import com.przychodniamk2.unit.business.User;
+import com.przychodniamk2.business.User;
 import com.przychodniamk2.gui.changepassword.JavaFXPasswordChanger;
 import com.przychodniamk2.gui.choosedoctor.JavaFXDoctorChooser;
 import com.przychodniamk2.gui.addvisit.JavaFXVisitPlanner;

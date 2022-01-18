@@ -1,5 +1,6 @@
 package com.przychodniamk2.unit.database;
 
+import com.przychodniamk2.systemControl.database.SpringMySQLDatabase;
 import mockit.Expectations;
 import mockit.Injectable;
 import mockit.Tested;

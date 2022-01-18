@@ -1,8 +1,8 @@
 package com.przychodniamk2.gui.browseplannedvisits;
 
-import com.przychodniamk2.unit.business.Date;
-import com.przychodniamk2.unit.business.Doctor;
-import com.przychodniamk2.unit.business.ScheduledVisit;
+import com.przychodniamk2.business.Date;
+import com.przychodniamk2.business.Doctor;
+import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.beans.property.ObjectProperty;

@@ -1,6 +1,6 @@
 package com.przychodniamk2.systemControl.database;
 
-import com.przychodniamk2.unit.business.*;
+import com.przychodniamk2.business.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 

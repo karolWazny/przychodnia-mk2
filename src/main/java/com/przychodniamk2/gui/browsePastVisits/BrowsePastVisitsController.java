@@ -1,7 +1,7 @@
 package com.przychodniamk2.gui.browsePastVisits;
 
-import com.przychodniamk2.unit.business.DoneVisit;
-import com.przychodniamk2.unit.business.Patient;
+import com.przychodniamk2.business.DoneVisit;
+import com.przychodniamk2.business.Patient;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.DoneVisitDisplayer;

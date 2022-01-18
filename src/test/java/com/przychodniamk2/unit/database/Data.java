@@ -1,6 +1,6 @@
 package com.przychodniamk2.unit.database;
 
-import com.przychodniamk2.unit.business.Time;
+import com.przychodniamk2.business.Time;
 
 public class Data {
     public Object[][] data  = {{"10:00:00", "14:00:00",

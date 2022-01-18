@@ -1,8 +1,8 @@
 package com.przychodniamk2.gui.performvisit;
 
-import com.przychodniamk2.unit.business.DoneVisit;
-import com.przychodniamk2.unit.business.ElementOfTreatment;
-import com.przychodniamk2.unit.business.ScheduledVisit;
+import com.przychodniamk2.business.DoneVisit;
+import com.przychodniamk2.business.ElementOfTreatment;
+import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;

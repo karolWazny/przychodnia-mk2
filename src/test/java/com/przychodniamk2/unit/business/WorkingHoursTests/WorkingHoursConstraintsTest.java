@@ -1,7 +1,7 @@
 package com.przychodniamk2.unit.business.WorkingHoursTests;
 
-import com.przychodniamk2.unit.business.Time;
-import com.przychodniamk2.unit.business.WorkingHours;
+import com.przychodniamk2.business.Time;
+import com.przychodniamk2.business.WorkingHours;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
