@@ -1,3 +1,0 @@
-|com.przychodniamk2.acceptance.First|
-|firstNumber | secondNumber | sum? |
-|2 | 2 | 4 |
