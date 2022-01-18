@@ -1,6 +1,6 @@
 package com.przychodniamk2.config;
 
-import com.przychodniamk2.business.User;
+import com.przychodniamk2.unit.business.User;
 import com.przychodniamk2.gui.changepassword.JavaFXPasswordChanger;
 import com.przychodniamk2.gui.choosedoctor.JavaFXDoctorChooser;
 import com.przychodniamk2.gui.addvisit.JavaFXVisitPlanner;
@@ -9,7 +9,6 @@ import com.przychodniamk2.gui.createpatient.JavaFXPatientCreator;
 import com.przychodniamk2.gui.createuser.JavaFXUserCreator;
 import com.przychodniamk2.gui.displaydonevisit.JavaFXDoneVisitDisplayer;
 import com.przychodniamk2.gui.login.JavaFXLogInService;
-import com.przychodniamk2.gui.login.LogInDialog;
 import com.przychodniamk2.gui.performvisit.JavaFXVisitPerformer;
 import com.przychodniamk2.systemControl.usecase.*;
 import com.przychodniamk2.systemControl.SystemController;
@@ -17,8 +16,6 @@ import com.przychodniamk2.systemControl.UserInteractionController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.persistence.Access;
 
 @Configuration
 public class UIConfig {

@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.displaydonevisit;
 
-import com.przychodniamk2.business.DoneVisit;
+import com.przychodniamk2.unit.business.DoneVisit;
 import com.przychodniamk2.gui.FXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

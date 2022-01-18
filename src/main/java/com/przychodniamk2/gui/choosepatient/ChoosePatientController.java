@@ -1,14 +1,11 @@
 package com.przychodniamk2.gui.choosepatient;
 
-import com.przychodniamk2.business.Patient;
-import com.przychodniamk2.business.Person;
+import com.przychodniamk2.unit.business.Patient;
+import com.przychodniamk2.unit.business.Person;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

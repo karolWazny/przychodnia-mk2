@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20211030</FitNesseVersion>
+  <rootPath>TopLevelPage.FirstSuite.FirstTest</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>1</exceptions>
+    </counts>
+    <date>2022-01-18T20:09:13+01:00</date>
+    <runTimeInMillis>2</runTimeInMillis>
+    <content>&lt;br/&gt;&lt;span class="meta"&gt;classpath: D:\projects\przychodnia-mk3\target\test-classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td colspan="3" class="error"&gt;com.przychodniamk2.acceptance.First&lt;hr/&gt; &lt;span class="fit_label"&gt;Class com.przychodniamk2.acceptance.First is not a fixture.&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;firstNumber&lt;/td&gt;
+		&lt;td&gt;secondNumber&lt;/td&gt;
+		&lt;td&gt;sum?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>FirstTest</relativePageName>
+  </result>
+  <executionLog>
+    <testSystem>fit:fit.FitServer</testSystem>
+    <command>C:\ProgramFiles\Zulu\zulu-17\bin\java -cp D:\projects\przychodnia-mk3\target\test-classes;D:\projects\przychodnia-mk3\src\test\fitnesse\fitnesse-standalone.jar fit.FitServer DESKTOP-D1MJAU1 51024 3863</command>
+    <exitCode>1</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>1</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>388</totalRunTimeInMillis>
+</testResults>
+

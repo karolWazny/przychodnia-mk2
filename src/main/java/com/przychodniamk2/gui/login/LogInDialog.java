@@ -1,7 +1,6 @@
 package com.przychodniamk2.gui.login;
 
-import com.przychodniamk2.business.Employee;
-import com.przychodniamk2.business.User;
+import com.przychodniamk2.unit.business.User;
 import com.przychodniamk2.systemControl.database.Database;
 import javafx.application.Platform;
 import javafx.geometry.Insets;

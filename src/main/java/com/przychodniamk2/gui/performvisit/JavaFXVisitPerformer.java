@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.performvisit;
 
-import com.przychodniamk2.business.ScheduledVisit;
+import com.przychodniamk2.unit.business.ScheduledVisit;
 import com.przychodniamk2.gui.ModalWindowController;
 import com.przychodniamk2.systemControl.usecase.VisitPerformer;
 import org.springframework.beans.factory.annotation.Autowired;

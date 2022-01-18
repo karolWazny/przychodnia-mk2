@@ -1,8 +1,8 @@
 package com.przychodniamk2.gui;
 
-import com.przychodniamk2.business.Address;
-import com.przychodniamk2.business.Date;
-import com.przychodniamk2.business.Person;
+import com.przychodniamk2.unit.business.Address;
+import com.przychodniamk2.unit.business.Date;
+import com.przychodniamk2.unit.business.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

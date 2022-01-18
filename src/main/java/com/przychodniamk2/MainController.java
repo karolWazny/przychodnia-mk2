@@ -1,6 +1,6 @@
 package com.przychodniamk2;
 
-import com.przychodniamk2.business.*;
+import com.przychodniamk2.unit.business.*;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

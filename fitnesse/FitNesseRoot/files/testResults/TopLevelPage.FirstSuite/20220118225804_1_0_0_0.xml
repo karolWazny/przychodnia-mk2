@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<suiteResults>
+  <FitNesseVersion>v20211030</FitNesseVersion>
+  <rootPath>TopLevelPage.FirstSuite</rootPath>
+  <pageHistoryReference>
+    <name>TopLevelPage.FirstSuite.FirstTest</name>
+    <date>2022-01-18T22:58:04+01:00</date>
+    <pageHistoryLink>TopLevelPage.FirstSuite.FirstTest?pageHistory&amp;resultDate=20220118225804</pageHistoryLink>
+    <counts>
+      <right>1</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <runTimeInMillis>148</runTimeInMillis>
+  </pageHistoryReference>
+  <executionLog>
+    <testSystem>fit:fit.FitServer</testSystem>
+    <command>C:\ProgramFiles\Zulu\zulu-17\bin\java -cp ..\target\test-classes\;D:\projects\przychodnia-mk3\fitnesse\fitnesse-standalone.jar fit.FitServer DESKTOP-D1MJAU1 61545 3863</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>1</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>891</totalRunTimeInMillis>
+</suiteResults>
+

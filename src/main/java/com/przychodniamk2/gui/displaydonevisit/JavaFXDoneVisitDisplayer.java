@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.displaydonevisit;
 
-import com.przychodniamk2.business.DoneVisit;
+import com.przychodniamk2.unit.business.DoneVisit;
 import com.przychodniamk2.gui.ModalWindowController;
 import com.przychodniamk2.systemControl.usecase.DoneVisitDisplayer;
 import org.springframework.beans.factory.annotation.Autowired;

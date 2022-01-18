@@ -1,6 +1,6 @@
 package com.przychodniamk2.gui.addvisit;
 
-import com.przychodniamk2.business.*;
+import com.przychodniamk2.unit.business.*;
 import com.przychodniamk2.gui.FXMLController;
 import com.przychodniamk2.systemControl.UserInteractionController;
 import com.przychodniamk2.systemControl.database.Database;
@@ -13,10 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.converter.LocalDateStringConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class AddVisitController extends FXMLController<ScheduledVisit> {
