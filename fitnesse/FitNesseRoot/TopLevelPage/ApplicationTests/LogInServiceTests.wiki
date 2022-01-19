@@ -1,6 +1,7 @@
 ---
 Test
 ---
+There are only one correct credentials in this test: "maro", "validPassword".
 What we want here is getting  value 'true' on successful login.
 Because of some implementation nuances, !LogInService returns false only when credentials are null.
 
