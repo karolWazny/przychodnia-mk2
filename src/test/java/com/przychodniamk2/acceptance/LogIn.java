@@ -13,8 +13,6 @@ import java.util.Optional;
 public class LogIn extends ColumnFixture {
     private LogInServiceImpl logInService = new LogInServiceImpl();
     private MockupDatabase mockupDatabase = new MockupDatabase();
-    private int firstNumber;
-    private int secondNumber;
 
     private Credentials credentials = new Credentials("", "");
 
@@ -39,10 +37,6 @@ public class LogIn extends ColumnFixture {
         logInService.setFactory(credentialsScannerMockupFactory);
     }
 
-    public int sum(){
-        return firstNumber + secondNumber;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -55,5 +49,13 @@ public class LogIn extends ColumnFixture {
         credentials.setPassword(password);
         credentials.setUsername(username);
         return logInService.logIn();
+    }
+
+    public String loggedUserName(){
+        try{
+            return logInService.getLoggedUser().getUsername();
+        }catch(NullPointerException e){
+            return null;
+        }
     }
 }
