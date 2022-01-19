@@ -1,8 +1,6 @@
 package com.przychodniamk2.gui.browsePastVisits;
 
-import com.przychodniamk2.business.DoneVisit;
 import com.przychodniamk2.business.Patient;
-import com.przychodniamk2.business.ScheduledVisit;
 import com.przychodniamk2.gui.ModalWindowController;
 import com.przychodniamk2.systemControl.usecase.PastPatientsVisitBrowser;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.przychodniamk2.config;
 
-import com.przychodniamk2.database.SpringMySQLDatabase;
+import com.przychodniamk2.systemControl.database.SpringMySQLDatabase;
 import com.przychodniamk2.systemControl.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

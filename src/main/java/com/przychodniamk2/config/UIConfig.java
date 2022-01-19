@@ -8,8 +8,7 @@ import com.przychodniamk2.gui.choosepatient.JavaFXPatientChooser;
 import com.przychodniamk2.gui.createpatient.JavaFXPatientCreator;
 import com.przychodniamk2.gui.createuser.JavaFXUserCreator;
 import com.przychodniamk2.gui.displaydonevisit.JavaFXDoneVisitDisplayer;
-import com.przychodniamk2.gui.login.JavaFXLogInService;
-import com.przychodniamk2.gui.login.LogInDialog;
+import com.przychodniamk2.gui.login.LogInServiceImpl;
 import com.przychodniamk2.gui.performvisit.JavaFXVisitPerformer;
 import com.przychodniamk2.systemControl.usecase.*;
 import com.przychodniamk2.systemControl.SystemController;
@@ -18,14 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.Access;
-
 @Configuration
 public class UIConfig {
-    private JavaFXLogInService javaFXLogInService;
+    private LogInServiceImpl javaFXLogInService;
 
     @Autowired
-    public void setJavaFXLogInService(JavaFXLogInService javaFXLogInService) {
+    public void setJavaFXLogInService(LogInServiceImpl javaFXLogInService) {
         this.javaFXLogInService = javaFXLogInService;
     }
 
