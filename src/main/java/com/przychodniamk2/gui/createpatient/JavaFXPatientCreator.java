@@ -2,7 +2,6 @@ package com.przychodniamk2.gui.createpatient;
 
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.ModalWindowController;
-import com.przychodniamk2.systemControl.database.Database;
 import com.przychodniamk2.systemControl.usecase.PatientCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
