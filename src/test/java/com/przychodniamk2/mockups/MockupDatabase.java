@@ -20,6 +20,8 @@ public class MockupDatabase extends MockupDatabaseBase {
 
     @Override
     public User logIn(String user, String password){
+        if(credentials.containsKey(user) && credentials.get(user).equals(password))
+            return new User(users.get(user), user);
         return null;
     }
 
