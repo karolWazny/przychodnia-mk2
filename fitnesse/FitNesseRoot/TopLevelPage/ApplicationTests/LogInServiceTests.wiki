@@ -1,0 +1,19 @@
+---
+Test
+---
+What we want here is getting  value 'true' on successful login.
+Because of some implementation nuances, !LogInService returns false only when credentials are null.
+
+|com.przychodniamk2.acceptance.LogIn |
+|username | password | success? |
+| maro| validPassword | true |
+| maro| invalidPassword| error |
+| other user | validPassword| error |
+
+Unsuccessful login does not change the state of !LogInService.
+
+|com.przychodniamk2.acceptance.LogIn |
+|username | password | success? | loggedUserName? |
+| maro| invalidPassword| error | null |
+| other user | validPassword| error | null |
+| maro| validPassword | true | maro |
