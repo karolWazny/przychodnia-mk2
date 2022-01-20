@@ -94,7 +94,16 @@ public abstract class CreateXXXController<R> extends FXMLController<R>{
         sex.setValue(Person.Sex.MALE);
     }
 
+    protected void validateString(String string, String fieldName){
+        if(string == null || string.equals(""))
+            throw new RuntimeException("Pole " + fieldName + " nie może być puste!");
+    }
+
     protected Address buildAddress(){
+        validateString(streetName, "Ulica");
+        validateString(buildingString, "Numer budynku");
+        validateString(cityName, "Miasto");
+        validateString(zipCodeString, "Kod pocztowy");
         Address address = new Address();
         address.buildingNumber = buildingString;
         address.city = cityName;
@@ -105,6 +114,9 @@ public abstract class CreateXXXController<R> extends FXMLController<R>{
     }
 
     protected Person buildPerson(){
+        validateString(name, "Imię");
+        validateString(surname, "Nazwisko");
+        validateString(peselString, "PESEL");
         Address address = buildAddress();
 
         Person patient = new Person();

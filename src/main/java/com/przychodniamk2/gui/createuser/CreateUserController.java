@@ -22,6 +22,7 @@ public class CreateUserController extends CreateXXXController<User> {
     private String login = "";
     private String password = "";
     private String repeatPassword = "";
+    private Employee.Position position;
 
     @FXML
     private PasswordField passField;
@@ -55,6 +56,8 @@ public class CreateUserController extends CreateXXXController<User> {
         ObservableList<Employee.Position> observableList = FXCollections.observableArrayList();
         observableList.addAll(positions);
 
+        function.valueProperty().addListener(((observable, oldValue, newValue) -> position = newValue));
+
         function.setItems(observableList);
         function.setValue(Employee.Position.GUEST);
     }
@@ -67,10 +70,10 @@ public class CreateUserController extends CreateXXXController<User> {
 
         Person person = buildPerson();
 
-        Employee employee = new Employee(person, function.getValue());
+        Employee employee = new Employee(person, position);
 
-        User user = new User(employee, loginField.textProperty().get());
-        database.createUser(user, passField.textProperty().get());
+        User user = new User(employee, login);
+        database.createUser(user, password);
     }
 
     @FXML
@@ -113,5 +116,9 @@ public class CreateUserController extends CreateXXXController<User> {
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
+    }
+
+    public void setPosition(Employee.Position position) {
+        this.position = position;
     }
 }
