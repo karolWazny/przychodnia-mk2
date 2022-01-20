@@ -19,6 +19,10 @@ public class CreateUserController extends CreateXXXController<User> {
     private static final String fxml = "createUser.fxml";
     private Database database;
 
+    private String login = "";
+    private String password = "";
+    private String repeatPassword = "";
+
     @FXML
     private PasswordField passField;
 
@@ -37,6 +41,10 @@ public class CreateUserController extends CreateXXXController<User> {
 
     @FXML
     private void initialize(){
+        passField.textProperty().addListener(((observable, oldValue, newValue) -> password = newValue));
+        repeatPassField.textProperty().addListener(((observable, oldValue, newValue) -> repeatPassword = newValue));
+        loginField.textProperty().addListener(((observable, oldValue, newValue) -> login = newValue));
+
         initializeSexAndFormatters();
 
         initializeFunctionChoiceBox();
@@ -54,9 +62,9 @@ public class CreateUserController extends CreateXXXController<User> {
     @FXML
     private void confirm(){
         try{
-            if(!passField.textProperty().get().equals(repeatPassField.textProperty().get()))
+            if(!password.equals(repeatPassword))
                 throw new RuntimeException("Wprowadzone hasła różnią się!");
-            if(loginField.textProperty().get().equals("") || loginField.textProperty().get() == null)
+            if(login.equals(""))
                 throw new RuntimeException("Pole login nie może być puste!");
 
             Person person = buildPerson();
@@ -75,7 +83,6 @@ public class CreateUserController extends CreateXXXController<User> {
 
             alert.showAndWait();
         }
-
     }
 
     @FXML
@@ -86,5 +93,21 @@ public class CreateUserController extends CreateXXXController<User> {
     @Override
     public void setContext(ApplicationContext context) {
         this.database = context.getBean("database", Database.class);
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 }
