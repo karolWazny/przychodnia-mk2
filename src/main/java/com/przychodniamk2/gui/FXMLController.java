@@ -63,4 +63,9 @@ public abstract class FXMLController<R> {
             return change;
         });
     }
+
+    protected void validateString(String string, String fieldName){
+        if(string == null || string.equals(""))
+            throw new RuntimeException("Pole " + fieldName + " nie może być puste!");
+    }
 }
