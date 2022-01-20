@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="364.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przychodniamk2.gui.createuser.CreateUserController">
    <children>
-      <Button layoutX="667.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#confirm" text="Zatwierdź" />
+      <Button layoutX="667.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#confirmClick" text="Zatwierdź" />
       <Button layoutX="608.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#cancel" text="Anuluj" />
       <ChoiceBox fx:id="function" layoutX="108.0" layoutY="223.0" prefWidth="150.0" />
       <ComboBox fx:id="specialization" layoutX="108.0" layoutY="261.0" prefWidth="150.0" />

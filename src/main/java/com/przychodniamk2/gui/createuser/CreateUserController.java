@@ -59,20 +59,24 @@ public class CreateUserController extends CreateXXXController<User> {
         function.setValue(Employee.Position.GUEST);
     }
 
+    public void confirm(){
+        if(!password.equals(repeatPassword))
+            throw new RuntimeException("Wprowadzone hasła różnią się!");
+        if(login.equals(""))
+            throw new RuntimeException("Pole login nie może być puste!");
+
+        Person person = buildPerson();
+
+        Employee employee = new Employee(person, function.getValue());
+
+        User user = new User(employee, loginField.textProperty().get());
+        database.createUser(user, passField.textProperty().get());
+    }
+
     @FXML
-    private void confirm(){
+    private void confirmClick(){
         try{
-            if(!password.equals(repeatPassword))
-                throw new RuntimeException("Wprowadzone hasła różnią się!");
-            if(login.equals(""))
-                throw new RuntimeException("Pole login nie może być puste!");
-
-            Person person = buildPerson();
-
-            Employee employee = new Employee(person, function.getValue());
-
-            User user = new User(employee, loginField.textProperty().get());
-            database.createUser(user, passField.textProperty().get());
+            confirm();
 
             super.close();
         } catch (RuntimeException exception){
