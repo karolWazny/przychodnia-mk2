@@ -5,6 +5,7 @@ import com.przychodniamk2.business.User;
 import com.przychodniamk2.gui.changepassword.ChangePasswordController;
 import com.przychodniamk2.mockups.MockupContextImpl;
 import com.przychodniamk2.mockups.MockupDatabase;
+import com.przychodniamk2.systemControl.database.Database;
 import fit.ColumnFixture;
 
 public class ChangePassword extends ColumnFixture {
@@ -14,7 +15,7 @@ public class ChangePassword extends ColumnFixture {
     private String newPass;
     private String repeatNewPass;
     private String oldPass;
-    private MockupDatabase mockupDatabase = new MockupDatabase();
+    private Database mockupDatabase = SetUp.context.getBean("database", Database.class);
     private User user;
 
     public ChangePassword(){
@@ -27,10 +28,7 @@ public class ChangePassword extends ColumnFixture {
         user = new User (employee, "maro");
         mockupDatabase.createUser(user, "validPassword");
 
-        MockupContextImpl context = new MockupContextImpl();
-        context.setDatabase(mockupDatabase);
-
-        controller.setContext(context);
+        controller.setContext(SetUp.context);
     }
 
     public void setUserLoggedIn(boolean userLoggedIn) {

@@ -3,8 +3,6 @@ package com.przychodniamk2.acceptance;
 import com.przychodniamk2.business.Employee;
 import com.przychodniamk2.business.Person;
 import com.przychodniamk2.gui.createuser.CreateUserController;
-import com.przychodniamk2.mockups.MockupContext;
-import com.przychodniamk2.mockups.MockupContextImpl;
 import fit.ColumnFixture;
 
 public class CreateUser extends ColumnFixture {
@@ -27,7 +25,7 @@ public class CreateUser extends ColumnFixture {
     private String zipCode;
 
     public CreateUser(){
-        controller.setContext(new MockupContextImpl());
+        controller.setContext(SetUp.context);
     }
 
     public boolean createUser(){

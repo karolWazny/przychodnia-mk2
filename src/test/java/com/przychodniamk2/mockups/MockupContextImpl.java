@@ -9,6 +9,10 @@ public class MockupContextImpl extends MockupContext{
     private Database database = new MockupDatabase();
     private LogInServiceImpl logInService = new LogInServiceImpl();
 
+    public MockupContextImpl(){
+        logInService.setDatabase(database);
+    }
+
     @Override
     public <T> T getBean(String s, Class<T> aClass) throws BeansException {
         return (T)getBean(s);

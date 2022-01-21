@@ -1,18 +1,16 @@
 package com.przychodniamk2.acceptance;
 
-import com.przychodniamk2.business.Employee;
-import com.przychodniamk2.business.User;
 import com.przychodniamk2.gui.login.Credentials;
 import com.przychodniamk2.gui.login.LogInServiceImpl;
 import com.przychodniamk2.mockups.CredentialsScannerMockupFactory;
-import com.przychodniamk2.mockups.MockupDatabase;
+import com.przychodniamk2.systemControl.database.Database;
 import fit.ColumnFixture;
 
 import java.util.Optional;
 
 public class LogIn extends ColumnFixture {
     private LogInServiceImpl logInService = new LogInServiceImpl();
-    private MockupDatabase mockupDatabase = new MockupDatabase();
+    private Database mockupDatabase = SetUp.context.getBean("database", Database.class);
 
     private Credentials credentials = new Credentials("", "");
 
@@ -25,10 +23,6 @@ public class LogIn extends ColumnFixture {
     }
 
     private void setup(){
-        Employee employee = new Employee("Marek", "Markowski", 0);
-        User user = new User (employee, "maro");
-        mockupDatabase.createUser(user, "validPassword");
-
         logInService.setDatabase(mockupDatabase);
 
         CredentialsScannerMockupFactory credentialsScannerMockupFactory = new CredentialsScannerMockupFactory();

@@ -14,6 +14,6 @@ public class SetUp extends Fixture {
     }
 
     public ApplicationContext getContext(){
-        return null;
+        return context;
     }
 }
